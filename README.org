@@ -1,0 +1,359 @@
+#+TITLE: My dotfiles
+#+AUTHOR: Raven's Iris
+* Programs installed
+#+BEGIN_SRC shell :exports results
+pacman -Qqe
+#+END_SRC
+
+#+RESULTS:
+| alacritty                  |
+| apvlv                      |
+| autoconf                   |
+| automake                   |
+| base                       |
+| binutils                   |
+| bison                      |
+| bridge-utils               |
+| brittany                   |
+| cabal-static               |
+| calibre                    |
+| chessx                     |
+| cmake                      |
+| cryptsetup-runit           |
+| cutechess                  |
+| deemix                     |
+| dhcpcd                     |
+| dhcpcd-runit               |
+| discord                    |
+| dmenu                      |
+| dnsmasq                    |
+| ebtables                   |
+| efibootmgr                 |
+| elogind-runit              |
+| emacs                      |
+| epub-thumbnailer-git       |
+| evince                     |
+| fakeroot                   |
+| ffmpegthumbnailer          |
+| file                       |
+| findutils                  |
+| firefox                    |
+| fish                       |
+| flex                       |
+| fontpreview-git            |
+| gawk                       |
+| gcc                        |
+| gettext                    |
+| ghc                        |
+| ghc-static                 |
+| git                        |
+| gobject-introspection      |
+| gpicview                   |
+| grep                       |
+| groff                      |
+| grub                       |
+| gst-plugins-bad            |
+| gst-plugins-good           |
+| gstreamer-vaapi            |
+| gtksourceview3             |
+| gzip                       |
+| hlint                      |
+| htop                       |
+| imagemagick                |
+| kdenlive                   |
+| libelogind                 |
+| libretro-beetle-pce        |
+| libretro-beetle-pce-fast   |
+| libretro-beetle-psx        |
+| libretro-beetle-psx-hw     |
+| libretro-beetle-supergrafx |
+| libretro-blastem           |
+| libretro-bsnes             |
+| libretro-bsnes-hd          |
+| libretro-bsnes2014         |
+| libretro-citra             |
+| libretro-core-info         |
+| libretro-desmume           |
+| libretro-dolphin           |
+| libretro-flycast           |
+| libretro-gambatte          |
+| libretro-genesis-plus-gx   |
+| libretro-kronos            |
+| libretro-melonds           |
+| libretro-mesen             |
+| libretro-mesen-s           |
+| libretro-mgba              |
+| libretro-mupen64plus-next  |
+| libretro-nestopia          |
+| libretro-overlays          |
+| libretro-parallel-n64      |
+| libretro-pcsx2             |
+| libretro-picodrive         |
+| libretro-play              |
+| libretro-ppsspp            |
+| libretro-retrodream        |
+| libretro-sameboy           |
+| libretro-scummvm           |
+| libretro-shaders-slang     |
+| libretro-snes9x            |
+| libretro-yabause           |
+| libtool                    |
+| libvirt                    |
+| libvirt-runit              |
+| libxss                     |
+| linux-firmware             |
+| linux-zen                  |
+| linux-zen-headers          |
+| lsd                        |
+| lxappearance               |
+| lxappearance-obconf        |
+| lxde-common                |
+| lxde-icon-theme            |
+| lxdm                       |
+| lxhotkey                   |
+| lxinput                    |
+| lxlauncher                 |
+| lxmusic                    |
+| lxpanel                    |
+| lxrandr                    |
+| lxsession                  |
+| lxtask                     |
+| lxterminal                 |
+| m4                         |
+| make                       |
+| man-db                     |
+| neofetch                   |
+| neovim                     |
+| nerd-fonts-victor-mono     |
+| okular                     |
+| openbox                    |
+| openntpd                   |
+| openntpd-runit             |
+| openssh                    |
+| pacman                     |
+| pass                       |
+| patch                      |
+| pavucontrol                |
+| pcmanfm                    |
+| pcsx2                      |
+| picom                      |
+| pkgconf                    |
+| pokerth                    |
+| poppler                    |
+| pulseaudio                 |
+| pulseaudio-qt              |
+| pychess                    |
+| python-pip                 |
+| qbittorrent                |
+| qemu                       |
+| quodlibet                  |
+| ranger                     |
+| reicast                    |
+| retroarch                  |
+| retroarch-assets-ozone     |
+| retroarch-assets-xmb       |
+| rsync                      |
+| runit                      |
+| sed                        |
+| slock                      |
+| stack-static               |
+| stockfish                  |
+| streetsofrageremake        |
+| sudo                       |
+| texinfo                    |
+| tree                       |
+| ttf-koruri                 |
+| udevil                     |
+| ueberzug                   |
+| unarchiver                 |
+| unzip                      |
+| vifm                       |
+| virt-manager               |
+| virtualgl                  |
+| vlc                        |
+| w3m                        |
+| webkit2gtk                 |
+| which                      |
+| xclip                      |
+| xorg-server                |
+| xorg-xbacklight            |
+| xorg-xdpyinfo              |
+| xorg-xev                   |
+| xorg-xinit                 |
+| xorg-xwininfo              |
+| xwallpaper                 |
+| yay                        |
+| zathura                    |
+| zip                        |
+
+* Terminal - Alacritty
+
+  [[~/.config/alacritty/alacritty.png]]
+
+#+BEGIN_SRC yaml :tangle ~/.config/alacritty/alacritty.yml
+  font:
+    normal:
+      family: Victor Mono Nerd Font
+      style: Regular
+    bold:
+      family: Victor Mono Nerd Font
+      style: Bold
+    italic:
+      family: Victor Mono Nerd Font
+      style: Italic
+
+  background_opacity: 0.95
+  # Colors (Dracula)
+  colors:
+    # Default colors
+    primary:
+      background: '0x292d3e'
+      foreground: '0xbbc5ff'
+
+      # Bright and dim foreground colors
+      #
+      # The dimmed foreground color is calculated automatically if it is not present.
+      # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
+      # is `false`, the normal foreground color will be used.
+      #dim_foreground: '0x9a9a9a'
+      #bright_foreground: '0xffffff'
+
+    # Cursor colors
+    #
+    # Colors which should be used to draw the terminal cursor. If these are unset,
+    # the cursor color will be the inverse of the cell color.
+    cursor:
+      text: '0x44475a'
+      cursor: '0xf8f8f2'
+
+    # Selection colors
+    #
+    # Colors which should be used to draw the selection area. If selection
+    # background is unset, selection color will be the inverse of the cell colors.
+    # If only text is unset the cell text color will remain the same.
+    selection:
+      text: '0xf8f8f2'
+      background: '0x44475a'
+
+    # Normal colors
+    normal:
+      black:   '0x000000'
+      red:     '0xff5555'
+      green:   '0x50fa7b'
+      yellow:  '0xf1fa8c'
+      blue:    '0xbd93f9'
+      magenta: '0xff79c6'
+      cyan:    '0x8be9fd'
+      white:   '0xbfbfbf'
+
+    # Bright colors
+    bright:
+      black:   '0x4d4d4d'
+      red:     '0xff6e67'
+      green:   '0x5af78e'
+      yellow:  '0xf4f99d'
+      blue:    '0xcaa9fa'
+      magenta: '0xff92d0'
+      cyan:    '0x9aedfe'
+      white:   '0xe6e6e6'
+
+    # Dim colors
+    #
+    # If the dim colors are not set, they will be calculated automatically based
+    # on the `normal` colors.
+    dim:
+      black:   '0x14151b'
+      red:     '0xff2222'
+      green:   '0x1ef956'
+      yellow:  '0xebf85b'
+      blue:    '0x4d5b86'
+      magenta: '0xff46b0'
+      cyan:    '0x59dffc'
+      white:   '0xe6e6d1'
+
+    # Indexed Colors
+    #
+    # The indexed colors include all colors from 16 to 256.
+    # When these are not set, they're filled with sensible defaults.
+    #
+    # Example:
+    #   `- { index: 16, color: '0xff00ff' }`
+    #
+    indexed_colors: []
+
+
+#+END_SRC
+
+* Shell - fish
+** fish_variables
+#+BEGIN_SRC fish :tangle ~/.config/fish/fish_variables
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR EDITOR:nvim
+SETUVAR GPG_AGENT_INFO:
+SETUVAR GPG_TTY:/dev/pts/0
+SETUVAR --export PASSWORD_STORE_DIR:/home/raven/\x2elocal/share/pass
+SETUVAR __fish_initialized:3100
+SETUVAR _fish_abbr_la:lsd\x20\x2dla
+SETUVAR _fish_abbr_ls:lsd
+SETUVAR fish_color_autosuggestion:BD93F9
+SETUVAR fish_color_cancel:\x2dr
+SETUVAR fish_color_command:8BE9FD
+SETUVAR fish_color_comment:6272A4
+SETUVAR fish_color_cwd:green
+SETUVAR fish_color_cwd_root:red
+SETUVAR fish_color_end:50FA7B
+SETUVAR fish_color_error:FFB86C
+SETUVAR fish_color_escape:00a6b2
+SETUVAR fish_color_history_current:\x2d\x2dbold
+SETUVAR fish_color_host:normal
+SETUVAR fish_color_host_remote:yellow
+SETUVAR fish_color_match:\x2d\x2dbackground\x3dbrblue
+SETUVAR fish_color_normal:normal
+SETUVAR fish_color_operator:00a6b2
+SETUVAR fish_color_param:FF79C6
+SETUVAR fish_color_quote:F1FA8C
+SETUVAR fish_color_redirection:8BE9FD
+SETUVAR fish_color_search_match:bryellow\x1e\x2d\x2dbackground\x3dbrblack
+SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
+SETUVAR fish_color_status:red
+SETUVAR fish_color_user:brgreen
+SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell\x0aType\x20\x60help\x60\x20for\x20instructions\x20on\x20how\x20to\x20use\x20fish
+SETUVAR fish_key_bindings:fish_default_key_bindings
+SETUVAR fish_pager_color_completion:normal
+SETUVAR fish_pager_color_description:B3A06D\x1eyellow
+SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
+SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+SETUVAR fish_user_paths:/home/raven/scripts/\x1e/home/raven/\x2ecabal/bin\x1e/home/raven/\x2elocal/bin
+#+END_SRC
+** fish_prompt
+#+BEGIN_SRC fish :tangle ~/.config/fish/functions/fish_prompt.fish
+function fish_prompt
+    if not set -q VIRTUAL_ENV_DISABLE_PROMPT
+        set -g VIRTUAL_ENV_DISABLE_PROMPT true
+    end
+    set_color yellow
+    printf '%s' $USER
+    set_color normal
+    printf ' で '
+
+    set_color magenta
+    echo -n (prompt_hostname)
+    set_color normal
+    printf ' 内 '
+
+    set_color $fish_color_cwd
+    printf '%s' (prompt_pwd)
+    set_color normal
+
+    # Line 2
+    echo
+    if test $VIRTUAL_ENV
+        printf "(%s) " (set_color blue)(basename $VIRTUAL_ENV)(set_color normal)
+    end
+    printf 'λ '
+    set_color normal
+end
+#+END_SRC
+
