@@ -253,7 +253,7 @@ pacman -Qqe
     italic:
       family: Victor Mono Nerd Font
       style: Italic
-  size: 18
+    size: 18
 
   background_opacity: 0.95
   # Colors (Dracula)
