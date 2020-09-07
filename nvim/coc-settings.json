@@ -1,0 +1,7 @@
+{
+"pairs.enableCharacters" : ["(", "[", "'", "\""],
+"coc.preferences.formatOnSaveFiletypes": [
+	"javascript",
+	"json"
+]
+}
