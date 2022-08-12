@@ -1,4 +1,4 @@
-{ suites, ... }:
+{ suites, lib, ... }:
 {
   ### root password is empty by default ###
   imports = suites.base;
@@ -8,7 +8,7 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  networking.useDHCP = true;
+  networking.useDHCP = lib.mkDefault true;
 
   # hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
