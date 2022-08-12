@@ -10,7 +10,7 @@
 
   networking.useDHCP = true;
 
-  hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
+  # hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
   # high-resolution display
   hardware.video.hidpi.enable = true;
