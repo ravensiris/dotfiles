@@ -3,6 +3,18 @@
   ### root password is empty by default ###
   imports = suites.base;
 
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.kernelModules = [ "kvm-amd" ];
+  boot.extraModulePackages = [ ];
+
+  networking.useDHCP = lib.mkDefault true;
+
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  # high-resolution display
+  hardware.video.hidpi.enable = lib.mkDefault true;
+
   boot.initrd = {
     luks.devices."root" = {
       device = "/dev/disk/by-uuid/f35ee9fc-4d99-47de-936f-8c53e2b78b4a";
