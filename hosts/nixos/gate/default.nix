@@ -1,4 +1,4 @@
-{ suites, lib, ... }:
+{ suites, lib, config, ... }:
 {
   ### root password is empty by default ###
   imports = suites.base;
