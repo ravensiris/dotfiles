@@ -125,7 +125,7 @@
               users = digga.lib.rakeLeaves ./users;
             };
             suites = with profiles; rec {
-              base = [ core.nixos users.nixos users.root ];
+              base = [ core.nixos users.root users.q ];
             };
           };
         };
@@ -183,6 +183,7 @@
             # it could just be left to the developer to determine what's
             # appropriate. after all, configuring these hm users is one of the
             # first steps in customizing the template.
+            q = { suites, ... }: { imports = suites.base; };
             nixos = { suites, ... }: { imports = suites.base; };
             darwin = { suites, ... }: { imports = suites.base; };
           }; # digga.lib.importers.rakeLeaves ./users/hm;

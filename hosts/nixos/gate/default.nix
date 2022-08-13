@@ -3,10 +3,23 @@
   ### root password is empty by default ###
   imports = suites.base;
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "amdgpu" ];
+  boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.blacklistedKernelModules = [
+    "nvidia"
+    "nouveau"
+    "nvidia_drm"
+    "nvidia_modeset"
+  ];
+
+  services.xserver.videoDrivers = [ "amdgpu" ];
+  hardware.enableRedistributableFirmware = true;
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
+
+  programs.sway.enable = true;
 
   networking.useDHCP = lib.mkDefault true;
 
