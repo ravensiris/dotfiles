@@ -3,8 +3,8 @@
   ### root password is empty by default ###
   imports = suites.base;
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "amdgpu" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "amdgpu" "nouveau" ];
+  boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" "nouveau" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
   #boot.blacklistedKernelModules = [
@@ -14,7 +14,7 @@
   #  "nvidia_modeset"
   #];
 
-  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+  services.xserver.videoDrivers = [ "amdgpu" "nouveau" ];
   hardware.enableRedistributableFirmware = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
@@ -27,7 +27,7 @@
   # nixpkgs.config.allowUnfree = true;
 
   # Optionally, you may need to select the appropriate driver version for your specific GPU.
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
   # hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
