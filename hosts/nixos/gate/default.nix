@@ -43,11 +43,6 @@ in
   environment.systemPackages = [ nvidia-offload ];
 
   hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.prime = {
-    offload.enable = true;
-    amdgpuBusId = "PCI:9:0:0";
-    nvidiaBusId = "PCI:10:0:0";
-  };
 
   # hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
