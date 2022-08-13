@@ -3,7 +3,7 @@
   users.users.q = {
     password = "";
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "libvirtd" ];
   };
 
   home-manager.users.q = {
