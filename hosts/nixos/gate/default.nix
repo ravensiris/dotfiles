@@ -1,30 +1,21 @@
 { suites, lib, config, pkgs, callPackage, ... }:
 
-let
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec "$@"
-  '';
-in
 {
   ### root password is empty by default ###
   imports = suites.base;
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "amdgpu" "nvidia" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" "nvidia" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "amdgpu" ];
+  boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  #boot.blacklistedKernelModules = [
-  #  "nvidia"
-  #  "nouveau"
-  #  "nvidia_drm"
-  #  "nvidia_modeset"
-  #];
+  boot.blacklistedKernelModules = [
+    "nvidia"
+    "nouveau"
+    "nvidia_drm"
+    "nvidia_modeset"
+  ];
 
-  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   hardware.enableRedistributableFirmware = true;
   hardware.opengl.enable = true;
@@ -33,16 +24,6 @@ in
   # programs.sway.enable = true;
 
   networking.useDHCP = lib.mkDefault true;
-
-  # NVIDIA drivers are unfree.
-  # nixpkgs.config.allowUnfree = true;
-
-  # Optionally, you may need to select the appropriate driver version for your specific GPU.
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-  environment.systemPackages = [ nvidia-offload ];
-
-  hardware.nvidia.modesetting.enable = true;
 
   # hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
