@@ -7,14 +7,14 @@
   boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  boot.blacklistedKernelModules = [
-    "nvidia"
-    "nouveau"
-    "nvidia_drm"
-    "nvidia_modeset"
-  ];
+  #boot.blacklistedKernelModules = [
+  #  "nvidia"
+  #  "nouveau"
+  #  "nvidia_drm"
+  #  "nvidia_modeset"
+  #];
 
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
   hardware.enableRedistributableFirmware = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
@@ -22,6 +22,12 @@
   programs.sway.enable = true;
 
   networking.useDHCP = lib.mkDefault true;
+
+  # NVIDIA drivers are unfree.
+  # nixpkgs.config.allowUnfree = true;
+
+  # Optionally, you may need to select the appropriate driver version for your specific GPU.
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
   # hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
