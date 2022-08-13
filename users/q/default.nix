@@ -9,7 +9,7 @@
   home-manager.users.q = {
     programs.mpv.enable = true;
     programs.kitty.enable = true;
-    wayland.windowManager.sway = {
+    xsession.windowManager.i3 = {
       enable = true;
       config = {
         modifier = "Mod4";

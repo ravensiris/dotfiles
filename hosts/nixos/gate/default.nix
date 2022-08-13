@@ -1,10 +1,20 @@
-{ suites, lib, config, ... }:
+{ suites, lib, config, pkgs, callPackage, ... }:
+
+let
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec "$@"
+  '';
+in
 {
   ### root password is empty by default ###
   imports = suites.base;
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "amdgpu" "nouveau" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" "nouveau" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "amdgpu" "nvidia" ];
+  boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" "nvidia" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
   #boot.blacklistedKernelModules = [
@@ -14,12 +24,13 @@
   #  "nvidia_modeset"
   #];
 
-  services.xserver.videoDrivers = [ "amdgpu" "nouveau" ];
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+
   hardware.enableRedistributableFirmware = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
 
-  programs.sway.enable = true;
+  # programs.sway.enable = true;
 
   networking.useDHCP = lib.mkDefault true;
 
@@ -27,12 +38,43 @@
   # nixpkgs.config.allowUnfree = true;
 
   # Optionally, you may need to select the appropriate driver version for your specific GPU.
-  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+  environment.systemPackages = [ nvidia-offload ];
+
+  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.prime = {
+    offload.enable = true;
+    amdgpuBusId = "PCI:9:0:0";
+    nvidiaBusId = "PCI:10:0:0";
+  };
 
   # hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
   # high-resolution display
   hardware.video.hidpi.enable = true;
+  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
+  services.xserver = {
+    enable = true;
+
+    desktopManager = {
+      xterm.enable = false;
+    };
+
+    displayManager = {
+      defaultSession = "none+i3";
+    };
+
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu #application launcher most people use
+        i3status # gives you the default i3 status bar
+        i3lock #default i3 screen locker
+        i3blocks #if you are planning on using i3blocks over i3status
+      ];
+    };
+  };
 
   boot.initrd = {
     luks.devices."root" = {
