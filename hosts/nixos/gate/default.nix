@@ -11,7 +11,10 @@
 
   programs.dconf.enable = true;
 
-  boot.extraModprobeConfig = "options vfio-pci ids=10de:2484,10de:228b";
+  virtualisation.passthrough = {
+    enable = true;
+    ids = [ "10de:2484" "10de:228b" ];
+  };
 
   fonts.fontconfig.enable = true;
 
