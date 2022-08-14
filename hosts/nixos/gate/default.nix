@@ -22,7 +22,7 @@
     pciutils
     pavucontrol
     ddccontrol
-    (pkgs.nerdfonts.override {
+    (nerdfonts.override {
       fonts = [ "VictorMono" ];
     })
   ];
