@@ -14,6 +14,12 @@
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
 
+  environment.persistence."/nix/persist" = {
+    directories = [
+      "/var/lib/libvirt"
+    ];
+  };
+
   programs.dconf.enable = true;
 
   virtualisation.passthrough = {
