@@ -22,7 +22,7 @@
     pciutils
     pavucontrol
     ddccontrol
-    nerdfonts
+    (nerdfonts.override { fonts = [ "VictorMono" "FiraCode" ]; })
   ];
 
 
