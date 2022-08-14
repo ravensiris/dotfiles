@@ -2,15 +2,13 @@
 
 {
   ### root password is empty by default ###
-  imports = suites.base ++ (with profiles;
+  imports = suites.base ++
+    suites.impermanence ++
+    suites.audio ++
+    suites.amdgpu ++
+    suites.i3wm ++
+    suites.vfio-amdcpu-nvidiaguest ++ (with profiles;
     [
-      virt.blacklist.nvidia
-      virt.iommu.amd
-      virt.common
-      impermanence.ssh
-      gpu.amd
-      audio.pipewire
-      wm.i3
     ]);
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
@@ -65,9 +63,6 @@
 
   networking.networkmanager.enable = true;
 
-  # TODO: save passwords using agenix
-  users.mutableUsers = false;
-  users.users.root.initialPassword = "arstarst";
 
   fileSystems."/" =
     {

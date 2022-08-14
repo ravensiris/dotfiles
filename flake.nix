@@ -138,6 +138,11 @@
             };
             suites = with profiles; rec {
               base = [ core.nixos users.root users.q ];
+              impermanence = [ profiles.impermanence.common profiles.impermanence.ssh ];
+              vfio-amdcpu-nvidiaguest = [ virt.common virt.blacklist.nvidia virt.iommu.amd ];
+              audio = [ profiles.audio.pipewire ];
+              i3wm = [ wm.i3 ];
+              amdgpu = [ gpu.amd ];
             };
           };
         };
