@@ -2,24 +2,20 @@
 
 {
   ### root password is empty by default ###
-  imports = suites.base ++ (with profiles; [ virt.blacklist.nvidia impermanence.ssh ]);
+  imports = suites.base ++ (with profiles; [ virt.blacklist.nvidia virt.iommu.amd virt.common impermanence.ssh gpu.amd ]);
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "amdgpu" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" ];
-  boot.kernelModules = [ "kvm-amd" "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" ];
-  boot.kernelParams = [ "amd_iommu=on" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.kernelModules = [ "dm-snapshot" ];
+
+  # boot.extraModulePackages = [ ];
 
   programs.dconf.enable = true;
+
   boot.extraModprobeConfig = "options vfio-pci ids=10de:2484,10de:228b";
 
   fonts.fontconfig.enable = true;
 
   environment.systemPackages = with pkgs; [
-    virtmanager
-    qemu
-    OVMF
-    pciutils
     pavucontrol
     ddccontrol
   ];
@@ -33,22 +29,6 @@
 
   services.ddccontrol.enable = true;
 
-  virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.qemu.ovmf.enable = true;
-  virtualisation.libvirtd.qemu.verbatimConfig = ''
-    nvram = [
-      "${pkgs.OVMF}/FV/OVMF.fd:${pkgs.OVMF}/FV/OVMF_VARS.fd"
-    ]
-    namespaces = []
-    user = "+1000"
-  '';
-
-
-  services.xserver.videoDrivers = [ "amdgpu" ];
-
-  hardware.enableRedistributableFirmware = true;
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
 
   # programs.sway.enable = true;
 
@@ -58,7 +38,9 @@
 
   # high-resolution display
   hardware.video.hidpi.enable = true;
+
   environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
+
   services.xserver = {
     enable = true;
 
