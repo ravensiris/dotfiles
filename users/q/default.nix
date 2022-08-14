@@ -8,7 +8,7 @@
 
   home-manager.users.q = { profiles, ... }: {
     imports = [ profiles.doom-emacs ];
-    packages = with pkgs; [ (nerdfonts.override { fonts = [ "VictorMono" "FiraCode" ]; }) ];
+    home.packages = with pkgs; [ (nerdfonts.override { fonts = [ "VictorMono" "FiraCode" ]; }) ];
     programs.mpv.enable = true;
     home.persistence."/nix/persist/home/q" = {
       files = [
