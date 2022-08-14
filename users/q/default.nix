@@ -11,6 +11,7 @@
     home.packages = with pkgs; [
       (nerdfonts.override { fonts = [ "VictorMono" "FiraCode" ]; })
       font-awesome
+      fishPlugins.pure
     ];
     programs.mpv.enable = true;
     home.persistence."/nix/persist/home/q" = {
@@ -19,7 +20,19 @@
         ".ssh/id_rsa.pub"
       ];
     };
-    programs.kitty.enable = true;
+    programs.fish.enable = true;
+    programs.kitty = {
+      enable = true;
+      font = {
+        name = "VictorMono NerdFont";
+        size = 18;
+      };
+      settings = {
+        shell = "${pkgs.fish}/bin/fish";
+        confirm_os_window_close = 0;
+      };
+      theme = "Doom One";
+    };
     programs.firefox.enable = true;
   };
 }
