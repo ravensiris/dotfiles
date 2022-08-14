@@ -1,4 +1,4 @@
-{ suites, lib, config, pkgs, callPackage, ... }:
+{ suites, lib, config, pkgs, profiles, callPackage, ... }:
 
 {
   ### root password is empty by default ###
@@ -6,18 +6,37 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "amdgpu" ];
   boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-amd" "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" ];
+  boot.kernelParams = [ "amd_iommu=on" ];
   boot.extraModulePackages = [ ];
-  boot.blacklistedKernelModules = [
-    "nvidia"
-    "nouveau"
-    "nvidia_drm"
-    "nvidia_modeset"
+
+  programs.dconf.enable = true;
+  boot.extraModprobeConfig ="options vfio-pci ids=10de:2484,10de:228b";
+  
+  environment.systemPackages = with pkgs; [
+    virtmanager
+    qemu
+    OVMF
+    pciutils
+    pavucontrol
   ];
 
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+  };
+  
   virtualisation.libvirtd.enable = true;
-  programs.dconf.enable = true;
-  environment.systemPackages = with pkgs; [ virt-manager ];
+  virtualisation.libvirtd.qemu.ovmf.enable = true;
+  virtualisation.libvirtd.qemu.verbatimConfig = ''
+    nvram = [
+      "${pkgs.OVMF}/FV/OVMF.fd:${pkgs.OVMF}/FV/OVMF_VARS.fd"
+    ]
+    namespaces = []
+    user = "+1000"
+  '';
+  
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
@@ -126,4 +145,5 @@
       device = "/dev/disk/by-uuid/052E-D88B";
       fsType = "vfat";
     };
+ system.stateVersion = "22.05";
 }
