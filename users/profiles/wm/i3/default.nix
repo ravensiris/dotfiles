@@ -42,6 +42,9 @@
         #         '${pkgs.sway}/bin/swaymsg "output * dpms on"; \
         #         ${pkgs.killall}/bin/killall swayidle' '';
       };
+      window = {
+        titlebar = false;
+      };
       fonts = {
         names = [ "VictorMono Nerd Font" ];
         style = "Regular";
