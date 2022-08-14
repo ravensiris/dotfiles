@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, inputs, ... }:
 {
   users.users.q = {
     password = "";
@@ -7,8 +7,9 @@
   };
 
   home-manager.users.q = {
-    # imports = hm-modules ;
+    # imports = [ "${inputs.impermanence}/home-manager.nix" ];
     programs.mpv.enable = true;
+    home.persistence."/nix/persist/home/q" = { };
     programs.kitty.enable = true;
     programs.firefox.enable = true;
     xsession.windowManager.i3 = {
