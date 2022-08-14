@@ -45,6 +45,11 @@
       nixos-hardware.url = "github:nixos/nixos-hardware";
 
       nixos-generators.url = "github:nix-community/nixos-generators";
+
+      impermanence = {
+        url = "github:nix-community/impermanence";
+        flake = false;
+      };
     };
 
   outputs =
@@ -112,6 +117,7 @@
               digga.nixosModules.nixConfig
               home.nixosModules.home-manager
               agenix.nixosModules.age
+              "${inputs.impermanence}/nixos.nix"
             ];
           };
 
@@ -161,6 +167,7 @@
         home = {
           imports = [ (digga.lib.importExportableModules ./users/modules) ];
           modules = [ ];
+          externalModules = [ "${inputs.impermanence}/home-manager.nix" ];
           importables = rec {
             profiles = digga.lib.rakeLeaves ./users/profiles;
             suites = with profiles; rec {
