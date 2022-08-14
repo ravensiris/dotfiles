@@ -2,7 +2,7 @@
 
 {
   ### root password is empty by default ###
-  imports = suites.base;
+  imports = suites.base ++ (builtins.trace profiles []);
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "amdgpu" ];
   boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" ];
