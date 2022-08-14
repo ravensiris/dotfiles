@@ -2,12 +2,19 @@
 
 {
   ### root password is empty by default ###
-  imports = suites.base ++ (with profiles; [ virt.blacklist.nvidia virt.iommu.amd virt.common impermanence.ssh gpu.amd ]);
+  imports = suites.base ++ (with profiles;
+    [
+      virt.blacklist.nvidia
+      virt.iommu.amd
+      virt.common
+      impermanence.ssh
+      gpu.amd
+      audio.pipewire
+      wm.i3
+    ]);
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-
-  # boot.extraModulePackages = [ ];
 
   programs.dconf.enable = true;
 
@@ -16,22 +23,11 @@
     ids = [ "10de:2484" "10de:228b" ];
   };
 
-  fonts.fontconfig.enable = true;
-
   environment.systemPackages = with pkgs; [
-    pavucontrol
     ddccontrol
   ];
 
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    pulse.enable = true;
-  };
-
   services.ddccontrol.enable = true;
-
 
   # programs.sway.enable = true;
 
@@ -41,30 +37,6 @@
 
   # high-resolution display
   hardware.video.hidpi.enable = true;
-
-  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
-
-  services.xserver = {
-    enable = true;
-
-    desktopManager = {
-      xterm.enable = false;
-    };
-
-    displayManager = {
-      defaultSession = "none+i3";
-    };
-
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu #application launcher most people use
-        i3status # gives you the default i3 status bar
-        i3lock #default i3 screen locker
-        i3blocks #if you are planning on using i3blocks over i3status
-      ];
-    };
-  };
 
   boot.initrd = {
     luks.devices."root" = {
