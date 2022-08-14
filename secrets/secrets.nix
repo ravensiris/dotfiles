@@ -1,8 +1,9 @@
 let
   # set ssh public keys here for your system and user
   host-gate = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJAg7g73+h8cdV0kyZZxn04wYY+agFFYJoXvDVWs7e+De6Dyd+wEbdsV7N6lW6+HXUmUDLhPd+b8n+AtlsdUKj28wQfm/XB4Ze5+kGJxSHQsJmrH75Tv4O9H2CaUnQMJFZivAEeNLVdrD2hESkPUdIgfCVHW9O3iquMAMJbsQPWvoZKyO+Iv8zPzilM2mhZfaUt5fQvr4HxujNnboiWMDE+/0ZUDcNy75xcFoJvfogAHRMjmEdoWs3snZg8Od0tqpFlKqWemWX0iyP7hroMXmes2y/s5i8zwSrtaZGU0YA2ZMmKqh/L/3b4N29g7UsjHBzt07n+FkvHyZHJtvx9t2uumSajl8ufR33ArtOSuI8fzpiOsEutj9ATdx6vQdrGqUqBREZ1vxYa1IdOvfox9dDXcR1sEVn/SuYuSwW2Y7rQT7tcMxUBHhhBjdlioQEbFY5Lk2HC42veAiKV6Wfj6tu3/4VQ3nDp2isu0nJEvQywVZrg0mNxx+NleTtYjnZFu6dZnUJTNhEYSv321gda6eEqWELymq5WLx3Cx0a3Va4RzRH9Z1/VsZH+oyguBOqYwOFDDTj/aXYEEFm1xnWmWJ4h/K/1PPWQZuZnX7lZ+yhDx/qTofGq3DqruyTATDRzBI0+2UETyG3MEntCIElV4ERi+5mOwktcthODyAV6T8Oew==";
-  allKeys = [ host-gate ];
+  q-gate = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC9/Egd80mpbwIYDC5PwCpdmm1+l36Bpr5ep33uuAT3fvTO0EDH5vOCV2MghaDvDT5ukf0M3R0PyE9JQO8J3KsaBzahSxy3IJ8mjccbERVBqAfXWn8IWUPkytveIfBVCrv3bqe9B+t/kiDMQD4ZIDg83WFseWQesuuKeCE6M/VExJbpptztCCWAehZuH7ngX0fQv//fXBqnmYrO8fDz+5QOpGqnWiBnJgSwrP+riAi09NSAJr82ShssVcZZ6OSv020MyKoWKkcK00Sp7A/r2mEDvMPl5DnIpXSqf/N03yJEkbg+2hMfT8XG4EM5xm3vdMm61FBNF39GTkDowsxvNNi/wEwOzmDLzq3Nr4QhvxFjus5Zeu0OW9+8ty/PcCtcB+k8MJogKiKg10U69sQj5zz8brAnxN45Xt5BVeFxYLgUTO45zphUWRk4T8AQoBTA21tLNV4MnFBPb8iZY/O5ef2NKQmIj5H5NyO5fAv9bnuCbDHCEDvuGmZM6II0uNapsME=";
+  allKeys = [ host-gate q-gate ];
 in
 {
-  "secret.age".publicKeys = allKeys;
+  "users/root.age".publicKeys = allKeys;
 }
