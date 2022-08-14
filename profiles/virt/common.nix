@@ -7,6 +7,7 @@
     OVMF
     pciutils
     swtpm
+    win-virtio
   ];
 
   virtualisation.libvirtd.enable = true;
