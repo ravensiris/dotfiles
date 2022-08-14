@@ -31,7 +31,7 @@
         shell = "${pkgs.fish}/bin/fish";
         confirm_os_window_close = 0;
       };
-      theme = "Doom One";
+      theme = "Dracula";
     };
     programs.firefox.enable = true;
   };
