@@ -2,7 +2,7 @@
 
 {
   ### root password is empty by default ###
-  imports = suites.base ++ (builtins.trace profiles []);
+  imports = suites.base ++ (with profiles; [ virt.blacklist.nvidia impermanence.ssh ]);
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "amdgpu" ];
   boot.initrd.kernelModules = [ "dm-snapshot" "amdgpu" ];
@@ -11,14 +11,15 @@
   boot.extraModulePackages = [ ];
 
   programs.dconf.enable = true;
-  boot.extraModprobeConfig ="options vfio-pci ids=10de:2484,10de:228b";
-  
+  boot.extraModprobeConfig = "options vfio-pci ids=10de:2484,10de:228b";
+
   environment.systemPackages = with pkgs; [
     virtmanager
     qemu
     OVMF
     pciutils
     pavucontrol
+    ddccontrol
   ];
 
   services.pipewire = {
@@ -26,7 +27,9 @@
     alsa.enable = true;
     pulse.enable = true;
   };
-  
+
+  services.ddccontrol.enable = true;
+
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.ovmf.enable = true;
   virtualisation.libvirtd.qemu.verbatimConfig = ''
@@ -36,7 +39,7 @@
     namespaces = []
     user = "+1000"
   '';
-  
+
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
@@ -145,5 +148,5 @@
       device = "/dev/disk/by-uuid/052E-D88B";
       fsType = "vfat";
     };
- system.stateVersion = "22.05";
+  system.stateVersion = "22.05";
 }
