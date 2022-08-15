@@ -18,7 +18,6 @@
     home.packages = with pkgs; [
       (nerdfonts.override { fonts = [ "VictorMono" "FiraCode" ]; })
       font-awesome
-      fishPlugins.pure
       pinentry-curses
     ];
 
@@ -40,7 +39,15 @@
       allowOther = true;
     };
 
-    programs.fish.enable = true;
+    programs.fish = {
+      enable = true;
+      plugins = with pkgs.fishPlugins; [
+        {
+          name = "pure";
+          src = pure.src;
+        }
+      ];
+    };
 
     programs.kitty = {
       enable = true;
