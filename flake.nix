@@ -166,8 +166,7 @@
 
         home = {
           imports = [ (digga.lib.importExportableModules ./users/modules) ];
-          modules = [ ];
-          externalModules = [ "${inputs.impermanence}/home-manager.nix" ];
+          modules = [ "${inputs.impermanence}/home-manager.nix" ];
           importables = rec {
             profiles = digga.lib.rakeLeaves ./users/profiles;
             suites = with profiles; rec {

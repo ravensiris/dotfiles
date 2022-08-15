@@ -7,6 +7,7 @@
   };
 
   home-manager.users.q = {
+    # imports = hm-modules ;
     programs.mpv.enable = true;
     programs.kitty.enable = true;
     programs.firefox.enable = true;
