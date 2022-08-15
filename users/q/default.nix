@@ -49,15 +49,6 @@ in {
           name = "pure";
           src = pure.src;
         }
-        {
-          name = "direnv";
-          src = pkgs.fetchFromGitHub {
-            owner = "halostatue";
-            repo = "fish-direnv";
-            rev = "53c9b142d16abd5ca66cf5928c9a5030561a4b51";
-            sha256 = "sha256-WiXew1hTptuy4eO8+C/7MsujafZXZO9YFmAVaakNlyo=";
-          };
-        }
       ];
     };
 
