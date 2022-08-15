@@ -8,6 +8,13 @@
 
   home-manager.users.q = { profiles, ... }: {
     imports = [ profiles.doom-emacs profiles.wm.i3 ];
+
+    programs.git = {
+      enable = true;
+      userEmail = "maksymilian.jodlowski@gmail.com";
+      userName = "Maksymilian Jodłowski";
+    };
+
     home.packages = with pkgs; [
       (nerdfonts.override { fonts = [ "VictorMono" "FiraCode" ]; })
       font-awesome
