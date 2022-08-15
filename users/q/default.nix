@@ -26,6 +26,9 @@
         ".ssh/id_rsa"
         ".ssh/id_rsa.pub"
       ];
+      directories = [
+        ".gnupg"
+      ];
     };
     programs.fish.enable = true;
     programs.kitty = {
