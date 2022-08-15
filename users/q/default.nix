@@ -20,6 +20,8 @@
       font-awesome
       fishPlugins.pure
       pass
+      passExtensions.pass-otp
+      pinentry-curses
     ];
 
     programs.mpv.enable = true;
