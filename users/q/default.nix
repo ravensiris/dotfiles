@@ -7,7 +7,7 @@ in {
     passwordFile = "/run/agenix/qPassword";
     password = "";
     isNormalUser = true;
-    extraGroups = [ "wheel" "libvirtd" ];
+    extraGroups = [ "wheel" "libvirtd" "docker" ];
   };
 
   home-manager.users.q = { profiles, ... }: {
