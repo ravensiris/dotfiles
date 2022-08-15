@@ -1,5 +1,6 @@
 { lib, pkgs, inputs, ... }:
-{
+let firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
+in {
   users.users.q = {
     password = "";
     isNormalUser = true;
@@ -27,6 +28,7 @@
     };
 
     programs.mpv.enable = true;
+
     home.persistence."/nix/persist/home/q" = {
       files = [
         ".ssh/id_rsa"
@@ -35,6 +37,7 @@
       directories = [
         ".gnupg"
         ".password-store"
+        ".mozilla"
       ];
       allowOther = true;
     };
@@ -62,6 +65,32 @@
       theme = "Dracula";
     };
 
-    programs.firefox.enable = true;
+    programs.firefox = {
+      enable = true;
+      # package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+      #   # forceWayland = true;
+      #   extraPolicies = { ExtensionSettings = { }; };
+      # };
+      extensions = with firefox-addons; [
+        ublock-origin
+        bypass-paywalls-clean
+        clearurls
+        consent-o-matic
+        i-dont-care-about-cookies
+        libredirect
+        localcdn
+        octolinker
+        polish-dictionary
+        protondb-for-steam
+        return-youtube-dislikes
+        rust-search-extension
+        sponsorblock
+        violentmonkey
+      ];
+      profiles.default = {
+        id = 0;
+        name = "Default";
+      };
+    };
   };
 }
