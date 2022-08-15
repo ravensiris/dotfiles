@@ -6,8 +6,8 @@
     extraGroups = [ "wheel" "libvirtd" ];
   };
 
-  home-manager.users.q = {
-    # imports = [ "${inputs.impermanence}/home-manager.nix" ];
+  home-manager.users.q = { profiles, ... }: {
+    imports = [ profiles.doom-emacs ];
     programs.mpv.enable = true;
     home.persistence."/nix/persist/home/q" = {
       files = [
