@@ -30,6 +30,7 @@
         ".gnupg"
         ".password-store"
       ];
+      allowOther = true;
     };
     programs.fish.enable = true;
     programs.kitty = {
