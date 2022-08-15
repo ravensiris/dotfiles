@@ -11,6 +11,13 @@
     [
     ]);
 
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "curses";
+    enableSSHSupport = true;
+  };
+
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
 
