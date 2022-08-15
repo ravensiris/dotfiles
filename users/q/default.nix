@@ -19,10 +19,13 @@
       (nerdfonts.override { fonts = [ "VictorMono" "FiraCode" ]; })
       font-awesome
       fishPlugins.pure
-      pass
-      passExtensions.pass-otp
       pinentry-curses
     ];
+
+    programs.password-store = {
+      enable = true;
+      package = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]);
+    };
 
     programs.mpv.enable = true;
     home.persistence."/nix/persist/home/q" = {
