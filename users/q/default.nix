@@ -28,6 +28,7 @@
       ];
       directories = [
         ".gnupg"
+        ".password-store"
       ];
     };
     programs.fish.enable = true;
