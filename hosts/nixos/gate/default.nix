@@ -11,6 +11,9 @@
     [
     ]);
 
+  # add for impermanence home
+  programs.fuse.userAllowOther = true;
+
   services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
