@@ -19,7 +19,9 @@
       (nerdfonts.override { fonts = [ "VictorMono" "FiraCode" ]; })
       font-awesome
       fishPlugins.pure
+      pass
     ];
+
     programs.mpv.enable = true;
     home.persistence."/nix/persist/home/q" = {
       files = [
@@ -32,7 +34,9 @@
       ];
       allowOther = true;
     };
+
     programs.fish.enable = true;
+
     programs.kitty = {
       enable = true;
       font = {
@@ -45,6 +49,7 @@
       };
       theme = "Dracula";
     };
+
     programs.firefox.enable = true;
   };
 }
