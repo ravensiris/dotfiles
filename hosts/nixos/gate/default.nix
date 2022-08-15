@@ -11,6 +11,11 @@
     [
     ]);
 
+  services.xserver.libinput.mouse = {
+    accelProfile = "flat";
+    accelSpeed = "0.0";
+  };
+
   # add for impermanence home
   programs.fuse.userAllowOther = true;
 
