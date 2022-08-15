@@ -4,7 +4,7 @@
   environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
   services.xserver = {
     enable = true;
-
+    libinput.mouse.accelSpeed = "0.0";
     desktopManager = {
       xterm.enable = false;
     };
