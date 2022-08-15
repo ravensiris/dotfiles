@@ -6,4 +6,5 @@ let
 in
 {
   "users/root.age".publicKeys = allKeys;
+  "users/q.age".publicKeys = allKeys;
 }

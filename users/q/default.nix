@@ -1,7 +1,10 @@
-{ lib, pkgs, inputs, ... }:
+{ self, lib, pkgs, inputs, ... }:
 let firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
 in {
+
+  age.secrets.qPassword.file = "${self}/secrets/users/q.age";
   users.users.q = {
+    passwordFile = "/run/agenix/qPassword";
     password = "";
     isNormalUser = true;
     extraGroups = [ "wheel" "libvirtd" ];
