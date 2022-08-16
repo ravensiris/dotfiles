@@ -13,6 +13,11 @@ in {
   home-manager.users.q = { profiles, ... }: {
     imports = [ profiles.doom-emacs profiles.wm.i3 ];
 
+    services.emacs = {
+      enable = true;
+      defaultEditor = true;
+    };
+
     programs.git = {
       enable = true;
       userEmail = "maksymilian.jodlowski@gmail.com";
