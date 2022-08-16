@@ -39,7 +39,7 @@ in {
     home.packages = with pkgs; [
       (nerdfonts.override { fonts = [ "VictorMono" "FiraCode" ]; })
       font-awesome
-      pinentry-curses
+      pinentry-gnome
     ];
 
     programs.password-store = {
