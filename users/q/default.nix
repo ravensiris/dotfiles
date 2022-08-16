@@ -13,6 +13,18 @@ in {
   home-manager.users.q = { profiles, ... }: {
     imports = [ profiles.doom-emacs profiles.wm.i3 ];
 
+    programs.direnv = {
+      enable = true;
+      config = {
+        whitelist = {
+          prefix = [
+            "/media/Steiner/Projects"
+            "/media/Steiner/flake"
+          ];
+        };
+      };
+    };
+
     services.emacs = {
       enable = true;
       defaultEditor = true;
