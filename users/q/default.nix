@@ -40,6 +40,7 @@ in {
       (nerdfonts.override { fonts = [ "VictorMono" "FiraCode" ]; })
       font-awesome
       pinentry-gnome
+      brave
     ];
 
     programs.password-store = {
@@ -58,6 +59,7 @@ in {
         ".gnupg"
         ".password-store"
         ".mozilla"
+        ".config/BraveSoftware/Brave-Browser"
       ];
       allowOther = true;
     };
