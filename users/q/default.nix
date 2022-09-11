@@ -42,6 +42,7 @@ in {
       pinentry-gnome
       brave
       musikcube
+      imv
     ];
 
     programs.password-store = {
