@@ -15,6 +15,7 @@
       ./virt/qemu-hook.nix
       ./network
       ./input
+      ./docker
     ];
 
   time.timeZone = "Europe/Warsaw";
