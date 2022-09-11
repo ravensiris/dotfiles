@@ -13,8 +13,6 @@
 
   time.timeZone = "Europe/Warsaw";
 
-  virtualisation.docker.enable = true;
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.extra-substituters = [
     "https://nrdxp.cachix.org"
@@ -46,6 +44,7 @@
   environment.persistence."/nix/persist" = {
     directories = [
       "/var/lib/libvirt"
+      "/var/lib/docker"
     ];
   };
 
