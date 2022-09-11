@@ -43,6 +43,7 @@ in {
       brave
       musikcube
       imv
+      p7zip
     ];
 
     programs.password-store = {
