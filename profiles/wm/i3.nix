@@ -2,6 +2,7 @@
 
 {
   environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
+  services.picom.enable = true;
   services.xserver = {
     enable = true;
     libinput.mouse.accelSpeed = "0.0";
