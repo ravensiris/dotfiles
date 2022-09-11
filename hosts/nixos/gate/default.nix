@@ -23,11 +23,6 @@
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
   ];
 
-  services.xserver.libinput.mouse = {
-    accelProfile = "flat";
-    accelSpeed = "0.0";
-  };
-
   # add for impermanence home
   programs.fuse.userAllowOther = true;
 
