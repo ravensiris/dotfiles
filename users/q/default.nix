@@ -41,6 +41,7 @@ in {
       font-awesome
       pinentry-gnome
       brave
+      musikcube
     ];
 
     programs.password-store = {
@@ -60,6 +61,7 @@ in {
         ".password-store"
         ".mozilla"
         ".config/BraveSoftware/Brave-Browser"
+        ".config/musikcube"
       ];
       allowOther = true;
     };
@@ -73,7 +75,6 @@ in {
     #     }
     #   ];
     # };
-
     programs.kitty = {
       enable = true;
       font = {
