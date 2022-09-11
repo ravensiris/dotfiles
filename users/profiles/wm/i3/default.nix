@@ -9,10 +9,10 @@
       terminal = "${pkgs.kitty}/bin/kitty";
       workspaceAutoBackAndForth = true;
       # output = {
-      #   HDMI-A-1 = {
+      #   HDMI-A-0 = {
       #     position = "0,0";
       #   };
-      #   DVI-D-1 = {
+      #   DVI-D-0 = {
       #     position = "2560,550";
       #   };
       # };
@@ -67,43 +67,43 @@
       workspaceOutputAssign = [
         {
           workspace = "1";
-          output = "HDMI-A-1";
+          output = "HDMI-A-0";
         }
         {
           workspace = "2";
-          output = "HDMI-A-1";
+          output = "HDMI-A-0";
         }
         {
           workspace = "3";
-          output = "HDMI-A-1";
+          output = "HDMI-A-0";
         }
         {
           workspace = "4";
-          output = "HDMI-A-1";
+          output = "HDMI-A-0";
         }
         {
           workspace = "5";
-          output = "HDMI-A-1";
+          output = "HDMI-A-0";
         }
         {
           workspace = "6";
-          output = "DVI-D-1";
+          output = "DVI-D-0";
         }
         {
           workspace = "7";
-          output = "DVI-D-1";
+          output = "DVI-D-0";
         }
         {
           workspace = "8";
-          output = "DVI-D-1";
+          output = "DVI-D-0";
         }
         {
           workspace = "9";
-          output = "DVI-D-1";
+          output = "DVI-D-0";
         }
         {
           workspace = "10";
-          output = "DVI-D-1";
+          output = "DVI-D-0";
         }
       ];
     };
