@@ -58,14 +58,9 @@
   services.ddccontrol.enable = true;
 
   # programs.sway.enable = true;
-
-  networking.useDHCP = lib.mkDefault true;
-
   # hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
-
   # high-resolution display
   hardware.video.hidpi.enable = true;
-
   boot.initrd = {
     luks.devices."root" = {
       device = "/dev/disk/by-uuid/f35ee9fc-4d99-47de-936f-8c53e2b78b4a";
@@ -93,9 +88,6 @@
       configurationLimit = 20;
     };
   };
-
-  networking.networkmanager.enable = true;
-
 
   fileSystems."/" =
     {
