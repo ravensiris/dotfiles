@@ -30,6 +30,8 @@
         # Workspaces
         "${modifier}+0" = "workspace number 10";
         "${modifier}+Shift+0" = "move container to workspace number 10";
+        # Mode
+        "${modifier}+h" = "layout default";
         # Lock
         # "${modifier}+Shift+l" = ''
         #   exec ${pkgs.procps}/bin/pgrep swayidle || \
