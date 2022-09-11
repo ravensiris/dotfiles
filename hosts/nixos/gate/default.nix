@@ -9,7 +9,13 @@
     suites.i3wm ++
     suites.vfio-amdcpu-nvidiaguest ++ (with profiles;
     [
-    ]);
+      virt.looking-glass
+    ])
+    ++ [
+      ./virt/qemu-hook.nix
+      ./network
+      ./input
+    ];
 
   time.timeZone = "Europe/Warsaw";
 
