@@ -1,0 +1,40 @@
+{
+    "anime4k": {
+        "cargoLocks": null,
+        "extract": null,
+        "name": "anime4k",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "bloc97",
+            "repo": "Anime4K",
+            "rev": "78e4f78f65b772e94bae6e7db5c49af1e889f784",
+            "sha256": "sha256-dKFVNd3DtZ1AbJodoa82FfKhBJu39RMrI5e0To+vqwU=",
+            "type": "github"
+        },
+        "version": "78e4f78f65b772e94bae6e7db5c49af1e889f784"
+    },
+    "manix": {
+        "cargoLocks": null,
+        "extract": null,
+        "name": "manix",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "mlvzk",
+            "repo": "manix",
+            "rev": "d08e7ca185445b929f097f8bfb1243a8ef3e10e4",
+            "sha256": "sha256-GqPuYscLhkR5E2HnSFV4R48hCWvtM3C++3zlJhiK/aw=",
+            "type": "github"
+        },
+        "version": "d08e7ca185445b929f097f8bfb1243a8ef3e10e4"
+    }
+}
