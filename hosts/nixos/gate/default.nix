@@ -20,6 +20,16 @@
 
   time.timeZone = "Europe/Warsaw";
 
+  services.distccd = {
+    enable = true;
+    maxJobs = 20;
+    allowedClients = [
+      "127.0.0.1"
+      "192.168.0.0/16"
+    ];
+    stats.enable = true;
+  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.extra-substituters = [
     "https://nrdxp.cachix.org"
