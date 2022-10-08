@@ -20,6 +20,10 @@
 
   time.timeZone = "Europe/Warsaw";
 
+  networking.hosts = {
+    "127.0.0.1" = [ "admin.localhost" ];
+  };
+
   services.distccd = {
     enable = true;
     maxJobs = 20;
