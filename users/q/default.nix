@@ -116,7 +116,6 @@ in {
         bypass-paywalls-clean
         clearurls
         consent-o-matic
-        i-dont-care-about-cookies
         libredirect
         localcdn
         octolinker
