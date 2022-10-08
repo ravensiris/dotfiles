@@ -11,6 +11,7 @@
       fetchSubmodules = false;
       sha256 = "sha256-dKFVNd3DtZ1AbJodoa82FfKhBJu39RMrI5e0To+vqwU=";
     });
+    date = "2022-04-14";
   };
   manix = {
     pname = "manix";
@@ -22,5 +23,6 @@
       fetchSubmodules = false;
       sha256 = "sha256-GqPuYscLhkR5E2HnSFV4R48hCWvtM3C++3zlJhiK/aw=";
     });
+    date = "2021-04-20";
   };
 }
