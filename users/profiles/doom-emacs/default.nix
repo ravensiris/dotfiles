@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   programs.doom-emacs = {
-    enable = false;
+    enable = true;
     doomPrivateDir = ./doom.d;
     # emacsPackage = pkgs.emacsPgtkNativeComp;
   };
