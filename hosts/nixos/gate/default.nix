@@ -83,6 +83,7 @@
   environment.systemPackages = with pkgs; [
     ddccontrol
     docker-compose
+    jmtpfs
   ];
 
   services.ddccontrol.enable = true;
