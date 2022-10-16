@@ -27,6 +27,11 @@
     ./docker
   ];
 
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [ gutenprint hplip ];
+  };
+
   time.timeZone = "Europe/Warsaw";
 
   networking.hosts = {
