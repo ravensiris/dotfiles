@@ -8,3 +8,5 @@
 ;               (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
 ;                               :major-modes '(nix-mode)
 ;                               :server-id 'nix)))
+
+(defun doom-modeline-set-vcs-modeline () 1)
