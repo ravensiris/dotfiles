@@ -75,6 +75,7 @@
     directories = [
       "/var/lib/libvirt"
       "/var/lib/docker"
+      "/var/lib/cups"
     ];
   };
 
