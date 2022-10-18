@@ -90,6 +90,7 @@
     ddccontrol
     docker-compose
     jmtpfs
+    libguestfs-with-appliance
   ];
 
   services.ddccontrol.enable = true;
