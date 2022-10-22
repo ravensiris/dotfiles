@@ -83,15 +83,16 @@ in {
       allowOther = true;
     };
 
-    # programs.fish = {
-    #   enable = true;
-    #   plugins = with pkgs.fishPlugins; [
-    #     {
-    #       name = "pure";
-    #       src = pure.src;
-    #     }
-    #   ];
-    # };
+    programs.fish = {
+      enable = true;
+      plugins = with pkgs.fishPlugins; [
+        {
+          name = "pure";
+          src = pure.src;
+        }
+      ];
+    };
+
     programs.kitty = {
       enable = true;
       font = {
@@ -99,7 +100,7 @@ in {
         size = 18;
       };
       settings = {
-        # shell = "${pkgs.fish}/bin/fish";
+        shell = "${pkgs.fish}/bin/fish";
         confirm_os_window_close = 0;
       };
       theme = "Dracula";
