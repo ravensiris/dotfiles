@@ -50,6 +50,9 @@ in {
     programs.password-store = {
       enable = true;
       package = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]);
+      # $XDG_DATA_HOME broke after update
+      # TODO: Make a real fix instead of this temporary path
+      settings = { PASSWORD_STORE_DIR = "/home/q/.password-store"; };
     };
 
   programs.mpv = {
