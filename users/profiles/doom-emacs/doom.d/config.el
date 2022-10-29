@@ -10,5 +10,3 @@
 ;                               :server-id 'nix)))
 
 (defun doom-modeline-set-vcs-modeline () 1)
-
-(after! format-all (advice-add 'format-all-buffer :around #'envrc-propagate-environment))
