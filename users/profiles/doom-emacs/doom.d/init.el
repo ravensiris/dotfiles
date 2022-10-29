@@ -93,7 +93,7 @@
        (eval +overlay)     ; run code, run (also, repls)
        gist              ; interacting with github gists
        lookup              ; navigate your code and its documentation
-       lsp               ; M-x vscode
+       (lsp +eglot)               ; M-x vscode
        magit             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
@@ -104,6 +104,7 @@
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
+       tree-sitter
 
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
@@ -120,7 +121,7 @@
        ;;Csharp            ; unity, .NET, and mono shenanigans
        ;;data              ; config/data formats
        ;;(dart +flutter)   ; paint ui and not much else
-       (elixir +lsp)            ; erlang done right
+       (elixir +eglot +tree-sitter)            ; erlang done right
        elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;;erlang            ; an elegant language for a more civilized age
@@ -136,7 +137,7 @@
        ;;idris             ; a language you can depend on
        json              ; At least it ain't XML
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       (javascript +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript +eglot)        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        ;;latex             ; writing papers in Emacs has never been so fun
@@ -151,14 +152,14 @@
        php               ; perl's insecure younger brother
        plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       (python +lsp)            ; beautiful is better than ugly
+       (python +eglot)            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
        ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       (rust +lsp)              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       (rust +eglot)              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;(scheme +guile)   ; a fully conniving family of lisps
        sh                ; she sells {ba,z,fi}sh shells on the C xor
