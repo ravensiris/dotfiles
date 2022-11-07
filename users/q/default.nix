@@ -79,6 +79,7 @@ in {
       files = [
         ".ssh/id_rsa"
         ".ssh/id_rsa.pub"
+        ".local/share/nix/trusted-settings.json"
       ];
       directories = [
         ".gnupg"
