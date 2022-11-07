@@ -7,8 +7,11 @@ in {
     passwordFile = "/run/agenix/qPassword";
     password = "";
     isNormalUser = true;
-    extraGroups = [ "wheel" "libvirtd" "docker" ];
+    extraGroups = [ "wheel" "libvirtd" "docker" "adbusers" ];
   };
+
+
+  programs.adb.enable = true;
 
   home-manager.users.q = { profiles, ... }: {
     imports = [ profiles.doom-emacs profiles.wm.i3 ];
