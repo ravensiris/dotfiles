@@ -116,6 +116,19 @@ in {
       ];
     };
 
+    xsession.windowManager.i3.config.startup = [
+      {
+        command = "${pkgs.xwallpaper}/bin/xwallpaper  --output HDMI-A-0 --zoom $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Landscape/*)";
+        notification = false;
+        always = true;
+      }
+      {
+        command = "${pkgs.xwallpaper}/bin/xwallpaper --output HDMI-A-1 --zoom $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Portrait/*)";
+        notification = false;
+        always = true;
+      }
+    ];
+
     programs.firefox = {
       enable = true;
       # package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
