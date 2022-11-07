@@ -92,6 +92,7 @@
     jmtpfs
     libguestfs-with-appliance
   ];
+  services.udev.packages = with pkgs; [qmk-udev-rules];
 
   services.ddccontrol.enable = true;
 
