@@ -111,6 +111,9 @@ in {
         confirm_os_window_close = 0;
       };
       theme = "Dracula";
+      extraConfig = builtins.concatStringsSep "\n" [
+        "background_opacity 0.9"
+      ];
     };
 
     programs.firefox = {
