@@ -7,7 +7,7 @@ in {
     passwordFile = "/run/agenix/qPassword";
     password = "";
     isNormalUser = true;
-    extraGroups = [ "wheel" "libvirtd" "docker" "adbusers" ];
+    extraGroups = [ "wheel" "libvirtd" "docker" "adbusers" "input" ];
   };
 
 
