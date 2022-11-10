@@ -86,13 +86,29 @@
     ids = [ "10de:2484" "10de:228b" ];
   };
 
-  environment.systemPackages = with pkgs; [
-    ddccontrol
-    docker-compose
-    jmtpfs
-    libguestfs-with-appliance
-  ];
+  environment.systemPackages =
+
+    let
+      ubpm = pkgs.appimageTools.wrapType2 { # or wrapType1
+        name = "ubpm";
+        src = pkgs.fetchurl {
+          url = "https://codeberg.org/attachments/11f187b8-18f8-48bc-9be7-5cc208fed505";
+          sha256 = "sha256-B7auOoz24yV+RaVTDyLfCLlR+PERAuLxC6y9S+8AU0E=";
+        };
+        extraPkgs = pkgs: with pkgs; [ ];
+      };
+    in
+        [ubpm] ++
+  (with pkgs; [
+      ddccontrol
+      docker-compose
+      jmtpfs
+      libguestfs-with-appliance
+      ubpm
       openrgb
+  ]);
+
+
   services.udev.packages = with pkgs; [qmk-udev-rules];
 
   services.udev.extraRules = ''
