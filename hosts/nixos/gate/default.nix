@@ -304,10 +304,6 @@ SUBSYSTEMS=="usb", ATTR{idVendor}=="048d", ATTR{idProduct}=="5702", TAG+="uacces
     luks.devices."windows" = {
       device = "/dev/disk/by-uuid/3299548d-f3f7-45f9-8e22-1ebeec3348d9";
     };
-
-    luks.devices."windows2" = {
-      device = "/dev/disk/by-uuid/8e0cefcd-f723-495a-b376-276b8deb0996";
-    };
   };
 
   boot.loader = {
