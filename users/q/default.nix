@@ -48,6 +48,7 @@ in {
       imv
       p7zip
       anime4k
+      yuzu
     ];
 
     programs.password-store = {
@@ -86,6 +87,7 @@ in {
         ".mozilla"
         ".config/BraveSoftware/Brave-Browser"
         ".config/musikcube"
+        ".local/share/yuzu"
       ];
       allowOther = true;
     };
