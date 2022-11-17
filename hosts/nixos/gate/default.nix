@@ -108,6 +108,7 @@
       openrgb
   ]);
 
+  programs.adb.enable = true;
 
   services.udev.packages = with pkgs; [qmk-udev-rules];
 
