@@ -10,11 +10,10 @@ in {
     extraGroups = [ "wheel" "libvirtd" "docker" "adbusers" "input" ];
   };
 
-
-  programs.adb.enable = true;
-
   home-manager.users.q = { profiles, ... }: {
     imports = [ profiles.doom-emacs profiles.wm.i3 ];
+
+    home.file.".icons/default".source = "${pkgs.numix-cursor-theme}/share/icons/Numix-Cursor";
 
     programs.direnv = {
       enable = true;
