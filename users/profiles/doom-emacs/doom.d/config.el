@@ -11,15 +11,15 @@
 
 (defun doom-modeline-set-vcs-modeline () 1)
 
-(defun lsp-put-elixir-ls-from-executable-find ()
-   (setq lsp-elixir-local-server-command (executable-find "elixir-ls")))
+;; (defun lsp-put-elixir-ls-from-executable-find ()
+;;    (setq lsp-elixir-local-server-command (executable-find "elixir-ls")))
 
-(add-hook 'elixir-mode-hook #'lsp-put-elixir-ls-from-executable-find)
+;; (add-hook 'elixir-mode-hook #'lsp-put-elixir-ls-from-executable-find)
 
-(defun elixir-heex-format-on-save()
-  (interactive)
-  (when (and (eq major-mode 'web-mode)
-             (string-match-p "html.heex$" (buffer-file-name)))
-    (elixir-format)))
+;; (defun elixir-heex-format-on-save()
+;;   (interactive)
+;;   (when (and (eq major-mode 'web-mode)
+;;              (string-match-p "html.heex$" (buffer-file-name)))
+;;     (elixir-format)))
 
-(add-hook 'before-save-hook #'elixir-heex-format-on-save)
+;; (add-hook 'before-save-hook #'elixir-heex-format-on-save)
