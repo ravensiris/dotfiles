@@ -49,6 +49,7 @@ in {
       p7zip
       anime4k
       yuzu
+      (texlive.combine {inherit (texlive) scheme-full xetex fontspec;})
     ];
 
     programs.password-store = {
