@@ -10,6 +10,22 @@
     extra-trusted-public-keys = nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
   '';
 
+
+  home-manager.users.q = {
+    xsession.windowManager.i3.config.startup = [
+      {
+        command = "${pkgs.xwallpaper}/bin/xwallpaper  --output HDMI-A-0 --zoom $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Landscape/*)";
+        notification = false;
+        always = true;
+      }
+      {
+        command = "${pkgs.xwallpaper}/bin/xwallpaper --output HDMI-A-1 --zoom $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Portrait/*)";
+        notification = false;
+        always = true;
+      }
+    ];
+  };
+
   ### root password is empty by default ###
   imports = suites.base ++
     suites.impermanence ++
