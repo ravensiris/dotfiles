@@ -103,6 +103,8 @@ in {
       ];
     };
 
+    home.file.".config/fish/completions/pass.fish".source = ./fish/completions/pass.fish;
+
     programs.kitty = {
       enable = true;
       font = {
