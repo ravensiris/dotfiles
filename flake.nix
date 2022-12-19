@@ -143,7 +143,7 @@
               audio = [ profiles.audio.pipewire ];
               i3wm = [ wm.i3 ];
               amdgpu = [ gpu.amd ];
-              dev = [ ];
+              dev = [ dev ];
             };
           };
         };
