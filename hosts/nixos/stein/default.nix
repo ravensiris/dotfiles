@@ -6,7 +6,7 @@
     ++ suites.audio
     ++ suites.i3wm
     ++ suites.dev
-    ++ [ ./network.nix ./boot.nix ./power.nix ./video.nix ./device.nix ./storage.nix ./persistence.nix ./package.nix ];
+    ++ [ ./network.nix ./boot.nix ./power.nix ./video.nix ./device.nix ./storage.nix ./persistence.nix ./package.nix ./docker ];
 
   time.timeZone = "Europe/Warsaw";
 
@@ -32,6 +32,18 @@
     "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4="
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
   ];
+
+
+  home-manager.users.q = {
+    xsession.windowManager.i3.config.startup = [
+      {
+        command = "${pkgs.xwallpaper}/bin/xwallpaper --output eDP --zoom $(shuf -n1 -e ~/Pictures/Wallpapers/Landscape/*)";
+        notification = false;
+        always = true;
+      }
+    ];
+  };
+
 
   programs.dconf.enable = true;
 
