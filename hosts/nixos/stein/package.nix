@@ -16,6 +16,10 @@
     wineWowPackages.staging
     winetricks
     lutris
+    pcsx2
+    qbittorrent
+    easyeffects
+    libreoffice
   ];
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "q" ];
