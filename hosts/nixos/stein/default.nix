@@ -6,7 +6,9 @@
     ++ suites.audio
     ++ suites.i3wm
     ++ suites.dev
-    ++ [ ./network.nix ./boot.nix ./power.nix ./video.nix ./device.nix ./storage.nix ./persistence.nix ./package.nix ./docker ];
+    ++ [profiles.virt.common]
+    ++ [ ./network.nix ./boot.nix ./power.nix ./video.nix ./device.nix ./storage.nix ./persistence.nix ./package.nix ./docker ./printing.nix ./udev.nix];
+
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
