@@ -7,6 +7,8 @@
     ++ suites.i3wm
     ++ suites.dev
     ++ [ ./network.nix ./boot.nix ./power.nix ./video.nix ./device.nix ./storage.nix ./persistence.nix ./package.nix ./docker ];
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   time.timeZone = "Europe/Warsaw";
 
