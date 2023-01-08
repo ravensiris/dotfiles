@@ -92,6 +92,7 @@
       "/var/lib/libvirt"
       "/var/lib/docker"
       "/var/lib/cups"
+      "/var/lib/private/navidrome"
     ];
   };
 
@@ -124,6 +125,20 @@
       ubpm
       openrgb
     ]);
+
+  services.navidrome = {
+    enable = true;
+    settings = {
+      MusicFolder = "/media/Steiner/Music";
+    };
+  };
+
+  networking.firewall.allowedTCPPorts = [4533];
+  networking.firewall.interfaces."br0" = {
+    allowedTCPPorts = [4533];
+    allowedUDPPorts = [4533];
+  };
+
 
   programs.adb.enable = true;
 

@@ -50,6 +50,7 @@ in {
       anime4k
       yuzu
       (texlive.combine { inherit (texlive) scheme-full xetex fontspec; })
+      sonixd
     ];
 
     programs.password-store = {
@@ -88,6 +89,7 @@ in {
         ".mozilla"
         ".config/BraveSoftware/Brave-Browser"
         ".config/musikcube"
+        ".config/Sonixd"
         ".local/share/yuzu"
       ];
       allowOther = true;
