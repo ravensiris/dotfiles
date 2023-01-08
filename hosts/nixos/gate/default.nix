@@ -105,6 +105,22 @@
 
     wantedBy = ["multi-user.target"];
   };
+
+  hardware.fancontrol = {
+    enable = true;
+    config = ''
+      INTERVAL=10
+      DEVPATH=hwmon0=devices/pci0000:00/0000:00:03.1/0000:09:00.0
+      DEVNAME=hwmon0=amdgpu
+      FCTEMPS=hwmon0/pwm1=hwmon0/temp1_input
+      FCFANS= hwmon0/pwm1=
+      MINTEMP=hwmon0/pwm1=55
+      MAXTEMP=hwmon0/pwm1=75
+      MINSTART=hwmon0/pwm1=150
+      MINSTOP=hwmon0/pwm1=0
+    '';
+  };
+
   virtualisation.passthrough = {
     enable = true;
     ids = [ "10de:2484" "10de:228b" ];
@@ -131,6 +147,7 @@
       libguestfs-with-appliance
       ubpm
       openrgb
+      lm_sensors
     ]);
 
   services.navidrome = {
