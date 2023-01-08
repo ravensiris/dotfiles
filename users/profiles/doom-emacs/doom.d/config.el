@@ -23,4 +23,7 @@
 ;;     (elixir-format)))
 
 ;; (add-hook 'before-save-hook #'elixir-heex-format-on-save)
+
+(atomic-chrome-start-server)
+
 (setq ob-mermaid-cli-path (executable-find "mmdc"))
