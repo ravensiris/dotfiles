@@ -23,3 +23,4 @@
 ;;     (elixir-format)))
 
 ;; (add-hook 'before-save-hook #'elixir-heex-format-on-save)
+(setq ob-mermaid-cli-path (executable-find "mmdc"))
