@@ -36,8 +36,10 @@
       agenix.url = "github:ryantm/agenix";
       agenix.inputs.nixpkgs.follows = "nixos";
 
-      nvfetcher.url = "github:berberman/nvfetcher";
-      nvfetcher.inputs.nixpkgs.follows = "nixos";
+      nvfetcher = {
+        url = "github:berberman/nvfetcher?rev=db780dba6923e531b5aedca502a36d3d9627fca9";
+        inputs.nixpkgs.follows = "nixos";
+      };
 
       naersk.url = "github:nmattia/naersk";
       naersk.inputs.nixpkgs.follows = "nixos";
@@ -107,7 +109,7 @@
 
           nur.overlay
           agenix.overlay
-          nvfetcher.overlays.default
+          nvfetcher.overlay
 
           (import ./pkgs)
         ];
