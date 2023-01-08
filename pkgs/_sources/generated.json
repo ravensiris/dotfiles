@@ -1,7 +1,6 @@
 {
     "anime4k": {
         "cargoLocks": null,
-        "date": "2022-04-14",
         "extract": null,
         "name": "anime4k",
         "passthru": null,
@@ -21,7 +20,6 @@
     },
     "manix": {
         "cargoLocks": null,
-        "date": "2021-04-20",
         "extract": null,
         "name": "manix",
         "passthru": null,
