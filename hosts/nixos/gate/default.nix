@@ -98,6 +98,13 @@
 
   programs.dconf.enable = true;
 
+  systemd.user.services.rgbSetup = {
+    script = ''
+      openrgb -c 0
+    '';
+
+    wantedBy = ["multi-user.target"];
+  };
   virtualisation.passthrough = {
     enable = true;
     ids = [ "10de:2484" "10de:228b" ];
