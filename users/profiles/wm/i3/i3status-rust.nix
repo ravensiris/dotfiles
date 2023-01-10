@@ -8,10 +8,6 @@
         blocks =
           [
             {
-              block = "battery";
-              hide_missing = true;
-            }
-            {
               block = "keyboard_layout";
               driver = "setxkbmap";
               on_click = ''setxkbmap $(setxkbmap -print | awk -F"+" '/xkb_symbols/ {if($2 == "us") print "pl"; else print "us";}')'';
