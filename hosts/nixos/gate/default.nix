@@ -153,14 +153,13 @@
   services.navidrome = {
     enable = true;
     settings = {
+      Address = "0.0.0.0";
       MusicFolder = "/media/Steiner/Music";
     };
   };
 
-  networking.firewall.allowedTCPPorts = [4533];
   networking.firewall.interfaces."br0" = {
     allowedTCPPorts = [4533];
-    allowedUDPPorts = [4533];
   };
 
 
