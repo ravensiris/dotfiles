@@ -32,6 +32,10 @@
         "${modifier}+Shift+0" = "move container to workspace number 10";
         # Mode
         "${modifier}+h" = "layout default";
+
+        # Quick launch
+        "${modifier}+m" = "exec emacsclient -c";
+
         # Lock
         # "${modifier}+Shift+l" = ''
         #   exec ${pkgs.procps}/bin/pgrep swayidle || \
