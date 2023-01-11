@@ -51,6 +51,7 @@ in {
       yuzu
       (texlive.combine { inherit (texlive) scheme-full xetex fontspec; })
       sonixd
+      pubs
     ];
 
     services.easyeffects = {
