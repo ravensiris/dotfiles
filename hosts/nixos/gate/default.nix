@@ -11,6 +11,7 @@
   '';
 
 
+
   home-manager.users.q = {
     xsession.windowManager.i3.config.startup = [
       {
@@ -94,6 +95,8 @@
       "/var/lib/cups"
       "/var/lib/private/navidrome"
     ];
+
+    users.q.directories = [ "Projects" "Documents" ];
   };
 
   programs.dconf.enable = true;
@@ -402,6 +405,13 @@
   fileSystems."/var/log" =
     {
       device = "/nix/persist/var/log";
+      fsType = "none";
+      options = [ "bind" ];
+    };
+
+  fileSystems."/home/q/Music" =
+    {
+      device = "/media/Steiner/Music";
       fsType = "none";
       options = [ "bind" ];
     };
