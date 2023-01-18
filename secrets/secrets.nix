@@ -9,4 +9,6 @@ in
 {
   "users/root.age".publicKeys = allKeys;
   "users/q.age".publicKeys = allKeys;
+  "tokens/google_api_token.age".publicKeys = [q-gate q-stein];
+  "tokens/lastfm_token.age".publicKeys = [q-gate q-stein];
 }
