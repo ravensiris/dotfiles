@@ -5,5 +5,5 @@
     # emacsPackage = pkgs.emacsPgtkNativeComp;
   };
 
-  home.packages = with pkgs; [nodePackages.mermaid-cli];
+  home.packages = with pkgs; [nodePackages.mermaid-cli zip unzip];
 }
