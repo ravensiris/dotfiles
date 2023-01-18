@@ -1,8 +1,11 @@
-{ self, lib, pkgs, inputs, ... }:
+{ self, lib, pkgs, inputs, config, ... }:
 let firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
 in {
 
   age.secrets.qPassword.file = "${self}/secrets/users/q.age";
+  age.secrets.google_api_token.file = "${self}/secrets/tokens/google_api_token.age";
+  age.secrets.lastfm_token.file = "${self}/secrets/tokens/lastfm_token.age";
+
   users.users.q = {
     passwordFile = "/run/agenix/qPassword";
     password = "";
@@ -54,6 +57,43 @@ in {
       pubs
     ];
 
+    programs.beets = {
+      enable = true;
+      package = (pkgs.beets.override {});
+      settings = {
+          directory = "~/Music";
+          library = "~/.local/share/beets/musiclibrary.db";
+          "import" = {
+                move = true;
+                copy = false;
+          };
+          fetchart = {
+            high_resolution = true;
+            sources = [
+              "filesystem"
+              "lastfm"
+              "coverart"
+              "itunes"
+              "amazon"
+              "albumart"
+              "google"
+            ];
+
+            # readFile not perfect
+            google_key = lib.removeSuffix "\n" (builtins.readFile config.age.secrets.google_api_token.path);
+            lastfm_key = lib.removeSuffix "\n" (builtins.readFile config.age.secrets.lastfm_token.path);
+          };
+          badfiles = {
+            check_on_import = true;
+            commands = {
+              flac = "${pkgs.flac}/bin/flac --silent --test";
+              mp3 = "${pkgs.mp3val}/bin/mp3val -si";
+            };
+          };
+          plugins = lib.concatStringsSep " " ["embedart" "fetchart" "badfiles" "fish" "duplicates"];
+      };
+    };
+
     services.easyeffects = {
       enable = true;
     };
@@ -87,6 +127,8 @@ in {
         ".ssh/id_rsa"
         ".ssh/id_rsa.pub"
         ".local/share/nix/trusted-settings.json"
+        ".local/share/beets/musiclibrary.db"
+        ".config/fish/completions/beet.fish"
       ];
       directories = [
         ".gnupg"
