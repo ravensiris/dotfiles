@@ -138,6 +138,7 @@ in {
         ".config/musikcube"
         ".config/Sonixd"
         ".local/share/yuzu"
+        ".config/easyeffects"
       ];
       allowOther = true;
     };
