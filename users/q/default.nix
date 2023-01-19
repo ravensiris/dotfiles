@@ -24,8 +24,7 @@ in {
       config = {
         whitelist = {
           prefix = [
-            "/media/Steiner/Projects"
-            "/media/Steiner/flake"
+            "/home/q/Projects"
           ];
         };
       };
