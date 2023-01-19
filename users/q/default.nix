@@ -128,6 +128,7 @@ in {
         ".local/share/nix/trusted-settings.json"
         ".local/share/beets/musiclibrary.db"
         ".config/fish/completions/beet.fish"
+        ".local/share/fish/fish_history"
       ];
       directories = [
         ".gnupg"
