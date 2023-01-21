@@ -2,3 +2,4 @@
 (package! ob-mermaid)
 (package! mermaid-mode)
 (package! ox-reveal)
+(package! deadgrep)

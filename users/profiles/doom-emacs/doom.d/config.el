@@ -47,3 +47,12 @@
 (setq citar-symbol-separator "  ")
 
 (setq projectile-project-search-path '("~/Projects"))
+
+(map! :leader :desc "ripgrep using deadgrep" :n "/" #'deadgrep)
+
+(map! :map deadgrep-mode-map
+      :after deadgrep
+      :n "n" #'deadgrep-forward-match
+      :n "N" #'deadgrep-backward-match
+      :n "]" #'deadgrep-forward-filename
+      :n "[" #'deadgrep-backward-filename)
