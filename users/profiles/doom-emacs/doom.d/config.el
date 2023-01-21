@@ -29,16 +29,16 @@
 (setq ob-mermaid-cli-path (executable-find "mmdc"))
 
 (require 'f)
-
-(let ((library-path "~/Documents/References/pubs/doc")
-      (notes-path "~/Documents/Notes")
-      (references-paths (f-files "~/Documents/References/pubs/bib")))
+(unless (and (mapcar #'f-exists? '("~/Documents/References/pubs/doc" "~/Documents/Notes" "~/Documents/References/pubs/bib")))
+    (let ((library-path "~/Documents/References/pubs/doc")
+          (notes-path "~/Documents/Notes")
+          (references-paths (f-files "~/Documents/References/pubs/bib")))
       (setq! bibtex-completion-library-path `(,library-path))
       (setq! bibtex-completion-notes-path notes-path)
       (setq! bibtex-completion-bibliography references-paths)
       (setq! citar-library-paths `(,library-path))
       (setq! citar-notes-paths `(,notes-path))
-      (setq! citar-bibliography references-paths))
+      (setq! citar-bibliography references-paths)))
 
 (setq citar-symbols
       `((file ,(all-the-icons-faicon "file-o" :face 'all-the-icons-green :v-adjust -0.1) . " ")
