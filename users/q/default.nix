@@ -64,8 +64,8 @@ in {
           directory = "~/Music";
           library = "~/.local/share/beets/musiclibrary.db";
           "import" = {
-                move = true;
-                copy = false;
+                move = false;
+                copy = true;
           };
           fetchart = {
             high_resolution = true;
@@ -140,6 +140,7 @@ in {
         ".config/Sonixd"
         ".local/share/yuzu"
         ".config/easyeffects"
+        "Music"
       ];
       allowOther = true;
     };

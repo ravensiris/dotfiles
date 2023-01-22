@@ -199,7 +199,7 @@
     enable = true;
     settings = {
       Address = "0.0.0.0";
-      MusicFolder = "/media/Steiner/Music";
+      MusicFolder = "/nix/persist/home/q/Music";
     };
   };
 
@@ -447,13 +447,6 @@
   fileSystems."/var/log" =
     {
       device = "/nix/persist/var/log";
-      fsType = "none";
-      options = [ "bind" ];
-    };
-
-  fileSystems."/home/q/Music" =
-    {
-      device = "/media/Steiner/Music";
       fsType = "none";
       options = [ "bind" ];
     };
