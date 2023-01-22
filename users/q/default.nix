@@ -54,6 +54,7 @@ in {
       (texlive.combine { inherit (texlive) scheme-full xetex fontspec; })
       sonixd
       pubs
+      fd
     ];
 
     programs.beets = {
@@ -151,6 +152,16 @@ in {
           src = pure.src;
         }
       ];
+      shellAliases = {
+        "du" = "${pkgs.du-dust}/bin/dust";
+        "ls" = "${pkgs.exa}/bin/exa --icons";
+        "la" = "${pkgs.exa}/bin/exa --icons -la";
+        "cat" = "${pkgs.bat}/bin/bat";
+        "df" = "${pkgs.duf}/bin/duf";
+        "ps" = "${pkgs.procs}/bin/procs";
+        "curl" = "${pkgs.curlie}/bin/curlie";
+        "dig" = "${pkgs.dogdns}/bin/dog";
+      };
     };
 
     home.file.".config/fish/completions/pass.fish".source = ./fish/completions/pass.fish;
