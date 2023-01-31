@@ -12,6 +12,17 @@
       sha256 = "sha256-dKFVNd3DtZ1AbJodoa82FfKhBJu39RMrI5e0To+vqwU=";
     });
   };
+  khinsider = {
+    pname = "khinsider";
+    version = "b1683fbf2897f04242bd8e67eade940d1b6f2f16";
+    src = fetchFromGitHub ({
+      owner = "obskyr";
+      repo = "khinsider";
+      rev = "b1683fbf2897f04242bd8e67eade940d1b6f2f16";
+      fetchSubmodules = false;
+      sha256 = "sha256-sSxLicoqS41Ofw5M0K3ERbYZAYe4lgQPKpzWdHNl0vA=";
+    });
+  };
   manix = {
     pname = "manix";
     version = "d08e7ca185445b929f097f8bfb1243a8ef3e10e4";

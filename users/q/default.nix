@@ -55,6 +55,7 @@ in {
       sonixd
       pubs
       fd
+      khinsider
     ];
 
     programs.beets = {
