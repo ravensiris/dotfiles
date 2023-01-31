@@ -81,6 +81,9 @@ in {
               "google"
             ];
 
+            minwidth = 800;
+            enforce_ratio= "0.5%";
+
             # readFile not perfect
             google_key = lib.removeSuffix "\n" (builtins.readFile config.age.secrets.google_api_token.path);
             lastfm_key = lib.removeSuffix "\n" (builtins.readFile config.age.secrets.lastfm_token.path);
