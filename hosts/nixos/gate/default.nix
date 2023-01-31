@@ -10,6 +10,22 @@
     extra-trusted-public-keys = nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
   '';
 
+  services.syncthing = {
+    enable = true;
+    dataDir = "/home/q/Sync";
+    configDir = "/home/q/.config/syncthing";
+    overrideDevices = true;
+    overrideFolders = true;
+    devices = {
+      "phone" = { id = "DI26IOA-H4YSNID-JDPFEMG-5UVY4WV-BDFGG2S-HKJFVD6-7ACZ5NH-BTD6DQ7"; };
+    };
+    folders = {
+      "Music" = {
+        path = "/home/q/Music";
+        devices = [ "phone" ];
+      };
+    };
+  };
 
   home-manager.users.q.xsession.windowManager.i3.config = {
       startup = [
@@ -138,7 +154,13 @@
       "/var/lib/private/navidrome"
     ];
 
-    users.q.directories = [ "Projects" "Documents" "Music"];
+    users.q.directories = [
+      "Projects"
+      "Documents"
+      "Sync"
+      ".config/syncthing"
+      "Music"
+    ];
   };
 
   programs.dconf.enable = true;
@@ -204,7 +226,8 @@
   };
 
   networking.firewall.interfaces."br0" = {
-    allowedTCPPorts = [ 4533 7905 7906 ];
+    allowedTCPPorts = [ 4533 7905 7906 8384 22000 ];
+    allowedUDPPorts = [ 22000 21027];
   };
 
 
