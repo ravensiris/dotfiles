@@ -55,6 +55,7 @@ in {
       sonixd
       pubs
       fd
+      libreoffice
       khinsider
     ];
 
