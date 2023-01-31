@@ -204,7 +204,7 @@
   };
 
   networking.firewall.interfaces."br0" = {
-    allowedTCPPorts = [4533];
+    allowedTCPPorts = [ 4533 7905 7906 ];
   };
 
 
