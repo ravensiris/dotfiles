@@ -446,7 +446,7 @@
     {
       device = "none";
       fsType = "tmpfs";
-      options = [ "defaults" "size=8G" "mode=755" ];
+      options = [ "defaults" "size=32G" "mode=755" ];
     };
 
   fileSystems."/nix" =
