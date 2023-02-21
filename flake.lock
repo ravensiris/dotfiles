@@ -8,11 +8,19 @@
         ]
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1677453742,
         "narHash": "sha256-/DNOThcCGz21Met/aMhm7NGqughtpxQzrlAqTuq+YZQ=",
         "owner": "ryantm",
         "repo": "agenix",
         "rev": "4828951d9d05accd244bf8c24706f046b485aceb",
+=======
+        "lastModified": 1676910639,
+        "narHash": "sha256-YvZ2lQiUZrv5PCQ0nC/fn/0OT2ag8spCIOQx0COnFZ0=",
+        "owner": "ryantm",
+        "repo": "agenix",
+        "rev": "5f66c8aa774d8d488cba1cdc4f0c954d2a14e3a1",
+>>>>>>> 48668f8 ([gate] Update flake.lock)
         "type": "github"
       },
       "original": {
@@ -203,6 +211,7 @@
       },
       "locked": {
 <<<<<<< HEAD
+<<<<<<< HEAD
         "lastModified": 1677435690,
         "narHash": "sha256-KxVX8hW0O7AMf6GvcxiAmZRdlzRcahakqdwJR67AcME=",
         "owner": "nix-community",
@@ -215,6 +224,13 @@
         "repo": "emacs-overlay",
         "rev": "c16be6de78ea878aedd0292aa5d4a1ee0a5da501",
 >>>>>>> b44cffe ([gate] Update flake.lock)
+=======
+        "lastModified": 1676970557,
+        "narHash": "sha256-thCJXMjGP/nj/levoa8T2E7pODjkbUDkibmA3v/k1as=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "8279a14edb0194ddb5d15dc1f7d752fee9fc8ce0",
+>>>>>>> 48668f8 ([gate] Update flake.lock)
         "type": "github"
       },
       "original": {
@@ -562,6 +578,7 @@
     "latest": {
       "locked": {
 <<<<<<< HEAD
+<<<<<<< HEAD
         "lastModified": 1677342105,
         "narHash": "sha256-kv1fpkfCJGb0M+LZaCHFUuIS9kRIwyVgupHu86Y28nc=",
         "owner": "nixos",
@@ -574,6 +591,13 @@
         "repo": "nixpkgs",
         "rev": "545c7a31e5dedea4a6d372712a18e00ce097d462",
 >>>>>>> b44cffe ([gate] Update flake.lock)
+=======
+        "lastModified": 1676885936,
+        "narHash": "sha256-ZRKb6zBfTvdCOXI7nGC1L9UWSU5ay2ltxg+f5UIzBOU=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "b69883faca9542d135fa6bab7928ff1b233c167f",
+>>>>>>> 48668f8 ([gate] Update flake.lock)
         "type": "github"
       },
       "original": {
@@ -722,6 +746,7 @@
     "nixos-hardware": {
       "locked": {
 <<<<<<< HEAD
+<<<<<<< HEAD
         "lastModified": 1677440795,
         "narHash": "sha256-Kmjr95L42iioTItuA6nKCaObAXQvgRTPmj+62dx5OZg=",
         "owner": "nixos",
@@ -734,6 +759,13 @@
         "repo": "nixos-hardware",
         "rev": "44ae00e02e8036a66c08f4decdece7e3bbbefee2",
 >>>>>>> b44cffe ([gate] Update flake.lock)
+=======
+        "lastModified": 1676924492,
+        "narHash": "sha256-78278eyP55JRFe7UCpmFwdkrTY6H2arzTpVeteWo8kM=",
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "rev": "d24ea777c57b69c6b143cf11d83184ef71b0dbbf",
+>>>>>>> 48668f8 ([gate] Update flake.lock)
         "type": "github"
       },
       "original": {
