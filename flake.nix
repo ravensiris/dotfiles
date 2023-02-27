@@ -108,7 +108,7 @@
           })
 
           nur.overlay
-          agenix.overlay
+          agenix.overlays.default
           nvfetcher.overlay
 
           (import ./pkgs)
