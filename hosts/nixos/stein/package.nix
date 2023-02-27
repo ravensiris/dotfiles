@@ -20,6 +20,8 @@
     qbittorrent
     easyeffects
     libreoffice
+    gimp
+    inkscape
   ];
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "q" ];
