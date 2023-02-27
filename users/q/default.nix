@@ -145,7 +145,6 @@ in {
         ".config/Sonixd"
         ".local/share/yuzu"
         ".config/easyeffects"
-        "Music"
       ];
       allowOther = true;
     };

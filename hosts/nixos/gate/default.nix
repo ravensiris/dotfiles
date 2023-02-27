@@ -138,7 +138,7 @@
       "/var/lib/private/navidrome"
     ];
 
-    users.q.directories = [ "Projects" "Documents" ];
+    users.q.directories = [ "Projects" "Documents" "Music"];
   };
 
   programs.dconf.enable = true;
