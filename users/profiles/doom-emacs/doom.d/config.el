@@ -56,3 +56,20 @@
       :n "N" #'deadgrep-backward-match
       :n "]" #'deadgrep-forward-filename
       :n "[" #'deadgrep-backward-filename)
+
+(define-hostmode poly-elixir-hostmode :mode 'elixir-mode)
+(define-innermode poly-heex-component-innermode
+  :mode 'web-mode
+  :head-matcher (rx line-start (* space) "~H" (= 3 (char "\"'")) line-end)
+  :tail-matcher (rx line-start (* space) (= 3 (char "\"'")) line-end)
+  :head-mode 'host
+  :tail-mode 'host
+  :allow-nested nil
+  :keep-in-mode 'host
+  :fallback-mode 'host)
+(define-polymode poly-elixir-web-mode
+  :hostmode 'poly-elixir-hostmode
+  :innermodes '(poly-heex-component-innermode))
+
+(setq web-mode-engines-alist '(("elixir" . "\\.ex\\'")))
+(add-to-list 'auto-mode-alist '("\\.ex\\'" . poly-elixir-web-mode))
