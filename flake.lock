@@ -8,19 +8,11 @@
         ]
       },
       "locked": {
-<<<<<<< HEAD
         "lastModified": 1677453742,
         "narHash": "sha256-/DNOThcCGz21Met/aMhm7NGqughtpxQzrlAqTuq+YZQ=",
         "owner": "ryantm",
         "repo": "agenix",
         "rev": "4828951d9d05accd244bf8c24706f046b485aceb",
-=======
-        "lastModified": 1676910639,
-        "narHash": "sha256-YvZ2lQiUZrv5PCQ0nC/fn/0OT2ag8spCIOQx0COnFZ0=",
-        "owner": "ryantm",
-        "repo": "agenix",
-        "rev": "5f66c8aa774d8d488cba1cdc4f0c954d2a14e3a1",
->>>>>>> 48668f8 ([gate] Update flake.lock)
         "type": "github"
       },
       "original": {
@@ -210,27 +202,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "lastModified": 1677435690,
-        "narHash": "sha256-KxVX8hW0O7AMf6GvcxiAmZRdlzRcahakqdwJR67AcME=",
+        "lastModified": 1677608641,
+        "narHash": "sha256-sbSZhceOflqZIePzUrHiRB4bv4OHObs7NrhzICCUcC4=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "9f2a5cf6737999431c1d433fd4ed15191d2fa38b",
-=======
-        "lastModified": 1676366521,
-        "narHash": "sha256-i4UAY8t9Au9SJtsgYppa3NHSVf1YkV6yqnNIQd+Km4g=",
-        "owner": "nix-community",
-        "repo": "emacs-overlay",
-        "rev": "c16be6de78ea878aedd0292aa5d4a1ee0a5da501",
->>>>>>> b44cffe ([gate] Update flake.lock)
-=======
-        "lastModified": 1676970557,
-        "narHash": "sha256-thCJXMjGP/nj/levoa8T2E7pODjkbUDkibmA3v/k1as=",
-        "owner": "nix-community",
-        "repo": "emacs-overlay",
-        "rev": "8279a14edb0194ddb5d15dc1f7d752fee9fc8ce0",
->>>>>>> 48668f8 ([gate] Update flake.lock)
+        "rev": "545383bd7de8e3f100356fea217698379d8f5c31",
         "type": "github"
       },
       "original": {
@@ -242,19 +218,11 @@
     "emacs-overlay_2": {
       "flake": false,
       "locked": {
-<<<<<<< HEAD
         "lastModified": 1676366521,
         "narHash": "sha256-i4UAY8t9Au9SJtsgYppa3NHSVf1YkV6yqnNIQd+Km4g=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
         "rev": "c16be6de78ea878aedd0292aa5d4a1ee0a5da501",
-=======
-        "lastModified": 1675362118,
-        "narHash": "sha256-11CqDTkQA9P5I4InVCXmj/IaHvz4nUJaLNFiDiHVvIg=",
-        "owner": "nix-community",
-        "repo": "emacs-overlay",
-        "rev": "a018577287e390e01654a8b44d57d183a51b72b2",
->>>>>>> b44cffe ([gate] Update flake.lock)
         "type": "github"
       },
       "original": {
@@ -577,27 +545,11 @@
     },
     "latest": {
       "locked": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "lastModified": 1677342105,
-        "narHash": "sha256-kv1fpkfCJGb0M+LZaCHFUuIS9kRIwyVgupHu86Y28nc=",
+        "lastModified": 1677587185,
+        "narHash": "sha256-zYT66MAYwctAQqI5VBw3LbBXiSKdB8vuMAqCGG8onbE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b1f87ca164a9684404c8829b851c3586c4d9f089",
-=======
-        "lastModified": 1676300157,
-        "narHash": "sha256-1HjRzfp6LOLfcj/HJHdVKWAkX9QRAouoh6AjzJiIerU=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "545c7a31e5dedea4a6d372712a18e00ce097d462",
->>>>>>> b44cffe ([gate] Update flake.lock)
-=======
-        "lastModified": 1676885936,
-        "narHash": "sha256-ZRKb6zBfTvdCOXI7nGC1L9UWSU5ay2ltxg+f5UIzBOU=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "b69883faca9542d135fa6bab7928ff1b233c167f",
->>>>>>> 48668f8 ([gate] Update flake.lock)
+        "rev": "68196a61c26748d3e53a6803de3d2f8c69f27831",
         "type": "github"
       },
       "original": {
@@ -656,19 +608,11 @@
         "ws-butler": "ws-butler"
       },
       "locked": {
-<<<<<<< HEAD
         "lastModified": 1677326276,
         "narHash": "sha256-dfKLWggIQ6F0/WXa52ZBO6NGrCpwVKU4WcLvZwbOHJg=",
         "owner": "nix-community",
         "repo": "nix-doom-emacs",
         "rev": "c283bcf19b64aba8c50d5618cb58457967f6cdb7",
-=======
-        "lastModified": 1675387812,
-        "narHash": "sha256-fGjWMg97w1mP0cDIR9Y8qCa77sEtiIdYzqiRB+P2YcM=",
-        "owner": "nix-community",
-        "repo": "nix-doom-emacs",
-        "rev": "8de922e4e23158790970a266234a853305b1928d",
->>>>>>> b44cffe ([gate] Update flake.lock)
         "type": "github"
       },
       "original": {
@@ -745,27 +689,11 @@
     },
     "nixos-hardware": {
       "locked": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "lastModified": 1677440795,
-        "narHash": "sha256-Kmjr95L42iioTItuA6nKCaObAXQvgRTPmj+62dx5OZg=",
+        "lastModified": 1677591639,
+        "narHash": "sha256-DMlAyge+u3K+JOFLA5YfdjqagdAYJf29YGBWpy5izg4=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "2a483ad9cd2d931ab52cd5f897c447beb8328bed",
-=======
-        "lastModified": 1675933606,
-        "narHash": "sha256-y427VhPQHOKkYvkc9MMsL/2R7M11rQxzsRdRLM3htx8=",
-        "owner": "nixos",
-        "repo": "nixos-hardware",
-        "rev": "44ae00e02e8036a66c08f4decdece7e3bbbefee2",
->>>>>>> b44cffe ([gate] Update flake.lock)
-=======
-        "lastModified": 1676924492,
-        "narHash": "sha256-78278eyP55JRFe7UCpmFwdkrTY6H2arzTpVeteWo8kM=",
-        "owner": "nixos",
-        "repo": "nixos-hardware",
-        "rev": "d24ea777c57b69c6b143cf11d83184ef71b0dbbf",
->>>>>>> 48668f8 ([gate] Update flake.lock)
+        "rev": "77de4cd09db4dbee9551ed2853cfcf113d7dc5ce",
         "type": "github"
       },
       "original": {
@@ -824,19 +752,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-<<<<<<< HEAD
         "lastModified": 1677080879,
         "narHash": "sha256-0SjW4/d3Rkw6C7hHZ5lxT4r6Pw9vzQb6Il6zYWwe2Bo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "f5dad40450d272a1ea2413f4a67ac08760649e89",
-=======
-        "lastModified": 1675279076,
-        "narHash": "sha256-I8sMB4TBkhNY4lcKtb+pwEDB50My3+JG5Ti8J3sEmCc=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "c6fd903606866634312e40cceb2caee8c0c9243f",
->>>>>>> b44cffe ([gate] Update flake.lock)
         "type": "github"
       },
       "original": {
@@ -864,8 +784,8 @@
     "nixpkgs_4": {
       "locked": {
         "lastModified": 0,
-        "narHash": "sha256-1P+0zfHHH+PV2L+5qqeS+qAPPN8yBfRXzkLd1ZiI0Vs=",
-        "path": "/nix/store/xgj8jhlkzaqar0nnhn0pk2nc9lg3mg70-source",
+        "narHash": "sha256-bXMlG/YU0IjAod6M625XT1YbUG+/3L9ypk9llYpKeuM=",
+        "path": "/nix/store/gq0ip0yj3w0n4qkhx1kvr949cvp12s27-source",
         "type": "path"
       },
       "original": {
@@ -892,8 +812,8 @@
     "nur": {
       "locked": {
         "lastModified": 0,
-        "narHash": "sha256-iEP+//bEYA+AeyUL+QT8YSKMLUbnr4mIaMAVn8leUBw=",
-        "path": "/nix/store/f68cjiinrg7qp8yj79bipv01rzbbcgdg-source",
+        "narHash": "sha256-BUz3hzXXxaOOxokCRxLgDZZqTR3MinyWLUYsnMGX6fo=",
+        "path": "/nix/store/qkdxpb4a41a11wwychy871n154x62jw1-source",
         "type": "path"
       },
       "original": {
@@ -1007,19 +927,11 @@
     "revealjs": {
       "flake": false,
       "locked": {
-<<<<<<< HEAD
         "lastModified": 1677036091,
         "narHash": "sha256-mHAl+kWxSVfYTQjwbhAHuxAwnm4gAPb4plHIn12gXcg=",
         "owner": "hakimel",
         "repo": "reveal.js",
         "rev": "cd019514f3d4924bae6caaaf5383a068cc1320d7",
-=======
-        "lastModified": 1674652670,
-        "narHash": "sha256-ViqeZlOjQTlY0KM7YcOOjdgkxRLPMZrRKXTqtyc1I00=",
-        "owner": "hakimel",
-        "repo": "reveal.js",
-        "rev": "b1a9842b2f4544a2fda546383db38cc7a81f6b74",
->>>>>>> b44cffe ([gate] Update flake.lock)
         "type": "github"
       },
       "original": {
