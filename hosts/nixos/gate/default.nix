@@ -217,7 +217,6 @@
       ubpm
       openrgb
       lm_sensors
-      elixir_ls
     ]);
 
   services.navidrome = {
