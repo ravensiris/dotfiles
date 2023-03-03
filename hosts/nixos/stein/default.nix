@@ -6,8 +6,8 @@
     ++ suites.audio
     ++ suites.i3wm
     ++ suites.dev
-    ++ [profiles.virt.common]
-    ++ [ ./network.nix ./boot.nix ./power.nix ./video.nix ./device.nix ./storage.nix ./persistence.nix ./package.nix ./docker ./printing.nix ./udev.nix];
+    ++ [ profiles.virt.common ]
+    ++ [ ./network.nix ./boot.nix ./power.nix ./video.nix ./device.nix ./storage.nix ./persistence.nix ./package.nix ./docker ./printing.nix ./udev.nix ];
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -96,5 +96,5 @@
 
   programs.dconf.enable = true;
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
 }
