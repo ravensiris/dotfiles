@@ -15,14 +15,15 @@ in
 {
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-unwrapped;
     viAlias = true;
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [
-      {
-        plugin = (nvim-treesitter.withPlugins (
-          plugins: pkgs.tree-sitter.allGrammars
-        ));
+      { plugin = (nvim-treesitter.withPlugins (
+          plugins: with plugins; [
+            tree-sitter-elixir
+            tree-sitter-heex
+            tree-sitter-eex
+        ]));
         type = "lua";
         config = builtins.readFile (./tree_sitter.lua);
       }
@@ -38,4 +39,8 @@ in
       }
     ];
   };
+
+  home.packages = with pkgs; [
+    tree-sitter
+  ];
 }
