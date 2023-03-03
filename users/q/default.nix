@@ -20,6 +20,8 @@ in {
       profiles.neovim
     ];
 
+    home.stateVersion = "22.11";
+
     home.file.".icons/default".source = "${pkgs.numix-cursor-theme}/share/icons/Numix-Cursor";
 
     programs.direnv = {

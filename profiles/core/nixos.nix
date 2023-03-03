@@ -6,7 +6,6 @@
   ];
 
   # This is just a representation of the nix default
-  nix.systemFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
 
   environment = {
 
@@ -45,12 +44,13 @@
     sansSerif = [ "DejaVu Sans" ];
   };
 
-  nix = {
-    # Improve nix store disk usage
-    autoOptimiseStore = true;
-    optimise.automatic = true;
-    allowedUsers = [ "@wheel" ];
+  nix.settings = {
+    auto-optimise-store = true;
+    allowed-users = [ "@wheel" "root" ];
+    system-features = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
   };
+
+  nix.optimise.automatic = true;
 
   programs.bash = {
     # Enable starship

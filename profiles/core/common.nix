@@ -94,14 +94,16 @@ in
 
   nix = {
 
+    settings = {
+      # Prevents impurities in builds
+      sandbox = true;
+
+      # Give root user and wheel group special Nix privileges.
+      trusted-users = [ "root" "@wheel" ];
+    };
+
     # Improve nix store disk usage
     gc.automatic = true;
-
-    # Prevents impurities in builds
-    useSandbox = true;
-
-    # Give root user and wheel group special Nix privileges.
-    trustedUsers = [ "root" "@wheel" ];
 
     # Generally useful nix option defaults
     extraOptions = ''

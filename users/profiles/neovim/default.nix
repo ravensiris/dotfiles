@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  nvim-ayu = pkgs.vimUtils.buildNeovimPluginFrom2Nix {
+  nvim-ayu = pkgs.vimUtils.buildVimPluginFrom2Nix {
     version = "2023.03.03";
     pname = "neovim-ayu";
     src = pkgs.fetchFromGitHub {
