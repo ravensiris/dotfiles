@@ -3,4 +3,3 @@
 (package! mermaid-mode)
 (package! ox-reveal)
 (package! deadgrep)
-(package! polymode)
