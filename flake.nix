@@ -54,8 +54,6 @@
       };
 
       emacs-overlay.url = "github:nix-community/emacs-overlay";
-      nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
-
     };
 
   outputs =
@@ -69,8 +67,8 @@
     , nvfetcher
     , deploy
     , nixpkgs
-    , nix-doom-emacs
     , emacs-overlay
+      # , emacs29-src
     , ...
     } @ inputs:
     digga.lib.mkFlake
@@ -82,7 +80,7 @@
         channels = {
           nixos = {
             imports = [ (digga.lib.importOverlays ./overlays) ];
-            overlays = [ emacs-overlay.overlay ];
+            overlays = [ emacs-overlay.overlays.default ];
           };
           nixpkgs-darwin-stable = {
             imports = [ (digga.lib.importOverlays ./overlays) ];
@@ -182,7 +180,6 @@
           imports = [ (digga.lib.importExportableModules ./users/modules) ];
           exportedModules = [
             "${inputs.impermanence}/home-manager.nix"
-            nix-doom-emacs.hmModule
           ];
           importables = rec {
             profiles = digga.lib.rakeLeaves ./users/profiles;
