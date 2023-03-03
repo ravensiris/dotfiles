@@ -9,7 +9,6 @@
 
   environment.systemPackages = with pkgs; [
     brightnessctl
-    neovim
     tenacity
     gnupg
     virtualbox

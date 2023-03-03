@@ -14,7 +14,11 @@ in {
   };
 
   home-manager.users.q = { profiles, ... }: {
-    imports = [ profiles.doom-emacs profiles.wm.i3 ];
+    imports = [
+      profiles.doom-emacs
+      profiles.wm.i3
+      profiles.neovim
+    ];
 
     home.file.".icons/default".source = "${pkgs.numix-cursor-theme}/share/icons/Numix-Cursor";
 
@@ -61,41 +65,41 @@ in {
 
     programs.beets = {
       enable = true;
-      package = (pkgs.beets.override {});
+      package = (pkgs.beets.override { });
       settings = {
-          directory = "~/Music";
-          library = "~/.local/share/beets/musiclibrary.db";
-          "import" = {
-                move = false;
-                copy = true;
-          };
-          fetchart = {
-            high_resolution = true;
-            sources = [
-              "filesystem"
-              "lastfm"
-              "coverart"
-              "itunes"
-              "amazon"
-              "albumart"
-              "google"
-            ];
+        directory = "~/Music";
+        library = "~/.local/share/beets/musiclibrary.db";
+        "import" = {
+          move = false;
+          copy = true;
+        };
+        fetchart = {
+          high_resolution = true;
+          sources = [
+            "filesystem"
+            "lastfm"
+            "coverart"
+            "itunes"
+            "amazon"
+            "albumart"
+            "google"
+          ];
 
-            minwidth = 800;
-            enforce_ratio= "0.5%";
+          minwidth = 800;
+          enforce_ratio = "0.5%";
 
-            # readFile not perfect
-            google_key = lib.removeSuffix "\n" (builtins.readFile config.age.secrets.google_api_token.path);
-            lastfm_key = lib.removeSuffix "\n" (builtins.readFile config.age.secrets.lastfm_token.path);
+          # readFile not perfect
+          google_key = lib.removeSuffix "\n" (builtins.readFile config.age.secrets.google_api_token.path);
+          lastfm_key = lib.removeSuffix "\n" (builtins.readFile config.age.secrets.lastfm_token.path);
+        };
+        badfiles = {
+          check_on_import = true;
+          commands = {
+            flac = "${pkgs.flac}/bin/flac --silent --test";
+            mp3 = "${pkgs.mp3val}/bin/mp3val -si";
           };
-          badfiles = {
-            check_on_import = true;
-            commands = {
-              flac = "${pkgs.flac}/bin/flac --silent --test";
-              mp3 = "${pkgs.mp3val}/bin/mp3val -si";
-            };
-          };
-          plugins = lib.concatStringsSep " " ["embedart" "fetchart" "badfiles" "fish" "duplicates"];
+        };
+        plugins = lib.concatStringsSep " " [ "embedart" "fetchart" "badfiles" "fish" "duplicates" ];
       };
     };
 
