@@ -30,62 +30,62 @@
   };
 
   home-manager.users.q.xsession.windowManager.i3.config = {
-      startup = [
-        {
-          command = "${pkgs.xwallpaper}/bin/xwallpaper  --output HDMI-A-0 --zoom $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Landscape/*)";
-          notification = false;
-          always = true;
-        }
-        {
-          command = "${pkgs.xwallpaper}/bin/xwallpaper --output HDMI-A-1 --zoom $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Portrait/*)";
-          notification = false;
-          always = true;
-        }
-      ];
+    startup = [
+      {
+        command = "${pkgs.xwallpaper}/bin/xwallpaper  --output HDMI-A-0 --zoom $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Landscape/*)";
+        notification = false;
+        always = true;
+      }
+      {
+        command = "${pkgs.xwallpaper}/bin/xwallpaper --output HDMI-A-1 --zoom $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Portrait/*)";
+        notification = false;
+        always = true;
+      }
+    ];
 
-      workspaceOutputAssign = [
-        {
-          workspace = "1";
-          output = "HDMI-A-0";
-        }
-        {
-          workspace = "2";
-          output = "HDMI-A-0";
-        }
-        {
-          workspace = "3";
-          output = "HDMI-A-0";
-        }
-        {
-          workspace = "4";
-          output = "HDMI-A-0";
-        }
-        {
-          workspace = "5";
-          output = "HDMI-A-0";
-        }
-        {
-          workspace = "6";
-          output = "HDMI-A-1";
-        }
-        {
-          workspace = "7";
-          output = "HDMI-A-1";
-        }
-        {
-          workspace = "8";
-          output = "HDMI-A-1";
-        }
-        {
-          workspace = "9";
-          output = "HDMI-A-1";
-        }
-        {
-          workspace = "10";
-          output = "HDMI-A-1";
-        }
-      ];
-    };
+    workspaceOutputAssign = [
+      {
+        workspace = "1";
+        output = "HDMI-A-0";
+      }
+      {
+        workspace = "2";
+        output = "HDMI-A-0";
+      }
+      {
+        workspace = "3";
+        output = "HDMI-A-0";
+      }
+      {
+        workspace = "4";
+        output = "HDMI-A-0";
+      }
+      {
+        workspace = "5";
+        output = "HDMI-A-0";
+      }
+      {
+        workspace = "6";
+        output = "HDMI-A-1";
+      }
+      {
+        workspace = "7";
+        output = "HDMI-A-1";
+      }
+      {
+        workspace = "8";
+        output = "HDMI-A-1";
+      }
+      {
+        workspace = "9";
+        output = "HDMI-A-1";
+      }
+      {
+        workspace = "10";
+        output = "HDMI-A-1";
+      }
+    ];
+  };
 
   ### root password is empty by default ###
   imports = suites.base ++
@@ -172,7 +172,7 @@
       openrgb -c 0
     '';
 
-    wantedBy = ["multi-user.target"];
+    wantedBy = [ "multi-user.target" ];
   };
 
   hardware.fancontrol = {
@@ -229,7 +229,7 @@
 
   networking.firewall.interfaces."br0" = {
     allowedTCPPorts = [ 4533 7905 7906 8384 22000 ];
-    allowedUDPPorts = [ 22000 21027];
+    allowedUDPPorts = [ 22000 21027 ];
   };
 
 
@@ -481,5 +481,5 @@
       device = "/dev/disk/by-uuid/052E-D88B";
       fsType = "vfat";
     };
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
 }
