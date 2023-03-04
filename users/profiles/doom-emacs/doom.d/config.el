@@ -11,10 +11,10 @@
 
 (defun doom-modeline-set-vcs-modeline () 1)
 
-(defun lsp-put-elixir-ls-from-executable-find ()
-   (setq lsp-elixir-local-server-command (executable-find "elixir-ls")))
+;; (defun lsp-put-elixir-ls-from-executable-find ()
+;;    (setq lsp-elixir-local-server-command (executable-find "elixir-ls")))
 
-(add-hook 'elixir-mode-hook #'lsp-put-elixir-ls-from-executable-find)
+;; (add-hook 'elixir-mode-hook #'lsp-put-elixir-ls-from-executable-find)
 
 ;; (defun elixir-heex-format-on-save()
 ;;   (interactive)
