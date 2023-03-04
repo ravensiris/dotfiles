@@ -27,4 +27,19 @@ channels: final: prev: {
             haskell-language-server;
         });
     });
+
+  tree-sitter = prev.tree-sitter.overrideAttrs (old: rec {
+    version = "0.19.5";
+    src = prev.fetchFromGitHub {
+      owner = "tree-sitter";
+      repo = "tree-sitter";
+      rev = "8d86905";
+      sha256 = "sha256-tq66J0+2rS94s73vtCbk/C7EbtL9yMFGNvsjobYGq+I=";
+    };
+
+    cargoDeps = old.cargoDeps.overrideAttrs (_: {
+      inherit src version;
+      outputHash = "sha256-jjSlxqgfmlDOK3lsUaF0bTst6XkN1wq5x4vYPQWhnkc=";
+    });
+  });
 }

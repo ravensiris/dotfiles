@@ -56,3 +56,6 @@
       :n "N" #'deadgrep-backward-match
       :n "]" #'deadgrep-forward-filename
       :n "[" #'deadgrep-backward-filename)
+
+(setq tree-sitter-load-path '("/pvx13a9lx81qd8ql0kinqmlbbwp55d8r-emacs-tree-sitter-grammars/langs/bin/"))
+(global-tree-sitter-mode)
