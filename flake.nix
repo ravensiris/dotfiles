@@ -71,7 +71,6 @@
     , nixpkgs
     , nix-doom-emacs
     , emacs-overlay
-    , latest
     , ...
     } @ inputs:
     digga.lib.mkFlake
@@ -139,7 +138,6 @@
             profiles = digga.lib.rakeLeaves ./profiles // {
               users = digga.lib.rakeLeaves ./users;
             };
-            unstable = latest;
             suites = with profiles; rec {
               base = [ core.nixos users.root users.q ];
               impermanence = [ profiles.impermanence.common profiles.impermanence.ssh ];
@@ -187,7 +185,6 @@
             nix-doom-emacs.hmModule
           ];
           importables = rec {
-            unstable = latest;
             profiles = digga.lib.rakeLeaves ./users/profiles;
             suites = with profiles; rec {
               base = [ direnv git ];
