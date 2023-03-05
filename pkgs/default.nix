@@ -4,4 +4,5 @@ final: prev: rec{
   # then, call packages with `final.callPackage`
   anime4k = final.callPackage (import ./anime4k) { };
   khinsider = final.callPackage (import ./khinsider) {};
+  cirno_cursors = final.callPackage (import ./cirno_cursors) {};
 }
