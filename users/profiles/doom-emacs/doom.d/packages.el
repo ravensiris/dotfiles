@@ -3,3 +3,4 @@
 (package! mermaid-mode)
 (package! ox-reveal)
 (package! deadgrep)
+(package! elixir-ts-mode)
