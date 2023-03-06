@@ -157,6 +157,11 @@ in {
 
     programs.fish = {
       enable = true;
+      interactiveShellInit = ''
+        function fish_greeting
+          if [ (tput cols) -ge 40 ]; and [ (tput lines) -ge 18 ]; ${pkgs.nitch}/bin/nitch; end
+        end
+      '';
       plugins = with pkgs.fishPlugins; [
         {
           name = "pure";
