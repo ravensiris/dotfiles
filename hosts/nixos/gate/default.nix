@@ -10,23 +10,6 @@
     extra-trusted-public-keys = nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
   '';
 
-  ### root password is empty by default ###
-  imports = suites.base ++
-    suites.impermanence ++
-    suites.audio ++
-    suites.amdgpu ++
-    suites.swaywm ++
-    suites.vfio-amdcpu-nvidiaguest ++ (with profiles;
-    [
-      virt.looking-glass
-    ])
-    ++ [
-    ./virt/qemu-hook.nix
-    ./network
-    ./input
-    ./docker
-  ];
-
   services.syncthing = {
     enable = true;
     dataDir = "/home/q/Sync";
@@ -44,54 +27,6 @@
         type = "sendonly";
       };
     };
-  };
-
-  home-manager.users.q.wayland.windowManager.sway.config = {
-    startup = [
-    ];
-
-    workspaceOutputAssign = [
-      {
-        workspace = "1";
-        output = "HDMI-A-0";
-      }
-      {
-        workspace = "2";
-        output = "HDMI-A-0";
-      }
-      {
-        workspace = "3";
-        output = "HDMI-A-0";
-      }
-      {
-        workspace = "4";
-        output = "HDMI-A-0";
-      }
-      {
-        workspace = "5";
-        output = "HDMI-A-0";
-      }
-      {
-        workspace = "6";
-        output = "HDMI-A-1";
-      }
-      {
-        workspace = "7";
-        output = "HDMI-A-1";
-      }
-      {
-        workspace = "8";
-        output = "HDMI-A-1";
-      }
-      {
-        workspace = "9";
-        output = "HDMI-A-1";
-      }
-      {
-        workspace = "10";
-        output = "HDMI-A-1";
-      }
-    ];
   };
 
   home-manager.users.q.xsession.windowManager.i3.config = {
@@ -152,6 +87,22 @@
     ];
   };
 
+  ### root password is empty by default ###
+  imports = suites.base ++
+    suites.impermanence ++
+    suites.audio ++
+    suites.amdgpu ++
+    suites.i3wm ++
+    suites.vfio-amdcpu-nvidiaguest ++ (with profiles;
+    [
+      virt.looking-glass
+    ])
+    ++ [
+    ./virt/qemu-hook.nix
+    ./network
+    ./input
+    ./docker
+  ];
 
   services.printing = {
     enable = true;
