@@ -57,21 +57,19 @@
       :n "]" #'deadgrep-forward-filename
       :n "[" #'deadgrep-backward-filename)
 
-(add-to-list 'auto-mode-alist '("\\.heex\\'" . heex-ts-mode))
 
-(after! lsp-mode
-        (require 'lsp-mode)
-        (lsp-register-client
-        (make-lsp-client :new-connection (lsp-stdio-connection '("emmet-ls" "--stdio"))
-                        :activation-fn (lsp-activate-on "heex-mode")
-                        :major-modes '(heex-ts-mode)
-                        :priority -1
-                        :add-on? t
-                        :multi-root t
-                        :server-id 'emmet-ls))
-        (lsp-register-client
-        (make-lsp-client :new-connection (lsp-stdio-connection "elixir-ls")
-                        :activation-fn (lsp-activate-on "heex-mode")
-                        :major-modes '(heex-ts-mode elixir-ts-mode)
-                        :priority -1
-                        :server-id 'elixir-ls)))
+(require 'lsp-mode)
+(setq lsp-language-id-configuration
+           (append lsp-language-id-configuration
+                   '((elixir-ts-mode . "elixir")
+                     (heex-ts-mode . "elixir"))))
+
+(add-to-list 'auto-mode-alist '("\\.heex\\'" . heex-ts-mode))
+(add-hook 'heex-ts-mode-hook #'lsp)
+(lsp-register-client
+        (make-lsp-client
+                :new-connection (lsp-stdio-connection '("emmet-ls" "--stdio"))
+                :major-modes '(heex-ts-mode)
+                :add-on? t
+                :priority -1
+                :server-id 'emmet-ls))
