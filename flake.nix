@@ -53,7 +53,7 @@
         flake = false;
       };
 
-      emacs-overlay.url = "github:nix-community/emacs-overlay";
+      emacs-overlay.url = "github:nix-community/emacs-overlay?rev=c16be6de78ea878aedd0292aa5d4a1ee0a5da501";
       nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
       mkNodePackage = { url = "github:winston0410/mkNodePackage"; };
