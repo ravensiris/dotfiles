@@ -63,6 +63,7 @@ in {
       fd
       libreoffice
       khinsider
+      emmet_ls
     ];
 
     programs.beets = {
