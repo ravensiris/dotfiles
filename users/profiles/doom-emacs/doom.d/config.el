@@ -1,6 +1,12 @@
 ;; Setup font
 (setq doom-font (font-spec :family "VictorMono Nerd Font" :size 18))
 
+(use-package! lsp-tailwindcss
+  :init
+  (setq! lsp-tailwindcss-add-on-mode t))
+
+(add-to-list 'lsp-tailwindcss-major-modes 'heex-ts-mode)
+
 ;; Setup lsp for nix
                                         ;(after! lsp-clients
                                         ;       (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
@@ -59,17 +65,46 @@
 
 
 (require 'lsp-mode)
+(require 'edit-indirect)
+(require 'heex-ts-mode)
+(require 'elixir-ts-mode)
+(require 'uuidgen)
+;;(format "%s.html.heex" (uuidgen-4))
+
 (setq lsp-language-id-configuration
-           (append lsp-language-id-configuration
+           (append (remove '(heex-ts-mode . "elixir") lsp-language-id-configuration)
                    '((elixir-ts-mode . "elixir")
-                     (heex-ts-mode . "elixir"))))
+                     (heex-ts-mode . "html"))))
 
 (add-to-list 'auto-mode-alist '("\\.heex\\'" . heex-ts-mode))
+
 (add-hook 'heex-ts-mode-hook #'lsp)
-(lsp-register-client
-        (make-lsp-client
-                :new-connection (lsp-stdio-connection '("emmet-ls" "--stdio"))
-                :major-modes '(heex-ts-mode)
-                :add-on? t
-                :priority -1
-                :server-id 'emmet-ls))
+(add-hook 'elixir-ts-mode-hook #'lsp)
+
+;; (lsp-register-client
+;;         (make-lsp-client
+;;                 :new-connection (lsp-stdio-connection '("tailwindcss-language-server" "--stdio"))
+;;                 :major-modes '(heex-ts-mode)
+;;                 :add-on? t
+;;                 :priority -2
+;;                 :server-id 'tailwindcss-ls))
+
+
+
+(defun elixir-ts-edit-heex ()
+  (interactive)
+  (pcase-let ((`(,beg . ,end) (bounds-of-thing-at-point 'defun)))
+    (with-current-buffer
+        (edit-indirect-region
+         (save-excursion
+           (search-backward "\"\"\"\n" beg)
+           (match-end 0))
+         (save-excursion
+           (re-search-forward "^\\s-*\"\"\"" end)
+           (match-beginning 0)))
+      (heex-ts-mode)
+      (goto-char (point-min))
+      (setq-local buffer-file-name (format "%s.html.heex" (uuidgen-4)))
+      ;; (rename-buffer "arst.html.heex")
+      (lsp)
+      (pop-to-buffer-same-window (current-buffer)))))

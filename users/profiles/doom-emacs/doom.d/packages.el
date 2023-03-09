@@ -4,3 +4,4 @@
 (package! ox-reveal)
 (package! deadgrep)
 (package! elixir-ts-mode)
+(package! lsp-tailwindcss :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))
