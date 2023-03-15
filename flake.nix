@@ -55,8 +55,6 @@
 
       emacs-overlay.url = "github:nix-community/emacs-overlay?rev=c16be6de78ea878aedd0292aa5d4a1ee0a5da501";
       nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
-
-      mkNodePackage = { url = "github:winston0410/mkNodePackage"; };
     };
 
   outputs =
@@ -86,7 +84,6 @@
             overlays = [
               emacs-overlay.overlays.default
               (final: prev: {
-                mkNodePackage = inputs.mkNodePackage.lib.x86_64-linux.mkNodePackage;
                 emacsPgtk = prev.emacsPgtk.override {
                   treeSitterPlugins = with prev.pkgs.tree-sitter-grammars; [
                     tree-sitter-elixir
