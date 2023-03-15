@@ -108,3 +108,5 @@
       ;; (rename-buffer "arst.html.heex")
       (lsp)
       (pop-to-buffer-same-window (current-buffer)))))
+
+(setq! typescript-indent-level 2)
