@@ -217,6 +217,8 @@
       ubpm
       openrgb
       lm_sensors
+      gimp
+      inkscape
     ]);
 
   services.navidrome = {
