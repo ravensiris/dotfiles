@@ -23,8 +23,6 @@
 
   time.timeZone = "Europe/Warsaw";
 
-  security.polkit.enable = true;
-
   services.openssh = {
     enable = true;
     openFirewall = true;
