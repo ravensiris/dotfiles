@@ -16,7 +16,6 @@ in {
   home-manager.users.q = { profiles, ... }: {
     imports = [
       profiles.doom-emacs
-      profiles.wm.i3
       profiles.neovim
     ];
 

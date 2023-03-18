@@ -4,7 +4,6 @@
   imports = suites.base
     ++ suites.impermanence
     ++ suites.audio
-    ++ suites.i3wm
     ++ suites.dev
     ++ [ profiles.virt.common ]
     ++ [ ./network.nix ./boot.nix ./power.nix ./video.nix ./device.nix ./storage.nix ./persistence.nix ./package.nix ./docker ./printing.nix ./udev.nix ];
@@ -38,60 +37,60 @@
   ];
 
 
-  home-manager.users.q = {
-    xsession.windowManager.i3.config = {
-      startup = [
-        {
-          command = "${pkgs.xwallpaper}/bin/xwallpaper --output eDP --zoom $(shuf -n1 -e ~/Pictures/Wallpapers/Landscape/*)";
-          notification = false;
-          always = true;
-        }
-      ];
+  # home-manager.users.q = {
+  #   xsession.windowManager.i3.config = {
+  #     startup = [
+  #       {
+  #         command = "${pkgs.xwallpaper}/bin/xwallpaper --output eDP --zoom $(shuf -n1 -e ~/Pictures/Wallpapers/Landscape/*)";
+  #         notification = false;
+  #         always = true;
+  #       }
+  #     ];
 
-      workspaceOutputAssign = [
-        {
-          workspace = "1";
-          output = "eDP";
-        }
-        {
-          workspace = "2";
-          output = "eDP";
-        }
-        {
-          workspace = "3";
-          output = "eDP";
-        }
-        {
-          workspace = "4";
-          output = "eDP";
-        }
-        {
-          workspace = "5";
-          output = "eDP";
-        }
-        {
-          workspace = "6";
-          output = "eDP";
-        }
-        {
-          workspace = "7";
-          output = "eDP";
-        }
-        {
-          workspace = "8";
-          output = "eDP";
-        }
-        {
-          workspace = "9";
-          output = "eDP";
-        }
-        {
-          workspace = "10";
-          output = "eDP";
-        }
-      ];
-    };
-  };
+  #     workspaceOutputAssign = [
+  #       {
+  #         workspace = "1";
+  #         output = "eDP";
+  #       }
+  #       {
+  #         workspace = "2";
+  #         output = "eDP";
+  #       }
+  #       {
+  #         workspace = "3";
+  #         output = "eDP";
+  #       }
+  #       {
+  #         workspace = "4";
+  #         output = "eDP";
+  #       }
+  #       {
+  #         workspace = "5";
+  #         output = "eDP";
+  #       }
+  #       {
+  #         workspace = "6";
+  #         output = "eDP";
+  #       }
+  #       {
+  #         workspace = "7";
+  #         output = "eDP";
+  #       }
+  #       {
+  #         workspace = "8";
+  #         output = "eDP";
+  #       }
+  #       {
+  #         workspace = "9";
+  #         output = "eDP";
+  #       }
+  #       {
+  #         workspace = "10";
+  #         output = "eDP";
+  #       }
+  #     ];
+  #   };
+  # };
 
 
   programs.dconf.enable = true;
