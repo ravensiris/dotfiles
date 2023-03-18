@@ -6,7 +6,7 @@
     ++ suites.audio
     ++ suites.dev
     ++ [ profiles.virt.common ]
-    ++ [ ./network.nix ./boot.nix ./power.nix ./video.nix ./device.nix ./storage.nix ./persistence.nix ./package.nix ./docker ./printing.nix ./udev.nix ./memory.nix];
+    ++ [ ./network.nix ./boot.nix ./power.nix ./video.nix ./device.nix ./storage.nix ./persistence.nix ./package.nix ./docker ./printing.nix ./udev.nix ./memory.nix ];
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -46,8 +46,10 @@
         # Use kitty as default terminal
         terminal = "kitty";
         startup = [
-          # Launch Firefox on start
-          {command = "firefox";}
+          {
+            command = "${pkgs.sway}/bin/swaymsg output e-DP-1 bg $(shuf -n1 -e ~/Pictures/Wallpapers/Landscape/*) fill";
+            always = true;
+          }
         ];
       };
     };
