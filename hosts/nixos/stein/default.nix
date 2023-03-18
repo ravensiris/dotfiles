@@ -12,6 +12,15 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
+  home-manager.users.q.wayland.windowManager.sway.config = {
+    startup = [
+          {
+            command = "${pkgs.sway}/bin/swaymsg -s $SWAYSOCK output eDP-1 bg $(shuf -n1 -e ~/Pictures/Wallpapers/Landscape/*) fill";
+            always = true;
+          }
+    ];
+  };
+
   time.timeZone = "Europe/Warsaw";
 
   security.polkit.enable = true;

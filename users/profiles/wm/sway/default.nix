@@ -91,12 +91,6 @@
         modifier = "Mod4";
         # Use kitty as default terminal
         terminal = "kitty";
-        startup = [
-          {
-            command = "${pkgs.sway}/bin/swaymsg -s $SWAYSOCK output eDP-1 bg $(shuf -n1 -e ~/Pictures/Wallpapers/Landscape/*) fill";
-            always = true;
-          }
-        ];
         keybindings = lib.mkOptionDefault {
           # Focus window
           "${modifier}+n" = "focus left";

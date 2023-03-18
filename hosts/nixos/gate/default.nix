@@ -29,7 +29,7 @@
     };
   };
 
-  home-manager.users.q.xsession.windowManager.i3.config = {
+  home-manager.users.q.wayland.windowManager.sway.config = {
     startup = [
       {
         command = "${pkgs.xwallpaper}/bin/xwallpaper  --output HDMI-A-0 --zoom $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Landscape/*)";
@@ -92,7 +92,7 @@
     suites.impermanence ++
     suites.audio ++
     suites.amdgpu ++
-    suites.i3wm ++
+    suites.sway ++
     suites.vfio-amdcpu-nvidiaguest ++ (with profiles;
     [
       virt.looking-glass
