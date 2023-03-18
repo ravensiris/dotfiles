@@ -177,7 +177,7 @@ in {
         "ps" = "${pkgs.procs}/bin/procs";
         "curl" = "${pkgs.curlie}/bin/curlie";
         "dig" = "${pkgs.dogdns}/bin/dog";
-        "cp" = "${pkgs.rsync}/bin/rsync -avP";
+        "cp" = "${pkgs.xcp}/bin/xcp";
       };
     };
 
