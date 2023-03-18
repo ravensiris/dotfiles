@@ -1,5 +1,6 @@
 result
 .direnv
 doc/index.html
+flake.lock
 
 pkgs/_sources/.shake*
