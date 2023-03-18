@@ -32,11 +32,11 @@
   home-manager.users.q.wayland.windowManager.sway.config = {
     startup = [
       {
-        command = "${pkgs.xwallpaper}/bin/xwallpaper  --output HDMI-A-0 --zoom $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Landscape/*)";
+        command = "${pkgs.sway}/bin/swaymsg -s $SWAYSOCK output eDP-1 bg $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Landscape/*) fill";
         always = true;
       }
       {
-        command = "${pkgs.xwallpaper}/bin/xwallpaper --output HDMI-A-1 --zoom $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Portrait/*)";
+        command = "${pkgs.sway}/bin/swaymsg -s $SWAYSOCK output eDP-1 bg $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Portrait/*) fill";
         always = true;
       }
     ];
