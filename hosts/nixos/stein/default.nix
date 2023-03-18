@@ -64,11 +64,6 @@
                 warning = 20.0;
               }
               {
-                block = "xrandr";
-                icons = true;
-                resolution = false;
-              }
-              {
                 block = "sound";
                 format = "{volume}";
                 step_width = 1;
