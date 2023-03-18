@@ -130,6 +130,15 @@
           # Quick launch
           "${modifier}+m" = "exec emacsclient -c";
         };
+        modes = {
+          resize = {
+            n = "resize shrink width 50px";
+            e = "resize grow height 50px";
+            i = "resize shrink height 50px";
+            o = "resize grow width 50px";
+            Escape = "mode default";
+          };
+        };
         fonts = {
           names = [ "VictorMono Nerd Font" ];
           style = "Regular";
