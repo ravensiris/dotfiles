@@ -49,7 +49,6 @@
               {
                 block = "keyboard_layout";
                 driver = "sway";
-                on_click = ''setxkbmap $(setxkbmap -print | awk -F"+" '/xkb_symbols/ {if($2 == "us") print "pl"; else print "us";}')'';
                 format = "⌨ {layout}";
                 interval = 1;
               }
@@ -123,6 +122,9 @@
 
     wayland.windowManager.sway = {
       enable = true;
+      extraConfig = ''
+        input * xkb_layout pl
+      '';
       config = rec {
         modifier = "Mod4";
         # Use kitty as default terminal
