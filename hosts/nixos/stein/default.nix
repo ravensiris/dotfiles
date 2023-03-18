@@ -48,7 +48,7 @@
             [
               {
                 block = "keyboard_layout";
-                driver = "setxkbmap";
+                driver = "sway";
                 on_click = ''setxkbmap $(setxkbmap -print | awk -F"+" '/xkb_symbols/ {if($2 == "us") print "pl"; else print "us";}')'';
                 format = "⌨ {layout}";
                 interval = 1;
