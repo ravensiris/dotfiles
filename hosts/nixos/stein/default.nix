@@ -47,7 +47,7 @@
         terminal = "kitty";
         startup = [
           {
-            command = "swaymsg -s $SWAYSOCK output e-DP-1 bg $(shuf -n1 -e ~/Pictures/Wallpapers/Landscape/*) fill";
+            command = "${pkgs.sway}/bin/swaymsg -s $SWAYSOCK output eDP-1 bg $(shuf -n1 -e ~/Pictures/Wallpapers/Landscape/*) fill";
             always = true;
           }
         ];
