@@ -32,11 +32,11 @@
   home-manager.users.q.wayland.windowManager.sway.config = {
     startup = [
       {
-        command = "${pkgs.sway}/bin/swaymsg -s $SWAYSOCK output eDP-1 bg $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Landscape/*) fill";
+        command = "${pkgs.sway}/bin/swaymsg -s $SWAYSOCK output HDMI-A-1 bg $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Landscape/*) fill";
         always = true;
       }
       {
-        command = "${pkgs.sway}/bin/swaymsg -s $SWAYSOCK output eDP-1 bg $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Portrait/*) fill";
+        command = "${pkgs.sway}/bin/swaymsg -s $SWAYSOCK output HDMI-A-2 bg $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Portrait/*) fill";
         always = true;
       }
     ];
@@ -44,43 +44,43 @@
     workspaceOutputAssign = [
       {
         workspace = "1";
-        output = "HDMI-A-0";
+        output = "HDMI-A-1";
       }
       {
         workspace = "2";
-        output = "HDMI-A-0";
+        output = "HDMI-A-1";
       }
       {
         workspace = "3";
-        output = "HDMI-A-0";
+        output = "HDMI-A-1";
       }
       {
         workspace = "4";
-        output = "HDMI-A-0";
+        output = "HDMI-A-1";
       }
       {
         workspace = "5";
-        output = "HDMI-A-0";
+        output = "HDMI-A-1";
       }
       {
         workspace = "6";
-        output = "HDMI-A-1";
+        output = "HDMI-A-2";
       }
       {
         workspace = "7";
-        output = "HDMI-A-1";
+        output = "HDMI-A-2";
       }
       {
         workspace = "8";
-        output = "HDMI-A-1";
+        output = "HDMI-A-2";
       }
       {
         workspace = "9";
-        output = "HDMI-A-1";
+        output = "HDMI-A-2";
       }
       {
         workspace = "10";
-        output = "HDMI-A-1";
+        output = "HDMI-A-2";
       }
     ];
   };
