@@ -6,4 +6,5 @@ final: prev: rec{
   khinsider = final.callPackage (import ./khinsider) { };
   cirno_cursors = final.callPackage (import ./cirno_cursors) {};
   emmet_ls = final.callPackage (import ./emmet_ls) { };
+  koruri = final.callPackage (import ./koruri) { };
 }
