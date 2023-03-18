@@ -38,6 +38,20 @@
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
   ];
 
+  home-manager.users.q = {
+    wayland.windowManager.sway = {
+      enable = true;
+      config = rec {
+        modifier = "Mod4";
+        # Use kitty as default terminal
+        terminal = "kitty";
+        startup = [
+          # Launch Firefox on start
+          {command = "firefox";}
+        ];
+      };
+    };
+  };
 
   # home-manager.users.q = {
   #   xsession.windowManager.i3.config = {
