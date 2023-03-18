@@ -217,7 +217,6 @@ in {
         polish-dictionary
         protondb-for-steam
         return-youtube-dislikes
-        rust-search-extension
         sponsorblock
         violentmonkey
       ];
