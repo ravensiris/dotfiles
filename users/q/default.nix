@@ -21,7 +21,15 @@ in {
 
     home.stateVersion = "22.11";
 
-    home.file.".icons/default".source = "${pkgs.cirno_cursors}/share/icons/Cirno-cursors";
+    home.pointerCursor = {
+      name = "Cirno-cursors";
+      package = pkgs.cirno_cursors;
+      size = 24;
+      x11 = {
+        enable = true;
+        defaultCursor = "Cirno-cursors";
+      };
+    };
 
     programs.direnv = {
       enable = true;
