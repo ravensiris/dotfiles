@@ -53,6 +53,11 @@
     };
   };
 
+  environment.loginShellInit = ''
+    [[ "$(tty)" == /dev/tty? ]] && sudo /run/current-system/sw/bin/lock this
+    [[ "$(tty)" == /dev/tty1 ]] && sway
+  '';
+
   # home-manager.users.q = {
   #   xsession.windowManager.i3.config = {
   #     startup = [
