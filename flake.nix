@@ -154,6 +154,7 @@
               vfio-amdcpu-nvidiaguest = [ virt.common virt.blacklist.nvidia virt.iommu.amd ];
               audio = [ profiles.audio.pipewire ];
               i3wm = [ wm.i3 ];
+              sway = [ wm.sway ];
               amdgpu = [ gpu.amd ];
               dev = [ profiles.dev ];
             };
