@@ -1,5 +1,14 @@
 { config, lib, pkgs, ... }:
 
+let
+  swaylock_cmd = pkgs.writeScriptBin "swaylock_pretty" ''
+    if [ -d "/media/Steiner/Pictures/Wallpapers" ]; then
+      ${pkgs.swaylock}/bin/swaylock swaylock -i HDMI-A-1:$(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Landscape/*) -i HDMI-A-2:$(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Portrait/*)
+    elif [ -d "~/Pictures/Wallpapers" ]; then
+      ${pkgs.swaylock}/bin/swaylock swaylock -i eDP-1 bg $(shuf -n1 -e ~/Pictures/Wallpapers/Landscape/*)
+    fi
+  '';
+in
 {
   home-manager.users.q = {
     services.swayidle = {
@@ -16,8 +25,13 @@
       ];
       timeouts = [
         {
-          timeout = 60;
-          command = "${pkgs.swaylock}/bin/swaylock -fF";
+          timeout = 120;
+          command = "${pkgs.sway}/bin/swaymsg \"output * dpms off\"";
+          resumeCommand = "${pkgs.sway}/bin/swaymsg \"output * dpms on\"";
+        }
+        {
+          timeout = 360;
+          command = "${swaylock_cmd}/bin/swaylock_pretty";
         }
       ];
     };
@@ -111,6 +125,12 @@
         # Use kitty as default terminal
         terminal = "kitty";
         menu = "${pkgs.fuzzel}/bin/fuzzel";
+        startup = [
+          {
+            command = "XDG_CONFIG_HOME=/home/q/.config ${pkgs.swaynotificationcenter}/bin/swaync";
+            always = true;
+          }
+        ];
         keybindings = lib.mkOptionDefault {
           # Focus window
           "${modifier}+n" = "focus left";
@@ -129,6 +149,9 @@
           "${modifier}+u" = "layout default";
           "${modifier}+v" = "splitv";
           "${modifier}+h" = "splith";
+
+          "${modifier}+y" = "exec ${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
+          "${modifier}+l" = "exec ${swaylock_cmd}/bin/swaylock_pretty";
 
           # Quick launch
           "${modifier}+m" = "splitv; exec emacsclient -c; exec kitty; resize set height 10ppt";
@@ -204,5 +227,9 @@
   fonts.fonts = with pkgs; [
     koruri
   ];
-  environment.systemPackages = with pkgs; [ swaylock ];
+  environment.systemPackages = with pkgs; [
+    swaylock
+    swaylock_cmd
+    swaynotificationcenter
+  ];
 }
