@@ -110,6 +110,7 @@
         modifier = "Mod4";
         # Use kitty as default terminal
         terminal = "kitty";
+        menu = "${pkgs.fuzzel}/bin/fuzzel";
         keybindings = lib.mkOptionDefault {
           # Focus window
           "${modifier}+n" = "focus left";
