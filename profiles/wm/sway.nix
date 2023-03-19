@@ -126,10 +126,12 @@
           "${modifier}+0" = "workspace number 10";
           "${modifier}+Shift+0" = "move container to workspace number 10";
           # Mode
-          "${modifier}+h" = "layout default";
+          "${modifier}+u" = "layout default";
+          "${modifier}+v" = "splitv";
+          "${modifier}+h" = "splith";
 
           # Quick launch
-          "${modifier}+m" = "splitv; exec emacsclient -c; exec kitty; for_window [title=\"^kitty(.*)$\"] resize set height 10ppt";
+          "${modifier}+m" = "splitv; exec emacsclient -c; exec kitty; resize set height 10ppt";
         };
         modes = {
           resize = {
