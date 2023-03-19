@@ -182,4 +182,8 @@
   '';
 
   security.polkit.enable = true;
+
+  fonts.fonts = with pkgs; [
+    koruri
+  ];
 }
