@@ -128,14 +128,31 @@
           "${modifier}+h" = "layout default";
 
           # Quick launch
-          "${modifier}+m" = "exec emacsclient -c";
+          "${modifier}+m" = "splitv; exec emacsclient -c; exec kitty; for_window [title=\"^kitty(.*)$\"] resize set height 10ppt";
         };
         modes = {
           resize = {
+            # colemak
             n = "resize shrink width 50px";
             e = "resize grow height 50px";
             i = "resize shrink height 50px";
             o = "resize grow width 50px";
+            # arrows
+            Left = "resize shrink width 50px";
+            Up = "resize grow height 50px";
+            Down = "resize shrink height 50px";
+            Right = "resize grow width 50px";
+            # Set %
+            Equal = "resize set height 50ppt";
+            "1" = "resize set height 10ppt";
+            "2" = "resize set height 20ppt";
+            "3" = "resize set height 30ppt";
+            "4" = "resize set height 40ppt";
+            "5" = "resize set height 50ppt";
+            "6" = "resize set height 60ppt";
+            "7" = "resize set height 70ppt";
+            "8" = "resize set height 80ppt";
+            "9" = "resize set height 90ppt";
             Escape = "mode default";
           };
         };
