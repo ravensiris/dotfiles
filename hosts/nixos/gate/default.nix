@@ -30,6 +30,16 @@
   };
 
   home-manager.users.q.wayland.windowManager.sway.config = {
+    output = {
+      # 2560x1440
+      HDMI-A-1 = {
+        pos = "0 0";
+      };
+      # 2560x2880
+      HDMI-A-2 = {
+        pos = "2560 0";
+      };
+    };
     startup = [
       {
         command = "${pkgs.sway}/bin/swaymsg -s $SWAYSOCK output HDMI-A-1 bg $(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Landscape/*) fill";
