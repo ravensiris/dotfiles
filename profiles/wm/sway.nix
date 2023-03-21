@@ -154,7 +154,7 @@ in
           "${modifier}+l" = "exec ${swaylock_cmd}/bin/swaylock_pretty";
 
           # Quick launch
-          "${modifier}+m" = "splitv; exec emacsclient -c; exec kitty; resize set height 10ppt";
+          "${modifier}+m" = "exec emacsclient -c";
         };
         modes = {
           resize = {
