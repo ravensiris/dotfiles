@@ -1,5 +1,14 @@
 { self, lib, pkgs, inputs, config, ... }:
-let firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
+let
+  firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
+  brave = pkgs.brave.overrideAttrs (old: {
+    installPhase = old.installPhase + ''
+      rm $out/bin/brave
+
+      makeWrapper $BINARYWRAPPER $out/bin/brave \
+        --add-flags "--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
+    '';
+  });
 in {
 
   age.secrets.qPassword.file = "${self}/secrets/users/q.age";
@@ -58,7 +67,6 @@ in {
       (nerdfonts.override { fonts = [ "VictorMono" "FiraCode" ]; })
       font-awesome
       pinentry-gnome
-      brave
       musikcube
       imv
       p7zip
@@ -71,7 +79,7 @@ in {
       libreoffice
       khinsider
       emmet_ls
-    ];
+    ] ++ [brave];
 
     programs.beets = {
       enable = true;
