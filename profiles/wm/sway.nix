@@ -166,6 +166,9 @@ in
 
           # Quick launch
           "${modifier}+m" = "exec emacsclient -c";
+
+          "${modifier}+s" = "layout default";
+          "${modifier}+w" = "layout default";
         };
         modes = {
           resize = {
