@@ -10,6 +10,17 @@ let
   '';
 in
 {
+  services.dbus.enable = true;
+  xdg = {
+    portal = {
+      enable = true;
+      wlr.enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+      ];
+    };
+  };
+
   home-manager.users.q = {
     services.swayidle = {
       enable = true;
@@ -226,10 +237,30 @@ in
 
   fonts.fonts = with pkgs; [
     koruri
+    noto-fonts-emoji
+    twemoji-color-font
+    openmoji-color
+    twitter-color-emoji
   ];
+    environment.sessionVariables = {
+      MOZ_ENABLE_WAYLAND = "1";
+      XDG_CURRENT_DESKTOP = "sway"; # https://github.com/emersion/xdg-desktop-portal-wlr/issues/20
+      XDG_SESSION_TYPE = "wayland"; # https://github.com/emersion/xdg-desktop-portal-wlr/pull/11
+    };
+
   environment.systemPackages = with pkgs; [
     swaylock
     swaylock_cmd
     swaynotificationcenter
+    xdg-utils
+    glib
+    dracula-theme # gtk themeracula-theme # gtk theme
+    gnome3.adwaita-icon-theme  # default gnome cursors
+    grim # screenshot functionality
+    slurp # screenshot functionality
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    gnome3.adwaita-icon-theme  # default gnome cursors
+    xdg-desktop-portal-wlr
+    xorg.xeyes
   ];
 }
