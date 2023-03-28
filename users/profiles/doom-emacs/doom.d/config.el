@@ -1,6 +1,10 @@
 ;; Setup font
 (setq doom-font (font-spec :family "VictorMono Nerd Font" :size 18))
 
+(set-fontset-font t 'symbol "Noto Color Emoji")
+(set-fontset-font t 'symbol "OpenMoji Color" nil 'append)
+(set-fontset-font t 'symbol "Twitter Color Emoji" nil 'append)
+
 (use-package! lsp-tailwindcss
   :init
   (setq! lsp-tailwindcss-add-on-mode t))
