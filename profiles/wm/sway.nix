@@ -53,10 +53,32 @@ in
           blocks =
             [
               {
-                block = "keyboard_layout";
-                driver = "sway";
-                format = "⌨ {layout}";
-                interval = 1;
+                block = "custom";
+                command = ''
+                  output=$(cat /proc/asound/Audio/pcm0p/sub0/hw_params | grep rate | awk -F': *| *[(]' '{
+                      if ($2 == "44100") {
+                          state = "Idle"
+                      } else if ($2 == "48000") {
+                          state = "Good"
+                      } else if ($2 == "96000") {
+                          state = "Warning"
+                      } else if ($2 == "192000") {
+                          state = "Danger"
+                      } else {
+                          state = "Info"
+                      }
+                      printf "{\"text\": \"%.1f kHz\", \"icon\": \"music\", \"state\": \"%s\"}\n", $2/1000, state
+                  }')
+
+                  if [ -z "$output" ]; then
+                      echo '{"text": "Silence", "icon": "music", "state": "Info"}'
+                  else
+                      echo "$output"
+                  fi
+                '';
+                interval = 15;
+                json = true;
+                # watch_files = ["/proc/asound/Audio/pcm0p/sub0/hw_params"];
               }
               {
                 block = "disk_space";
