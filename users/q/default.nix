@@ -9,6 +9,16 @@ let
         --add-flags "--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
     '';
   });
+  insomnia = pkgs.symlinkJoin {
+    name = "${pkgs.lib.getName pkgs.insomnia}-wrapper";
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    buildInputs = [ pkgs.gtk3 ];
+    paths = [ pkgs.insomnia ];
+    postBuild = ''
+      wrapProgram "$out"/bin/insomnia \
+        --prefix XDG_DATA_DIRS : "$GSETTINGS_SCHEMAS_PATH"
+    '';
+  };
 in {
 
   age.secrets.qPassword.file = "${self}/secrets/users/q.age";
@@ -79,7 +89,7 @@ in {
       libreoffice
       khinsider
       emmet_ls
-    ] ++ [brave];
+    ] ++ [brave insomnia];
 
     programs.beets = {
       enable = true;
