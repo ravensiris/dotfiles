@@ -191,6 +191,8 @@ in
 
           "${modifier}+s" = "layout default";
           "${modifier}+w" = "layout default";
+
+          "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp -d)\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
         };
         modes = {
           resize = {
