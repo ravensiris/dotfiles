@@ -40,16 +40,6 @@ in {
 
     home.stateVersion = "22.11";
 
-    home.pointerCursor = {
-      name = "Cirno-cursors";
-      package = pkgs.cirno_cursors;
-      size = 24;
-      x11 = {
-        enable = true;
-        defaultCursor = "Cirno-cursors";
-      };
-    };
-
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;
