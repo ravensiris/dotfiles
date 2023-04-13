@@ -4,8 +4,8 @@ let
   swaylock_cmd = pkgs.writeScriptBin "swaylock_pretty" ''
     if [ -d "/media/Steiner/Pictures/Wallpapers" ]; then
       ${pkgs.swaylock}/bin/swaylock swaylock -i HDMI-A-1:$(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Landscape/*) -i HDMI-A-2:$(shuf -n1 -e /media/Steiner/Pictures/Wallpapers/Portrait/*)
-    elif [ -d "~/Pictures/Wallpapers" ]; then
-      ${pkgs.swaylock}/bin/swaylock swaylock -i eDP-1 bg $(shuf -n1 -e ~/Pictures/Wallpapers/Landscape/*)
+    elif [ -d "/home/q/Pictures/Wallpapers" ]; then
+      ${pkgs.swaylock}/bin/swaylock swaylock -i eDP-1:$(shuf -n1 -e /home/q/Pictures/Wallpapers/Landscape/*)
     fi
   '';
 in
