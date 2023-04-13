@@ -11,10 +11,18 @@
     brightnessctl
     tenacity
     gnupg
-    virtualbox
-    wineWowPackages.staging
+    wineWowPackages.waylandFull
     winetricks
-    lutris
+    bottles
+    (lutris.override {
+          extraLibraries =  pkgs: [
+            curlFull
+            libnghttp2
+            winetricks
+            gnutls
+            jansson
+          ];
+        })
     pcsx2
     qbittorrent
     easyeffects
