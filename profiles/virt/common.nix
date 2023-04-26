@@ -8,6 +8,7 @@
     pciutils
     swtpm
     win-virtio
+    quickemu
   ];
 
   virtualisation.libvirtd.enable = true;
