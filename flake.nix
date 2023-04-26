@@ -55,6 +55,8 @@
 
       emacs-overlay.url = "github:nix-community/emacs-overlay?rev=c16be6de78ea878aedd0292aa5d4a1ee0a5da501";
       nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+
+      devenv.url = "github:cachix/devenv/latest";
     };
 
   outputs =
@@ -70,6 +72,7 @@
     , nixpkgs
     , nix-doom-emacs
     , emacs-overlay
+    , devenv
     , ...
     } @ inputs:
     digga.lib.mkFlake
@@ -83,6 +86,9 @@
             imports = [ (digga.lib.importOverlays ./overlays) ];
             overlays = [
               emacs-overlay.overlays.default
+              (final: prev: {
+                devenv = devenv.packages.x86_64-linux.devenv;
+              })
               (final: prev: {
                 emacsPgtk = prev.emacsPgtk.override {
                   treeSitterPlugins = with prev.pkgs.tree-sitter-grammars; [

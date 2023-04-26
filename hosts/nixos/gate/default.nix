@@ -227,6 +227,7 @@
       lm_sensors
       gimp
       inkscape
+      devenv
     ]);
 
   services.navidrome = {
