@@ -264,6 +264,8 @@ in
 
   fonts.fonts = with pkgs; [
     koruri
+    baekmuk-ttf
+    nanum
     noto-fonts-emoji
     twemoji-color-font
     openmoji-color
