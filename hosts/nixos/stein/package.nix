@@ -29,6 +29,7 @@
     libreoffice
     gimp
     inkscape
+    devenv
   ];
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "q" ];
