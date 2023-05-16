@@ -95,6 +95,8 @@
                     tree-sitter-elixir
                     tree-sitter-heex
                     tree-sitter-eex
+                    tree-sitter-typescript
+                    tree-sitter-tsx
                   ];
                 };
               })
