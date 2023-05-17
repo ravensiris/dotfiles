@@ -53,8 +53,6 @@
         flake = false;
       };
 
-      emacs-overlay.url = "github:nix-community/emacs-overlay";
-
       devenv.url = "github:cachix/devenv/latest";
     };
 
@@ -69,7 +67,6 @@
     , nvfetcher
     , deploy
     , nixpkgs
-    , emacs-overlay
     , devenv
     , ...
     } @ inputs:
@@ -83,20 +80,8 @@
           nixos = {
             imports = [ (digga.lib.importOverlays ./overlays) ];
             overlays = [
-              # emacs-overlay.overlays.default
               (final: prev: {
                 devenv = devenv.packages.x86_64-linux.devenv;
-              })
-              (final: prev: {
-                emacsPgtk = emacs-overlay.emacs.emacsPgtk.override {
-                  treeSitterPlugins = with prev.pkgs.tree-sitter-grammars; [
-                    tree-sitter-elixir
-                    tree-sitter-heex
-                    tree-sitter-eex
-                    tree-sitter-typescript
-                    tree-sitter-tsx
-                  ];
-                };
               })
             ];
           };
