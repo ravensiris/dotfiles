@@ -19,7 +19,8 @@ let
         --prefix XDG_DATA_DIRS : "$GSETTINGS_SCHEMAS_PATH"
     '';
   };
-in {
+in
+{
 
   age.secrets.qPassword.file = "${self}/secrets/users/q.age";
   age.secrets.google_api_token.file = "${self}/secrets/tokens/google_api_token.age";
@@ -34,7 +35,6 @@ in {
 
   home-manager.users.q = { profiles, ... }: {
     imports = [
-      profiles.doom-emacs
       profiles.neovim
     ];
 
@@ -52,10 +52,10 @@ in {
       };
     };
 
-    services.emacs = {
-      enable = true;
-      defaultEditor = true;
-    };
+    # services.emacs = {
+    #   enable = true;
+    #   defaultEditor = true;
+    # };
 
     programs.git = {
       enable = true;
@@ -79,7 +79,8 @@ in {
       libreoffice
       khinsider
       emmet_ls
-    ] ++ [brave insomnia];
+      emacs-pgtk
+    ] ++ [ brave insomnia ];
 
     programs.beets = {
       enable = true;

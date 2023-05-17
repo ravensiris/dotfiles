@@ -53,8 +53,7 @@
         flake = false;
       };
 
-      emacs-overlay.url = "github:nix-community/emacs-overlay?rev=c16be6de78ea878aedd0292aa5d4a1ee0a5da501";
-      nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+      emacs-overlay.url = "github:nix-community/emacs-overlay";
 
       devenv.url = "github:cachix/devenv/latest";
     };
@@ -70,7 +69,6 @@
     , nvfetcher
     , deploy
     , nixpkgs
-    , nix-doom-emacs
     , emacs-overlay
     , devenv
     , ...
@@ -85,12 +83,12 @@
           nixos = {
             imports = [ (digga.lib.importOverlays ./overlays) ];
             overlays = [
-              emacs-overlay.overlays.default
+              # emacs-overlay.overlays.default
               (final: prev: {
                 devenv = devenv.packages.x86_64-linux.devenv;
               })
               (final: prev: {
-                emacsPgtk = prev.emacsPgtk.override {
+                emacsPgtk = emacs-overlay.emacs.emacsPgtk.override {
                   treeSitterPlugins = with prev.pkgs.tree-sitter-grammars; [
                     tree-sitter-elixir
                     tree-sitter-heex
@@ -107,9 +105,9 @@
             overlays = [
               # TODO: restructure overlays directory for per-channel overrides
               # `importOverlays` will import everything under the path given
-              (channels: final: prev: {
-                inherit (channels.latest) mas;
-              } // prev.lib.optionalAttrs true { })
+              # (channels: final: prev: {
+              #   inherit (channels.latest) mas;
+              # } // prev.lib.optionalAttrs true { })
             ];
           };
           latest = { };
@@ -201,7 +199,6 @@
           imports = [ (digga.lib.importExportableModules ./users/modules) ];
           exportedModules = [
             "${inputs.impermanence}/home-manager.nix"
-            nix-doom-emacs.hmModule
           ];
           importables = rec {
             profiles = digga.lib.rakeLeaves ./users/profiles;
