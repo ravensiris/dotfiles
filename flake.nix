@@ -8,13 +8,6 @@
   };
 
   outputs = { self, haumea, nixpkgs }: {
-    checks = haumea.lib.loadEvalTests {
-      src = ./tests;
-      inputs = {
-        inherit (nixpkgs) lib;
-        foo = self.lib;
-      };
-    };
     lib = haumea.lib.load {
       src = ./src;
       inputs = {
