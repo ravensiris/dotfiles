@@ -48,11 +48,28 @@
           content = {
             type = "filesystem";
             format = "ext4";
-            mountpoint = "/";
+            mountpoint = "/nix";
             mountOptions = ["defaults"];
           };
         };
       };
+    };
+  };
+
+  nodev = {
+    "/" = {
+      fsType = "tmpfs";
+      mountOptions = [
+        "defaults"
+        "size=4G"
+        "mode=755"
+      ];
+    };
+    "/tmp" = {
+      fsType = "tmpfs";
+      mountOptions = [
+        "size=200M"
+      ];
     };
   };
 }
