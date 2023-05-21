@@ -1,6 +1,7 @@
 {
   lib,
   disks ? ["/dev/vda"],
+  ...
 }: {
   disk = lib.genAttrs disks (dev: {
     type = "disk";
