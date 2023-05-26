@@ -26,7 +26,7 @@
         {
           name = "luks";
           start = "500MiB";
-          end = "100%";
+          end = "100%free";
           content = {
             type = "luks";
             name = "cryptroot";
