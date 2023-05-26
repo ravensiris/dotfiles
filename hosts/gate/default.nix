@@ -1,7 +1,6 @@
 {lib, ...}: {
-  disko.devices = import ./disk.nix {
-    inherit lib;
-  };
+
+  imports = [ ./disk.nix ];
 
   users.mutableUsers = false;
   users.users.q = {

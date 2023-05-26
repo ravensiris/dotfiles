@@ -3,7 +3,8 @@
   disks ? ["/dev/vda"],
   ...
 }: {
-  disk = lib.genAttrs disks (dev: {
+  disko.devices = {
+    disk = lib.genAttrs disks (dev: {
     type = "disk";
     device = dev;
     content = {
@@ -73,4 +74,5 @@
       ];
     };
   };
+};
 }
