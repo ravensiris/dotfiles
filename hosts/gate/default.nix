@@ -1,7 +1,7 @@
 {lib, pkgs, ...}: {
 
   imports = [
-    (import ./disk.nix { disks = ["/dev/vda"]; })
+    (import ./disk.nix { inherit lib; disks = ["/dev/vda"]; })
   ];
 
   users.mutableUsers = false;
