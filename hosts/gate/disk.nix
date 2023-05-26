@@ -32,7 +32,6 @@
             name = "cryptroot";
             extraOpenArgs = ["--allow-discards"];
             keyFile = "/tmp/secret.key";
-            preLVM = true;
             content = {
               type = "lvm_pv";
               vg = "pool";
@@ -77,5 +76,4 @@
   };
 };
 
-boot.initrd.luks.devices."cryptroot".preLVM = true;
 }
