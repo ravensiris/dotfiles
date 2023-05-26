@@ -76,4 +76,6 @@
     };
   };
 };
+
+boot.initrd.luks.devices."cryptroot".preLVM = true;
 }
