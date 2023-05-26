@@ -1,6 +1,8 @@
 {lib, pkgs, ...}: {
 
-  imports = [ ./disk.nix ];
+  imports = [
+    (import disk.nix { disks = ["/dev/vda"]; })
+  ];
 
   users.mutableUsers = false;
   users.users.q = {
