@@ -14,5 +14,5 @@
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = ["dm-snapshot" "i2c-dev" "i2c-piix4"];
 
-  # boot.initrd.luks.devices."cryptroot".preLVM = true;
+  boot.initrd.luks.devices."cryptroot".preLVM = true;
 }
