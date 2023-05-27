@@ -6,4 +6,8 @@
     isNormalUser = true;
     extraGroups = ["wheel" "libvirtd" "docker" "adbusers" "input"];
   };
+
+  home-manager.users.q = { pkgs, ... }: {
+    home.packages = [ pkgs.neovim ];
+  };
 }
