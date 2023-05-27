@@ -7,7 +7,8 @@
     extraGroups = ["wheel" "libvirtd" "docker" "adbusers" "input"];
   };
 
-  home-manager.users.q = { pkgs, ... }: {
-    home.packages = [ pkgs.neovim ];
+  home-manager.users.q = {pkgs, ...}: {
+    home.packages = [pkgs.neovim];
+    home.stateVersion = "22.11";
   };
 }
