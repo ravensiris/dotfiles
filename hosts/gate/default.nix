@@ -9,5 +9,6 @@
     ../../users/q/default.nix
   ];
 
+  networking.hostName = "gate";
   system.stateVersion = "22.11";
 }
