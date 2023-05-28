@@ -6,18 +6,25 @@
 ```sh
 sudo hostname gate
 ```
-3. Check which drive you want to format
+3. Clone this repo
+
+```sh
+git clone https://github.com/ravensiris/dotfiles
+cd dotfiles
+```
+
+4. Check which drive you want to format
 
 ```sh
 lsblk
 ```
-4. Add disk encryption password
+5. Add disk encryption password
 
 ```sh
 echo -n "mypassword" > /tmp/secret.key
 ```
 
-5. Format or mount drive
+6. Format or mount drive
 
 Just use `-m mount` instead if only mounting.
 The passed `"/dev/sda"` would be your primary disk.
