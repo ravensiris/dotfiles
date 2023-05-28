@@ -31,6 +31,6 @@ The passed `"/dev/sda"` would be your primary disk.
 The `./hosts/gate/disk.nix` would be the path to your host `disko` disk configuration
 
 ```sh
-nix --experimental-features 'nix-command flakes' run github:nix-community/disko -- ./hosts/gate/disk.nix -m zap_create_mount --arg "disks" '["/dev/sda"]'
+sudo nix --experimental-features 'nix-command flakes' run github:nix-community/disko -- ./hosts/gate/disk.nix -m zap_create_mount --arg "disks" '["/dev/sda"]'
 ```
 
