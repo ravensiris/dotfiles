@@ -39,8 +39,7 @@
       allowOther = true;
     };
 
-    home.programs = {
-      fish = {
+      programs.fish = {
         enable = true;
         interactiveShellInit = ''
           function fish_greeting
@@ -65,7 +64,6 @@
           "cp" = "${pkgs.xcp}/bin/xcp";
         };
       };
-    };
     home.stateVersion = "22.11";
   };
 }
