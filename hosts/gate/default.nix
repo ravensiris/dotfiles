@@ -9,7 +9,6 @@
   ];
 
   environment.persistence."/nix/persist" = {
-    enableDebugging = true;
     directories = [
       "/var/lib/libvirt"
       "/var/lib/docker"
