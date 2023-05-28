@@ -1,8 +1,6 @@
 {...}: {
   imports = [../../users/q/default.nix];
 
-  users.users.q = {};
-
   # these are host specific
   # for more general ones set them using home-manager
   environment.persistence."/nix/persist" = {
