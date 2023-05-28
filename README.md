@@ -28,8 +28,9 @@ echo -n "mypassword" > /tmp/secret.key
 
 Just use `-m mount` instead if only mounting.
 The passed `"/dev/sda"` would be your primary disk.
+The `./hosts/gate/disk.nix` would be the path to your host `disko` disk configuration
 
 ```sh
-nix --experimental-features 'nix-command flakes' run github:nix-community/disko -- -m zap_create_mount --arg 'disks = ["/dev/sda"]'
+nix --experimental-features 'nix-command flakes' run github:nix-community/disko -- -m zap_create_mount --arg 'disks = ["/dev/sda"]' ./hosts/gate/disk.nix
 ```
 
