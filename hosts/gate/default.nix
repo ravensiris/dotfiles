@@ -5,27 +5,9 @@
       disks = ["/dev/vda"];
     })
     ./boot.nix
+    ./persistence.nix
     ../../users/q/default.nix
   ];
-
-  environment.persistence."/nix/persist" = {
-    directories = [
-      "/var/lib/libvirt"
-      "/var/lib/docker"
-      "/var/lib/cups"
-      "/var/lib/private/navidrome"
-    ];
-
-    users.q.directories = [
-      "Projects"
-      "Documents"
-      "Sync"
-      ".config/syncthing"
-      "Music"
-    ];
-  };
-
-  programs.fuse.userAllowOther = true;
 
   system.stateVersion = "22.11";
 }
