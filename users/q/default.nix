@@ -1,5 +1,6 @@
 {
   pkgs,
+  impermanence,
   ...
 }: {
   users.mutableUsers = false;
@@ -11,11 +12,7 @@
     shell = pkgs.fish;
   };
 
-  home-manager.users.q = {
-    pkgs,
-    impermanence,
-    ...
-  }: {
+  home-manager.users.q = {pkgs, ...}: {
     home.packages = [
       pkgs.neovim
     ];
