@@ -11,8 +11,13 @@ sudo hostname gate
 ```sh
 lsblk
 ```
+4. Add disk encryption password
 
-4. Format or mount drive
+```sh
+echo -n "mypassword" > /tmp/secret.key
+```
+
+5. Format or mount drive
 
 Just use `-m mount` instead if only mounting.
 The passed `"/dev/sda"` would be your primary disk.
@@ -20,3 +25,4 @@ The passed `"/dev/sda"` would be your primary disk.
 ```sh
 nix --experimental-features 'nix-command flakes' run github:nix-community/disko -- -m zap_create_mount --arg 'disks = ["/dev/sda"]'
 ```
+
