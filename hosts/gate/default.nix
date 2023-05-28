@@ -20,7 +20,6 @@
       fira
       fira-mono
       line-awesome
-      google-fonts
       inconsolata # monospaced
       libertine
       mononoki
