@@ -1,30 +1,35 @@
 # Quick guide
 
-1. Run NixOS installer.
-2. Set the hostname
+## Run NixOS installer.
+
+Available here: https://nixos.org/download.html#nixos-iso
+
+## Set the hostname
 
 ```sh
 sudo hostname gate
 ```
-3. Clone this repo
+
+## Clone this repo
 
 ```sh
 git clone https://github.com/ravensiris/dotfiles
 cd dotfiles
 ```
 
-4. Check which drive you want to format
+## Check which drive you want to format
 
 ```sh
 lsblk
 ```
-5. Add disk encryption password
+
+## Add disk encryption password
 
 ```sh
 echo -n "mypassword" > /tmp/secret.key
 ```
 
-6. Format or mount drive
+## Format or mount drive
 
 Just use `-m mount` instead if only mounting.
 
