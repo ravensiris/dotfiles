@@ -1,6 +1,5 @@
 {
   pkgs,
-  impermanence,
   ...
 }: {
   users.mutableUsers = false;
