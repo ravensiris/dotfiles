@@ -16,21 +16,10 @@
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
-      dejavu_fonts
       fira
-      fira-mono
-      line-awesome
-      inconsolata # monospaced
-      libertine
-      mononoki
-      nerdfonts
-      open-dyslexic
       source-code-pro
       source-sans-pro
       source-serif-pro
-      ttf_bitstream_vera
-      ubuntu_font_family # Ubuntu fonts
-      unifont # some international languages
     ];
     fontconfig = {
       antialias = true;
