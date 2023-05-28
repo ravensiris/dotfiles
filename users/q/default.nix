@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, impermanence, ...}: {
   users.mutableUsers = false;
   users.users.q = {
     # passwordFile = "/run/agenix/qPassword";
@@ -10,7 +10,6 @@
 
   home-manager.users.q = {
     pkgs,
-    impermanence,
     ...
   }: {
     imports = [impermanence.nixosModules.home-manager];
