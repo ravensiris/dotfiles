@@ -12,7 +12,11 @@
     shell = pkgs.fish;
   };
 
-  home-manager.users.q = {pkgs, ...}: {
+  home-manager.users.q = {
+    pkgs,
+    impermanence,
+    ...
+  }: {
     home.packages = [
       pkgs.neovim
     ];
