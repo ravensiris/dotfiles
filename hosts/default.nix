@@ -9,9 +9,7 @@
     system = "x86_64-linux";
     specialArgs = {inherit impermanence;};
     modules = [
-      (import home-manager.nixosModules.home-manager {
-        inherit impermanence;
-      })
+      home-manager.nixosModules.home-manager
       disko.nixosModules.disko
       ./gate
     ];
