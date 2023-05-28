@@ -8,8 +8,12 @@
     shell = pkgs.fish;
   };
 
-  home-manager.users.q = {pkgs, impermanence, ...}: {
-    imports = [ impermanence ];
+  home-manager.users.q = {
+    pkgs,
+    impermanence,
+    ...
+  }: {
+    imports = [impermanence.nixosModules.home-manager];
     home.packages = [
       pkgs.neovim
     ];
