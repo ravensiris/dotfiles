@@ -27,7 +27,9 @@ echo -n "mypassword" > /tmp/secret.key
 6. Format or mount drive
 
 Just use `-m mount` instead if only mounting.
+
 The passed `"/dev/sda"` would be your primary disk.
+
 The `./hosts/gate/disk.nix` would be the path to your host `disko` disk configuration
 
 ```sh
