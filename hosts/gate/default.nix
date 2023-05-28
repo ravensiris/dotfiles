@@ -16,8 +16,6 @@
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
-      #font-awesome_4
-      corefonts # Microsoft free fonts
       dejavu_fonts
       fira
       fira-mono
@@ -28,9 +26,6 @@
       mononoki
       nerdfonts
       open-dyslexic
-      overpass
-      oxygenfonts
-      powerline-fonts
       source-code-pro
       source-sans-pro
       source-serif-pro
