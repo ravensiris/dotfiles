@@ -1,5 +1,6 @@
 {
   pkgs,
+  impermanence,
   ...
 }: {
   users.mutableUsers = false;
@@ -15,6 +16,7 @@
     home.packages = [
       pkgs.neovim
     ];
+    imports = [impermanence.nixosModules.home-manager.impermanence];
     home.persistence."/nix/persist/home/q" = {
       files = [
         ".ssh/id_rsa"
