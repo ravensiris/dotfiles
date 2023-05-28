@@ -7,12 +7,11 @@
 }: {
   gate = lib.nixosSystem {
     system = "x86_64-linux";
-    specialArgs = { inherit impermanence; };
+    specialArgs = {inherit impermanence;};
     modules = [
-      home-manager.nixosModules.home-manager
-      {
+      (import home-manager.nixosModules.home-manager {
         inherit impermanence;
-      }
+      })
       disko.nixosModules.disko
       ./gate
     ];
