@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   users.mutableUsers = false;
   users.users.q = {
     # passwordFile = "/run/agenix/qPassword";
@@ -8,7 +8,8 @@
     shell = pkgs.fish;
   };
 
-  home-manager.users.q = {pkgs, ...}: {
+  home-manager.users.q = {pkgs, impermanence, ...}: {
+    imports = [ impermanence ];
     home.packages = [
       pkgs.neovim
     ];
