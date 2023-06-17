@@ -6,7 +6,7 @@
   imports = [
     (import ./disk.nix {
       inherit lib;
-      disks = ["/dev/vda"];
+      disks = ["/dev/nvme0n1"];
     })
     ./boot.nix
     ./persistence.nix
@@ -36,5 +36,5 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   networking.hostName = "gate";
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 }

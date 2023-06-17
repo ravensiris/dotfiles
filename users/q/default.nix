@@ -9,7 +9,6 @@
     password = "arstarst";
     isNormalUser = true;
     extraGroups = ["wheel" "libvirtd" "docker" "adbusers" "input"];
-    shell = pkgs.fish;
   };
 
   home-manager.users.q = {pkgs, ...}: {
@@ -64,6 +63,6 @@
           "cp" = "${pkgs.xcp}/bin/xcp";
         };
       };
-    home.stateVersion = "22.11";
+    home.stateVersion = "23.05";
   };
 }

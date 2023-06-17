@@ -2,8 +2,8 @@
   description = "ravensiris' dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/22.11";
-    home-manager.url = "github:nix-community/home-manager/release-22.11";
+    nixpkgs.url = "github:nixos/nixpkgs/23.05";
+    home-manager.url = "github:nix-community/home-manager/release-23.05";
     impermanence.url = "github:nix-community/impermanence";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
