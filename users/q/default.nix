@@ -9,11 +9,13 @@
     password = "arstarst";
     isNormalUser = true;
     extraGroups = ["wheel" "libvirtd" "docker" "adbusers" "input"];
+    shell = pkgs.fish;
   };
 
   home-manager.users.q = {pkgs, ...}: {
-    home.packages = [
-      pkgs.neovim
+    home.packages = with pkgs; [
+      neovim
+      pinentry-gnome
     ];
     imports = [impermanence.nixosModules.home-manager.impermanence];
     home.persistence."/nix/persist/home/q" = {
@@ -37,6 +39,22 @@
       ];
       allowOther = true;
     };
+
+      programs.firefox = {
+	enable = true;
+      };
+
+      programs.git = {
+        enable = true;
+	signing = {
+	   signByDefault = true;
+	   key = null;
+	};
+        userEmail = "maksymilian.jodlowski@gmail.com";
+        userName = "Maksymilian Jodłowski";
+      };
+
+      programs.gpg.enable = true;
 
       programs.fish = {
         enable = true;

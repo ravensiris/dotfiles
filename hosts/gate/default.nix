@@ -13,6 +13,12 @@
     ./users.nix
   ];
 
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "curses";
+    enableSSHSupport = true;
+  };
+
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
@@ -32,6 +38,11 @@
         serif = ["Source Serif Pro"];
       };
     };
+  };
+
+  programs.fish.enable = true;
+  programs.sway = {
+    enable = true;
   };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
