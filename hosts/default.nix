@@ -3,6 +3,7 @@
   disko,
   home-manager,
   impermanence,
+  nur,
   ...
 }: {
   gate = lib.nixosSystem {
@@ -10,8 +11,11 @@
     specialArgs = {inherit impermanence;};
     modules = [
       impermanence.nixosModules.impermanence
-      home-manager.nixosModules.home-manager
+      home-manager.nixosModules.home-manager {
+	nixpkgs.overlays = [ nur.overlay ];
+      }
       disko.nixosModules.disko
+      nur.nixosModules.nur
       ./gate
     ];
   };

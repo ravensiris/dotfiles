@@ -1,6 +1,7 @@
 {
   pkgs,
   impermanence,
+  config,
   ...
 }: {
   users.mutableUsers = false;
@@ -30,7 +31,6 @@
       directories = [
         ".gnupg"
         ".password-store"
-        ".mozilla"
         ".config/BraveSoftware/Brave-Browser"
         ".config/musikcube"
         ".config/Sonixd"
@@ -42,6 +42,22 @@
 
       programs.firefox = {
 	enable = true;
+	profiles.default = {
+		extensions = 
+		with config.nur.repos.rycee.firefox-addons; [
+		  ublock-origin
+		];
+	   id = 0; 
+	   name = "Default";
+	};
+	profiles.personal = {
+		extensions = 
+		with config.nur.repos.rycee.firefox-addons; [
+		  ublock-origin
+		];
+	   id = 1; 
+	   name = "Personal";
+	};
       };
 
       programs.git = {
