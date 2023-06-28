@@ -21,6 +21,15 @@
       musikcube
     ];
     imports = [impermanence.nixosModules.home-manager.impermanence];
+
+    xdg = {
+	enable = true;
+	configFile.".nvim" = {
+		source = ../../config/neovim;
+		recursive = true;
+	};
+    };
+
     home.persistence."/nix/persist/home/q" = {
       files = [
         ".ssh/id_rsa"
