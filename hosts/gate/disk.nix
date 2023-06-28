@@ -63,14 +63,14 @@
       fsType = "tmpfs";
       mountOptions = [
         "defaults"
-        "size=4G"
+        "size=8G"
         "mode=755"
       ];
     };
     "/tmp" = {
       fsType = "tmpfs";
       mountOptions = [
-        "size=200M"
+        "size=8G"
       ];
     };
   };

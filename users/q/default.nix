@@ -2,6 +2,7 @@
   pkgs,
   impermanence,
   config,
+  lib,
   ...
 }: {
   users.mutableUsers = false;
@@ -17,6 +18,7 @@
     home.packages = with pkgs; [
       neovim
       pinentry-gnome
+      musikcube
     ];
     imports = [impermanence.nixosModules.home-manager.impermanence];
     home.persistence."/nix/persist/home/q" = {
@@ -36,8 +38,24 @@
         ".config/Sonixd"
         ".local/share/yuzu"
         ".config/easyeffects"
+	".mozilla"
       ];
       allowOther = true;
+    };
+        programs.kitty = {
+      enable = true;
+      font = {
+        name = "VictorMono NerdFont";
+        size = 18;
+      };
+      settings = {
+        shell = "${pkgs.fish}/bin/fish";
+        confirm_os_window_close = 0;
+      };
+      theme = "Dracula";
+      extraConfig = builtins.concatStringsSep "\n" [
+        "background_opacity 0.9"
+      ];
     };
 
       programs.firefox = {
@@ -97,6 +115,42 @@
           "cp" = "${pkgs.xcp}/bin/xcp";
         };
       };
+        programs.beets = {
+      enable = true;
+      package = (pkgs.beets.override { });
+      settings = {
+        directory = "~/Music";
+        library = "~/.local/share/beets/musiclibrary.db";
+        "import" = {
+          move = false;
+          copy = true;
+        };
+        fetchart = {
+          high_resolution = true;
+          sources = [
+            "filesystem"
+            "albumart"
+            "coverart"
+            "itunes"
+            "amazon"
+          ];
+
+          minwidth = 800;
+          enforce_ratio = "0.5%";
+
+          # readFile not perfect
+        };
+        badfiles = {
+          check_on_import = true;
+          commands = {
+            flac = "${pkgs.flac}/bin/flac --silent --test";
+            mp3 = "${pkgs.mp3val}/bin/mp3val -si";
+          };
+        };
+        plugins = lib.concatStringsSep " " [ "embedart" "fetchart" "badfiles" "fish" "duplicates" ];
+      };
+    };
+
     home.stateVersion = "23.05";
   };
 }

@@ -16,7 +16,7 @@
   boot.initrd.checkJournalingFS = false;
   boot.initrd.luks.devices."cryptroot".preLVM = true;
   boot.initrd.luks.devices."windows" = {
-      device = "/dev/disk/by-uuid/8d4a4b26-2c5a-4785-89a3-274c172c2dc9";
+      device = "/dev/disk/by-uuid/3299548d-f3f7-45f9-8e22-1ebeec3348d9";
   };
   boot.kernelParams = [ "amd_iommu=on" ];
 
