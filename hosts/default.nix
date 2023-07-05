@@ -4,15 +4,17 @@
   home-manager,
   impermanence,
   nur,
+  devenv,
   ...
 }: {
   gate = lib.nixosSystem {
     system = "x86_64-linux";
-    specialArgs = {inherit impermanence;};
+    specialArgs = {inherit impermanence devenv;};
     modules = [
       impermanence.nixosModules.impermanence
-      home-manager.nixosModules.home-manager {
-	nixpkgs.overlays = [ nur.overlay ];
+      home-manager.nixosModules.home-manager
+      {
+        nixpkgs.overlays = [nur.overlay];
       }
       disko.nixosModules.disko
       nur.nixosModules.nur

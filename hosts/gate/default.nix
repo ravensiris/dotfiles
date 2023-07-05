@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  devenv,
   ...
 }: {
   imports = [
@@ -15,13 +16,22 @@
 
   sound.enable = true;
 
+  time.timeZone = "Europe/Warsaw";
+
+  virtualisation.docker.enable = true;
+
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "curses";
+    pinentryFlavor = "gnome3";
     enableSSHSupport = true;
   };
 
-    networking = {
+  networking = {
     useDHCP = false;
     interfaces = {
       br0 = {
@@ -32,39 +42,36 @@
     };
     bridges = {
       "br0" = {
-        interfaces = [ "enp5s0" ];
+        interfaces = ["enp5s0"];
       };
     };
   };
 
-  systemd.services.libvirtd.preStart =
-    let
-      qemuHook = pkgs.writeScript "qemu-hook" ''
-        #!${pkgs.stdenv.shell}
-        GUEST_NAME="$1"
-        OPERATION="$2"
-        SUB_OPERATION="$3"
-        if [[ "$GUEST_NAME" == "win11"* ]]; then
-          if [[ "$OPERATION" == "started" ]]; then
-            systemctl set-property --runtime -- system.slice AllowedCPUs=11,23
-            systemctl set-property --runtime -- user.slice AllowedCPUs=11,23
-            systemctl set-property --runtime -- init.scope AllowedCPUs=11,23
-          fi
-          if [[ "$OPERATION" == "stopped" ]]; then
-            systemctl set-property --runtime -- user.slice AllowedCPUs=0-23
-            systemctl set-property --runtime -- system.slice AllowedCPUs=0-23
-            systemctl set-property --runtime -- init.scope AllowedCPUs=0-23
-          fi
+  systemd.services.libvirtd.preStart = let
+    qemuHook = pkgs.writeScript "qemu-hook" ''
+      #!${pkgs.stdenv.shell}
+      GUEST_NAME="$1"
+      OPERATION="$2"
+      SUB_OPERATION="$3"
+      if [[ "$GUEST_NAME" == "win11"* ]]; then
+        if [[ "$OPERATION" == "started" ]]; then
+          systemctl set-property --runtime -- system.slice AllowedCPUs=11,23
+          systemctl set-property --runtime -- user.slice AllowedCPUs=11,23
+          systemctl set-property --runtime -- init.scope AllowedCPUs=11,23
         fi
-      '';
-    in
-    ''
-      mkdir -p /var/lib/libvirt/hooks
-      chmod 755 /var/lib/libvirt/hooks
-      # Copy hook files
-      ln -sf ${qemuHook} /var/lib/libvirt/hooks/qemu
+        if [[ "$OPERATION" == "stopped" ]]; then
+          systemctl set-property --runtime -- user.slice AllowedCPUs=0-23
+          systemctl set-property --runtime -- system.slice AllowedCPUs=0-23
+          systemctl set-property --runtime -- init.scope AllowedCPUs=0-23
+        fi
+      fi
     '';
-
+  in ''
+    mkdir -p /var/lib/libvirt/hooks
+    chmod 755 /var/lib/libvirt/hooks
+    # Copy hook files
+    ln -sf ${qemuHook} /var/lib/libvirt/hooks/qemu
+  '';
 
   services.pipewire = {
     enable = true;
@@ -72,43 +79,42 @@
     pulse.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    pavucontrol
-    swaynotificationcenter
-    xdg-utils
-    glib
-    dracula-theme # gtk themeracula-theme # gtk theme
-    gnome3.adwaita-icon-theme  # default gnome cursors
-    grim # screenshot functionality
-    slurp # screenshot functionality
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    gnome3.adwaita-icon-theme  # default gnome cursors
-    xdg-desktop-portal-wlr
-    xorg.xeyes
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      pavucontrol
+      docker-compose
+      swaynotificationcenter
+      xdg-utils
+      glib
+      dracula-theme # gtk themeracula-theme # gtk theme
+      gnome3.adwaita-icon-theme # default gnome cursors
+      grim # screenshot functionality
+      slurp # screenshot functionality
+      wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+      gnome3.adwaita-icon-theme # default gnome cursors
+      xdg-desktop-portal-wlr
+      xorg.xeyes
+    ]
+    ++ [devenv.packages.x86_64-linux.devenv];
 
   environment.variables = {
     GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
+    GDK_DPI_SCALE = "2";
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
   };
-
 
   programs.fish.enable = true;
   programs.sway = {
     enable = true;
   };
 
-
-   services.dbus.enable = true;
-  xdg = {
-    portal = {
-      enable = true;
-      wlr.enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-      ];
-    };
+  services.dbus.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+    ];
   };
 
   home-manager.users.q = {
@@ -121,7 +127,7 @@
         modifier = "Mod4";
         # Use kitty as default terminal
         terminal = "${pkgs.kitty}/bin/kitty";
-        menu = "${pkgs.fuzzel}/bin/fuzzel";
+        menu = "${pkgs.fuzzel}/bin/fuzzel --show-actions";
         startup = [
           {
             command = "XDG_CONFIG_HOME=/home/q/.config ${pkgs.swaynotificationcenter}/bin/swaync";
@@ -184,7 +190,7 @@
           };
         };
         fonts = {
-          names = [ "VictorMono Nerd Font" ];
+          names = ["VictorMono Nerd Font"];
           style = "Regular";
           size = 18.0;
         };
@@ -194,7 +200,7 @@
             # statusCommand =
             # "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
             fonts = {
-              names = [ "VictorMono Nerd Font" ];
+              names = ["VictorMono Nerd Font"];
               size = 12.0;
             };
           })
@@ -203,7 +209,7 @@
     };
   };
 
-    security.polkit.enable = true;
+  security.polkit.enable = true;
   security.pam.services.swaylock.text = ''
     # Account management.
     account required pam_unix.so
@@ -225,16 +231,17 @@
     twemoji-color-font
     openmoji-color
     twitter-color-emoji
+    nerdfonts
   ];
-    environment.sessionVariables = {
-      MOZ_ENABLE_WAYLAND = "1";
-      XDG_CURRENT_DESKTOP = "sway"; # https://github.com/emersion/xdg-desktop-portal-wlr/issues/20
-      XDG_SESSION_TYPE = "wayland"; # https://github.com/emersion/xdg-desktop-portal-wlr/pull/11
-    };
-
-
+  environment.sessionVariables = {
+    MOZ_ENABLE_WAYLAND = "1";
+    XDG_CURRENT_DESKTOP = "sway"; # https://github.com/emersion/xdg-desktop-portal-wlr/issues/20
+    XDG_SESSION_TYPE = "wayland"; # https://github.com/emersion/xdg-desktop-portal-wlr/pull/11
+  };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.substituters = ["https://nix-community.cachix.org" "https://cache.nixos.org"];
+  nix.settings.trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
   networking.hostName = "gate";
   system.stateVersion = "23.05";
 }
