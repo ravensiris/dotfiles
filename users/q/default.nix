@@ -21,7 +21,6 @@
       ruff
       isort
       mypy
-      gcc
       neovim
       pinentry-gnome
       musikcube

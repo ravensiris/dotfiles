@@ -16,6 +16,13 @@
 
   sound.enable = true;
 
+  boot.kernelPatches = [
+    {
+      name = "quirk-x570-ultra-reaktek";
+      patch = ./0001-Add-realtek-quirk-fix-for-X570-Aorus-Ultra.patch;
+    }
+  ];
+
   time.timeZone = "Europe/Warsaw";
 
   virtualisation.docker.enable = true;
