@@ -3,12 +3,14 @@
   impermanence,
   config,
   lib,
+  age,
   ...
 }: {
+  age.secrets.q.file = ../../../secrets/q.age;
   users.mutableUsers = false;
   users.users.q = {
-    # passwordFile = "/run/agenix/qPassword";
-    password = "arstarst";
+    passwordFile = config.age.secrets.q.path;
+    # password = "arstarst";
     isNormalUser = true;
     extraGroups = ["wheel" "libvirtd" "docker" "adbusers" "input"];
     shell = pkgs.fish;

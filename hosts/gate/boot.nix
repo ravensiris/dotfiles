@@ -27,7 +27,10 @@
   hardware.opengl.driSupport = true;
 
   # VFIO
-  boot.extraModprobeConfig = "options vfio-pci ids=0a:00.0,0a:00.1";
+  boot.extraModprobeConfig = ''
+    options vfio-pci ids=0a:00.0,0a:00.1
+    options snd_hda_intel power_save=0
+  '';
   boot.blacklistedKernelModules = [
     "nvidia"
     "nouveau"

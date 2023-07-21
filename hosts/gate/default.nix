@@ -2,6 +2,7 @@
   lib,
   pkgs,
   devenv,
+  agenix,
   ...
 }: {
   imports = [
@@ -88,6 +89,8 @@
 
   environment.systemPackages = with pkgs;
     [
+      gcc
+      clang
       pavucontrol
       docker-compose
       swaynotificationcenter
@@ -102,7 +105,10 @@
       xdg-desktop-portal-wlr
       xorg.xeyes
     ]
-    ++ [devenv.packages.x86_64-linux.devenv];
+    ++ [
+      devenv.packages.x86_64-linux.devenv
+      agenix.packages.x86_64-linux.default
+    ];
 
   environment.variables = {
     GDK_SCALE = "2";

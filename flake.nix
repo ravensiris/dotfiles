@@ -16,6 +16,8 @@
 
     devenv.url = "github:cachix/devenv";
     devenv.inputs.nixpkgs.follows = "nixpkgs";
+
+    agenix.url = "github:ryantm/agenix";
   };
 
   nixConfig = {
@@ -30,6 +32,7 @@
     disko,
     nur,
     devenv,
+    agenix,
     ...
   }: let
     user = "q";
@@ -37,7 +40,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs home-manager impermanence disko user nur devenv;
+        inherit inputs nixpkgs home-manager impermanence disko user nur devenv agenix;
       }
     );
   };
