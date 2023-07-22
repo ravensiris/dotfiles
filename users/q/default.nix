@@ -6,7 +6,7 @@
   age,
   ...
 }: {
-  age.secrets.q.file = ../../../secrets/q.age;
+  age.secrets.q.file = ../../secrets/q.age;
   users.mutableUsers = false;
   users.users.q = {
     passwordFile = config.age.secrets.q.path;

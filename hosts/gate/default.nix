@@ -17,6 +17,8 @@
 
   sound.enable = true;
 
+  age.identityPaths = ["/nix/persist/etc/ssh/ssh_host_ed25519_key"];
+
   boot.kernelPatches = [
     {
       name = "quirk-x570-ultra-reaktek";
