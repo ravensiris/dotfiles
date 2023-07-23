@@ -210,10 +210,10 @@ require("lazy").setup({
             telescope.load_extension("fzf")
         end,
         keys = {
-            { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find file" },
+            { "<leader><leader>", "<cmd>Telescope find_files<cr>", desc = "Find file" },
             { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep files" },
             { "<leader>fd", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>", desc = "File browser" },
-            { "<leader>bf", "<cmd>Telescope buffers<cr>", desc = "Buffer search" },
+            { "<leader>bb", "<cmd>Telescope buffers sort_lastused=true<cr>", desc = "Buffer search" },
         },
     },
     {
@@ -227,5 +227,12 @@ require("lazy").setup({
             })
         end,
         keys = { { "<leader>gg", "<cmd>Neogit<cr>", desc = "Open Neogit" } },
+    },
+    {
+        "ray-x/lsp_signature.nvim",
+        config = function()
+            local lsp_signature = require("lsp_signature")
+            lsp_signature.setup({})
+        end,
     },
 })

@@ -15,8 +15,6 @@
     ./users.nix
   ];
 
-  sound.enable = true;
-
   age.identityPaths = ["/nix/persist/etc/ssh/ssh_host_ed25519_key"];
 
   boot.kernelPatches = [
@@ -83,10 +81,12 @@
     ln -sf ${qemuHook} /var/lib/libvirt/hooks/qemu
   '';
 
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     pulse.enable = true;
+    jack.enable = true;
   };
 
   environment.systemPackages = with pkgs;

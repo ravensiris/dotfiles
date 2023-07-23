@@ -10,7 +10,6 @@
   users.mutableUsers = false;
   users.users.q = {
     passwordFile = config.age.secrets.q.path;
-    # password = "arstarst";
     isNormalUser = true;
     extraGroups = ["wheel" "libvirtd" "docker" "adbusers" "input"];
     shell = pkgs.fish;
@@ -18,29 +17,18 @@
 
   home-manager.users.q = {pkgs, ...}: {
     home.packages = with pkgs; [
-      alejandra
-      black
-      ruff
-      isort
-      mypy
-      neovim
       pinentry-gnome
-      musikcube
-      stylua
-      lua-language-server
-      ripgrep
-      gnumake
       htop
+      pass
     ];
-    imports = [impermanence.nixosModules.home-manager.impermanence];
+    imports = [
+		impermanence.nixosModules.home-manager.impermanence
+		./neovim
+		./music.nix
+	];
 
     xdg = {
       enable = true;
-      configFile."nvim" = {
-        source = ../../config/neovim;
-        recursive = true;
-      };
-
       desktopEntries = {
         firefox = {
           name = "Firefox";
@@ -66,8 +54,6 @@
         ".ssh/id_ed25519.pub"
         ".ssh/id_ed25519"
         ".local/share/nix/trusted-settings.json"
-        ".local/share/beets/musiclibrary.db"
-        ".config/fish/completions/beet.fish"
         ".local/share/fish/fish_history"
       ];
       directories = [
@@ -75,13 +61,13 @@
         ".password-store"
         ".config/BraveSoftware/Brave-Browser"
         ".config/musikcube"
-        ".config/Sonixd"
         ".local/share/yuzu"
-        ".config/easyeffects"
         ".mozilla"
+        ".local/state/wireplumber"
       ];
       allowOther = true;
     };
+
     programs.kitty = {
       enable = true;
       font = {
@@ -171,41 +157,6 @@
         "curl" = "${pkgs.curlie}/bin/curlie";
         "dig" = "${pkgs.dogdns}/bin/dog";
         "cp" = "${pkgs.xcp}/bin/xcp";
-      };
-    };
-    programs.beets = {
-      enable = false;
-      package = pkgs.beets.override {};
-      settings = {
-        directory = "~/Music";
-        library = "~/.local/share/beets/musiclibrary.db";
-        "import" = {
-          move = false;
-          copy = true;
-        };
-        fetchart = {
-          high_resolution = true;
-          sources = [
-            "filesystem"
-            "albumart"
-            "coverart"
-            "itunes"
-            "amazon"
-          ];
-
-          minwidth = 800;
-          enforce_ratio = "0.5%";
-
-          # readFile not perfect
-        };
-        badfiles = {
-          check_on_import = true;
-          commands = {
-            flac = "${pkgs.flac}/bin/flac --silent --test";
-            mp3 = "${pkgs.mp3val}/bin/mp3val -si";
-          };
-        };
-        plugins = lib.concatStringsSep " " ["embedart" "fetchart" "badfiles" "fish" "duplicates"];
       };
     };
 
