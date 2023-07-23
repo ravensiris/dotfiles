@@ -15,6 +15,12 @@
     shell = pkgs.fish;
   };
 
+  imports = [
+
+		./neovim
+		./music.nix
+  ];
+
   home-manager.users.q = {pkgs, ...}: {
     home.packages = with pkgs; [
       pinentry-gnome
@@ -23,8 +29,6 @@
     ];
     imports = [
 		impermanence.nixosModules.home-manager.impermanence
-		./neovim
-		./music.nix
 	];
 
     xdg = {
