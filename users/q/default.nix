@@ -6,22 +6,6 @@
   age,
   ...
 }: {
-  age.secrets.q.file = ../../secrets/q.age;
-  users.mutableUsers = false;
-  users.users.q = {
-    passwordFile = config.age.secrets.q.path;
-    isNormalUser = true;
-    extraGroups = ["wheel" "libvirtd" "docker" "adbusers" "input"];
-    shell = pkgs.fish;
-  };
-
-  imports = [
-
-		./neovim
-		./music.nix
-  ];
-
-  home-manager.users.q = {pkgs, ...}: {
     home.packages = with pkgs; [
       pinentry-gnome
       htop
@@ -165,5 +149,4 @@
     };
 
     home.stateVersion = "23.05";
-  };
 }

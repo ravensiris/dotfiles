@@ -1,5 +1,12 @@
-{...}: {
-  imports = [../../users/q/default.nix];
+{config, pkgs, ...}: {
+  age.secrets.q.file = ../../secrets/q.age;
+  users.mutableUsers = false;
+  users.users.q = {
+    passwordFile = config.age.secrets.q.path;
+    isNormalUser = true;
+    extraGroups = ["wheel" "libvirtd" "docker" "adbusers" "input"];
+    shell = pkgs.fish;
+  };
 
   # these are host specific
   # for more general ones set them using home-manager
