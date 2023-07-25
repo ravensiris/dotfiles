@@ -1,7 +1,6 @@
 {pkgs, lib, ...}:
 {
 
-home-manager.users.q = {
 	home.packages = with pkgs; [musikcube];
     home.persistence."/nix/persist/home/q" = {
       files = [
@@ -46,5 +45,4 @@ home-manager.users.q = {
         plugins = lib.concatStringsSep " " ["embedart" "fetchart" "badfiles" "fish" "duplicates"];
       };
     };
-	};
 }

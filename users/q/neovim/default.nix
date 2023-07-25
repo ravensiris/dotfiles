@@ -1,5 +1,4 @@
 {pkgs, ...}: {
-home-manager.users.q = {
   xdg = {
     enable = true;
     configFile."nvim" = {
@@ -26,6 +25,5 @@ home-manager.users.q = {
     directories = [
       ".local/share/nvim"
     ];
-  };
   };
 }

@@ -13,14 +13,17 @@
     specialArgs = {inherit impermanence devenv agenix;};
     modules = [
       impermanence.nixosModules.impermanence
-      home-manager.nixosModules.home-manager
-      {
-        nixpkgs.overlays = [nur.overlay];
-      }
       disko.nixosModules.disko
       nur.nixosModules.nur
       agenix.nixosModules.default
       ./gate
+      home-manager.nixosModules.home-manager
+      {
+        nixpkgs.overlays = [nur.overlay];
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.z = import ../users/z;
+      }
     ];
   };
 }

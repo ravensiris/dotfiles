@@ -37,6 +37,19 @@
   }: let
     user = "q";
   in {
+	homeManagerConfigurations = {
+		q = home-manager.lib.homeManagerConfiguration {
+			inherit inputs nixpkgs home-manager impermanence disko user nur devenv agenix;
+			configuration = {
+				home.stateVersion = "23.05";
+				imports = [
+					./users/q
+				];
+			};
+		};
+	};
+
+
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
