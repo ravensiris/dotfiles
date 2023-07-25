@@ -1,6 +1,11 @@
-{config, pkgs, ...}: {
-  age.secrets.q.file = ../../secrets/q.age;
+{
+  config,
+  pkgs,
+  ...
+}: {
   users.mutableUsers = false;
+
+  age.secrets.q.file = ../../secrets/q.age;
   users.users.q = {
     passwordFile = config.age.secrets.q.path;
     isNormalUser = true;

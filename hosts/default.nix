@@ -22,7 +22,11 @@
         nixpkgs.overlays = [nur.overlay];
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.z = import ../users/z;
+
+        home-manager.users.q = import ../users/q;
+		home-manager.extraSpecialArgs = {
+			inherit impermanence;
+		};
       }
     ];
   };
