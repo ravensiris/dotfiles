@@ -1,37 +1,17 @@
-{
-  lib,
-  pkgs,
-  devenv,
-  agenix,
-  ...
-}: {
-  imports = [
-    (import ./disk.nix {
-      inherit lib;
-      disks = ["/dev/nvme0n1"];
-    })
-    ./boot.nix
-    ./persistence.nix
-    ./users.nix
-	./docker.nix
-	./gpg.nix
-	./network.nix
-	./libvirt.nix
-	./audio.nix
-	./sway.nix
-  ];
-
-  age.identityPaths = ["/nix/persist/etc/ssh/ssh_host_ed25519_key"];
-  time.timeZone = "Europe/Warsaw";
-
+{pkgs, ...}:{
   environment.systemPackages = with pkgs;
     [
-      gcc
-      clang
-    ]
-    ++ [
-      devenv.packages.x86_64-linux.devenv
-      agenix.packages.x86_64-linux.default
+      swaynotificationcenter
+      xdg-utils
+      glib
+      dracula-theme # gtk themeracula-theme # gtk theme
+      gnome3.adwaita-icon-theme # default gnome cursors
+      grim # screenshot functionality
+      slurp # screenshot functionality
+      wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+      gnome3.adwaita-icon-theme # default gnome cursors
+      xdg-desktop-portal-wlr
+      xorg.xeyes
     ];
 
   environment.variables = {
@@ -40,7 +20,6 @@
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
   };
 
-  programs.fish.enable = true;
   programs.sway = {
     enable = true;
   };
@@ -68,25 +47,10 @@
     session required pam_unix.so
   '';
 
-  fonts.fonts = with pkgs; [
-    migu
-    baekmuk-ttf
-    nanum
-    noto-fonts-emoji
-    twemoji-color-font
-    openmoji-color
-    twitter-color-emoji
-    nerdfonts
-  ];
   environment.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
     XDG_CURRENT_DESKTOP = "sway"; # https://github.com/emersion/xdg-desktop-portal-wlr/issues/20
     XDG_SESSION_TYPE = "wayland"; # https://github.com/emersion/xdg-desktop-portal-wlr/pull/11
   };
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.substituters = ["https://nix-community.cachix.org" "https://cache.nixos.org"];
-  nix.settings.trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
-  networking.hostName = "gate";
-  system.stateVersion = "23.05";
 }

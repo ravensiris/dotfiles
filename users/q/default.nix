@@ -16,16 +16,7 @@
 	./music.nix
    ];
 	xdg.enable = true;
-
    home.persistence."/nix/persist/home/q".allowOther = true;
-
-  # home.persistence."/nix/persist/home/q" = {
-  #   directories = [
-  #     ".config/musikcube"
-  #     ".local/state/wireplumber"
-  #   ];
-  #   allowOther = true;
-  # };
 
   home.stateVersion = "23.05";
 }

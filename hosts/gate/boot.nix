@@ -18,40 +18,10 @@
   boot.initrd.luks.devices."windows" = {
     device = "/dev/disk/by-uuid/3299548d-f3f7-45f9-8e22-1ebeec3348d9";
   };
-  boot.kernelParams = ["amd_iommu=on"];
 
   services.xserver.videoDrivers = ["amdgpu"];
 
   hardware.enableRedistributableFirmware = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
-
-  # VFIO
-  boot.extraModprobeConfig = ''
-    options vfio-pci ids=0a:00.0,0a:00.1
-    options snd_hda_intel power_save=0
-  '';
-  boot.blacklistedKernelModules = [
-    "nvidia"
-    "nouveau"
-    "nvidia_drm"
-    "nvidia_modeset"
-    "nvidiafb"
-  ];
-  systemd.tmpfiles.rules = ["f /dev/shm/looking-glass 0660 root libvirtd -"];
-  environment.systemPackages = with pkgs; [
-    virtmanager
-    looking-glass-client
-    qemu
-    OVMF
-    pciutils
-    swtpm
-    win-virtio
-    quickemu
-  ];
-
-  virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.qemu.swtpm.enable = true;
-  virtualisation.libvirtd.qemu.ovmf.enable = true;
-  environment.sessionVariables.LIBVIRT_DEFAULT_URI = ["qemu:///system"];
 }
