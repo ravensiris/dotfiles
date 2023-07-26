@@ -1,10 +1,43 @@
-# Nix Configuration
-This repository is home to the nix code that builds my systems.
+# Quick guide
 
-## Why Nix?
-Nix allows for easy to manage, collaborative, reproducible deployments. This means that once something is setup and configured once, it works forever. If someone else shares their configuration, anyone can make use of it.
+## Run NixOS installer.
 
+Available here: https://nixos.org/download.html#nixos-iso
 
-This flake is configured with the use of [digga][digga].
+## Set the hostname
 
-[digga]: https://github.com/divnix/digga
+```sh
+sudo hostname gate
+```
+
+## Clone this repo
+
+```sh
+git clone https://github.com/ravensiris/dotfiles
+cd dotfiles
+```
+
+## Check which drive you want to format
+
+```sh
+lsblk
+```
+
+## Add disk encryption password
+
+```sh
+echo -n "mypassword" > /tmp/secret.key
+```
+
+## Format or mount drive
+
+Just use `-m mount` instead if only mounting.
+
+The passed `"/dev/sda"` would be your primary disk.
+
+The `./hosts/gate/disk.nix` would be the path to your host `disko` disk configuration
+
+```sh
+sudo nix --experimental-features 'nix-command flakes' run github:nix-community/disko -- ./hosts/gate/disk.nix -m zap_create_mount --arg "disks" '["/dev/sda"]'
+```
+
