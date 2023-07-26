@@ -26,10 +26,6 @@
 
   environment.systemPackages = with pkgs;
     [
-      gcc
-      clang
-    ]
-    ++ [
       devenv.packages.x86_64-linux.devenv
       agenix.packages.x86_64-linux.default
     ];
