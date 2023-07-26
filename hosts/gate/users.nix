@@ -6,6 +6,8 @@
   users.mutableUsers = false;
 
   age.secrets.q.file = ../../secrets/q.age;
+
+  programs.fish.enable = true;
   users.users.q = {
     passwordFile = config.age.secrets.q.path;
     isNormalUser = true;
