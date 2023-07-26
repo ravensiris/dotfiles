@@ -1,8 +1,6 @@
 {pkgs, impermanence, ...}: {
    home.packages = with pkgs; [
-     pinentry-gnome
      htop
-     pass
    ];
    imports = [
 	impermanence.nixosModules.home-manager.impermanence
@@ -12,6 +10,9 @@
 	./fish.nix
 	./kitty.nix
 	./gpg.nix
+	./git.nix
+	./direnv.nix
+	./ssh.nix
    ];
 	xdg.enable = true;
 
@@ -38,45 +39,5 @@
   #   allowOther = true;
   # };
 
-  # programs.kitty = {
-  #   enable = true;
-  #   font = {
-  #     name = "VictorMono NerdFont";
-  #     size = 18;
-  #   };
-  #   settings = {
-  #     shell = "${pkgs.fish}/bin/fish";
-  #     confirm_os_window_close = 0;
-  #   };
-  #   theme = "Dracula";
-  #   extraConfig = builtins.concatStringsSep "\n" [
-  #     "background_opacity 0.9"
-  #   ];
-  # };
-
-  # programs.direnv = {
-  #   enable = true;
-  #   nix-direnv.enable = true;
-  #   config = {
-  #     whitelist = {
-  #   	prefix = [
-  #   	  "/home/q/Projects"
-  #   	];
-  #     };
-  #   };
-  # };
-
-
-  # programs.git = {
-  #   enable = true;
-  #   signing = {
-  #     signByDefault = true;
-  #     key = null;
-  #   };
-  #   userEmail = "maksymilian.jodlowski@gmail.com";
-  #   userName = "Maksymilian Jodłowski";
-  # };
-
-  # programs.gpg.enable = true;
   home.stateVersion = "23.05";
 }
