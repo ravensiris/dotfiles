@@ -9,6 +9,7 @@
 	  ];
 
       directories = [
+        ".local/state/wireplumber"
         ".config/easyeffects"
         ".config/musikcube"
 	  ];
