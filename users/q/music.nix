@@ -10,8 +10,10 @@
 
       directories = [
         ".config/easyeffects"
+        ".config/musikcube"
 	  ];
 	};
+
     programs.beets = {
       enable = false;
       package = pkgs.beets.override {};

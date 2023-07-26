@@ -13,27 +13,15 @@
 	./git.nix
 	./direnv.nix
 	./ssh.nix
+	./music.nix
    ];
 	xdg.enable = true;
 
    home.persistence."/nix/persist/home/q".allowOther = true;
 
   # home.persistence."/nix/persist/home/q" = {
-  #   files = [
-  #     ".ssh/id_rsa"
-  #     ".ssh/id_rsa.pub"
-  #     ".ssh/id_ed25519.pub"
-  #     ".ssh/id_ed25519"
-  #     ".local/share/nix/trusted-settings.json"
-  #     ".local/share/fish/fish_history"
-  #   ];
   #   directories = [
-  #     ".gnupg"
-  #     ".password-store"
-  #     ".config/BraveSoftware/Brave-Browser"
   #     ".config/musikcube"
-  #     ".local/share/yuzu"
-  #     ".mozilla"
   #     ".local/state/wireplumber"
   #   ];
   #   allowOther = true;
