@@ -9,6 +9,7 @@
 	./neovim
 	./sway.nix
 	./firefox.nix
+	./fish.nix
    ];
 	xdg.enable = true;
 

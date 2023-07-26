@@ -1,16 +1,16 @@
-{...}:{
+{pkgs, ...}:{
 
    programs.firefox = {
      enable = true;
      profiles.default = {
-       extensions = with config.nur.repos.rycee.firefox-addons; [
+       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
      	ublock-origin
        ];
        id = 0;
        name = "Default";
      };
      profiles.personal = {
-       extensions = with config.nur.repos.rycee.firefox-addons; [
+       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
      	ublock-origin
        ];
        id = 1;
@@ -18,7 +18,7 @@
      };
 
      profiles.work = {
-       extensions = with config.nur.repos.rycee.firefox-addons; [
+       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
      	ublock-origin
        ];
        id = 2;
