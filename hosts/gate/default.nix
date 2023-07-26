@@ -13,24 +13,21 @@
     ./boot.nix
     ./persistence.nix
     ./users.nix
-	./docker.nix
-	./gpg.nix
-	./network.nix
-	./libvirt.nix
-	./audio.nix
-	./sway.nix
+    ./docker.nix
+    ./gpg.nix
+    ./network.nix
+    ./libvirt.nix
+    ./audio.nix
+    ./sway.nix
   ];
 
   age.identityPaths = ["/nix/persist/etc/ssh/ssh_host_ed25519_key"];
   time.timeZone = "Europe/Warsaw";
 
-  environment.systemPackages = with pkgs;
-    [
-      devenv.packages.x86_64-linux.devenv
-      agenix.packages.x86_64-linux.default
-    ];
-
-
+  environment.systemPackages = with pkgs; [
+    devenv.packages.x86_64-linux.devenv
+    agenix.packages.x86_64-linux.default
+  ];
 
   fonts.fonts = with pkgs; [
     migu

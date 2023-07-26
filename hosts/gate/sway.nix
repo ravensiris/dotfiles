@@ -1,18 +1,17 @@
-{pkgs, ...}:{
-  environment.systemPackages = with pkgs;
-    [
-      swaynotificationcenter
-      xdg-utils
-      glib
-      dracula-theme # gtk themeracula-theme # gtk theme
-      gnome3.adwaita-icon-theme # default gnome cursors
-      grim # screenshot functionality
-      slurp # screenshot functionality
-      wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-      gnome3.adwaita-icon-theme # default gnome cursors
-      xdg-desktop-portal-wlr
-      xorg.xeyes
-    ];
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    swaynotificationcenter
+    xdg-utils
+    glib
+    dracula-theme # gtk themeracula-theme # gtk theme
+    gnome3.adwaita-icon-theme # default gnome cursors
+    grim # screenshot functionality
+    slurp # screenshot functionality
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    gnome3.adwaita-icon-theme # default gnome cursors
+    xdg-desktop-portal-wlr
+    xorg.xeyes
+  ];
 
   environment.variables = {
     GDK_SCALE = "2";
@@ -52,5 +51,4 @@
     XDG_CURRENT_DESKTOP = "sway"; # https://github.com/emersion/xdg-desktop-portal-wlr/issues/20
     XDG_SESSION_TYPE = "wayland"; # https://github.com/emersion/xdg-desktop-portal-wlr/pull/11
   };
-
 }

@@ -1,4 +1,4 @@
-{...}:{
+{...}: {
   networking = {
     useDHCP = false;
     interfaces = {
@@ -14,5 +14,4 @@
       };
     };
   };
-
 }

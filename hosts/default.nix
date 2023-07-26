@@ -24,9 +24,9 @@
         home-manager.useUserPackages = true;
 
         home-manager.users.q = import ../users/q;
-		home-manager.extraSpecialArgs = {
-			inherit impermanence;
-		};
+        home-manager.extraSpecialArgs = {
+          inherit impermanence;
+        };
       }
     ];
   };
