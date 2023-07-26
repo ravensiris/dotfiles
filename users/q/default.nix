@@ -10,6 +10,7 @@
 	./sway.nix
 	./firefox.nix
 	./fish.nix
+	./kitty.nix
    ];
 	xdg.enable = true;
 
