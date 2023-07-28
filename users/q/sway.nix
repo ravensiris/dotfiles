@@ -2,7 +2,70 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  display_album_art = pkgs.writeShellScriptBin "display_album_art" ''
+       ${pkgs.playerctl}/bin/playerctl metadata mpris:artUrl \
+    | ${pkgs.imv}/bin/imv -w "imv_album_art" -c center
+  '';
+in {
+  home.packages = with pkgs;
+    [
+      cava
+      playerctl
+    ]
+    ++ [display_album_art];
+
+  programs.waybar = {
+    enable = true;
+    systemd.enable = true;
+    style = ./waybar.css;
+    settings = {
+      mainBar = {
+        layer = "top";
+        position = "top";
+        height = 30;
+        output = [
+          "HDMI-A-2"
+        ];
+        modules-left = ["sway/workspaces"];
+        modules-center = ["clock"];
+        modules-right = ["cpu" "mpris" "cava" "tray"];
+
+        "sway/workspaces" = {
+          disable-scroll = true;
+          all-outputs = true;
+        };
+
+        mpris = {
+          interval = 15;
+          format = "{album} · {title}";
+          on-click = "${display_album_art}/bin/display_album_art";
+        };
+
+        cpu.format = "   {usage}%";
+
+        clock = {
+          format = "   {:%R}";
+          tooltip-format = "<tt><span size='xx-large'>{calendar}</span></tt>";
+          calendar.format = {
+            days = "<span color='#ecc6d9'><b>{}</b></span>";
+            today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+          };
+        };
+
+        cava = {
+          method = "pipewire";
+          bars = 48;
+          lower_cutoff_freq = "50";
+          higher_cutoff_freq = "18000";
+          bar_delimiter = 0;
+          format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
+          tooltip = true;
+        };
+      };
+    };
+  };
+
   wayland.windowManager.sway = {
     enable = true;
     extraConfig = ''
@@ -13,9 +76,30 @@
       # Use kitty as default terminal
       terminal = "${pkgs.kitty}/bin/kitty";
       menu = "${pkgs.fuzzel}/bin/fuzzel --show-actions";
+
+      window.titlebar = false;
+      window.commands = [
+        {
+          command = "floating enable, resize set 512 512";
+          criteria = {
+            title = "imv_album_art";
+          };
+        }
+      ];
+
+      output = {
+        HDMI-A-2 = {
+          bg = "\$(find ~/Pictures/Wallpapers/ -type f | shuf -n 1) fill";
+        };
+      };
+
       startup = [
         {
           command = "XDG_CONFIG_HOME=/home/q/.config ${pkgs.swaynotificationcenter}/bin/swaync";
+          always = true;
+        }
+        {
+          command = "systemctl --user restart waybar";
           always = true;
         }
       ];
@@ -74,22 +158,12 @@
           Escape = "mode default";
         };
       };
+      bars = [];
       fonts = {
         names = ["VictorMono Nerd Font"];
         style = "Regular";
         size = 18.0;
       };
-      bars = [
-        (lib.mkOptionDefault {
-          position = "top";
-          # statusCommand =
-          # "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
-          fonts = {
-            names = ["VictorMono Nerd Font"];
-            size = 12.0;
-          };
-        })
-      ];
     };
   };
 }

@@ -19,6 +19,7 @@
   # for more general ones set them using home-manager
   environment.persistence."/nix/persist" = {
     users.q.directories = [
+      "Pictures"
       "Projects"
       "Documents"
       "Sync"

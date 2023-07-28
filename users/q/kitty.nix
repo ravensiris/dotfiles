@@ -8,7 +8,7 @@
     settings = {
       confirm_os_window_close = 0;
     };
-    theme = "Dracula";
+    theme = "Tokyo Night Moon";
     extraConfig = builtins.concatStringsSep "\n" [
       "background_opacity 0.9"
     ];

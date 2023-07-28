@@ -1,0 +1,104 @@
+window.HDMI-A-2 * {
+  font-size: 24px;
+}
+
+#cava {
+  font-size: 12px;
+}
+
+#mpris {
+	/* moon -> blue6 */
+	background: #bb9af7;
+	/* moon -> blue7 */
+	color: #394b70;
+	margin-right: 16px;
+}
+
+#cpu {
+	/* moon -> magenta */
+	background: #b4f9f8;
+	/* moon -> blue7 */
+	color: #394b70;
+	margin-right: 16px;
+}
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    min-height: 46px;
+}
+
+window#waybar {
+	/* moon -> bg */
+    background: #222436;
+	/* moon -> bg_highlight */
+    border-bottom: 3px solid #2f334d;
+	/* moon -> fg */
+    color: #c8d3f5;
+}
+
+tooltip {
+  background: rgba(43, 48, 59, 0.5);
+  border: 1px solid rgba(100, 114, 125, 0.5);
+}
+tooltip label {
+  color: white;
+}
+
+#workspaces button {
+    padding: 0 16px;
+    background: transparent;
+	/* moon -> fg */
+    color: #c8d3f5;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.focused {
+	/* moon -> bg_highlight */
+    background: #2f334d;
+	/* moon -> blue0 */
+    border-bottom: 3px solid #3e68d7;
+}
+
+#mode, #battery, #temperature, #cpu, #mpris {
+    padding: 0 16px;
+}
+
+#cpu {
+	/* moon -> cyan */
+
+}
+
+#mode {
+    background: #64727D;
+    border-bottom: 3px solid white;
+}
+
+#battery {
+    background-color: #ffffff;
+    color: black;
+}
+
+#battery.charging {
+    color: white;
+    background-color: #26A65B;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
+
+#battery.warning:not(.charging) {
+    background: #f53c3c;
+    color: white;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
