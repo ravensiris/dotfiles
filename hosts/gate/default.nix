@@ -19,6 +19,7 @@
     ./libvirt.nix
     ./audio.nix
     ./sway.nix
+    ./qmk.nix
   ];
 
   age.identityPaths = ["/nix/persist/etc/ssh/ssh_host_ed25519_key"];

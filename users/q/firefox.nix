@@ -4,6 +4,8 @@
     profiles.default = {
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
+        violentmonkey
+        sponsorblock
       ];
       id = 0;
       name = "Default";
@@ -11,6 +13,8 @@
     profiles.personal = {
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
+        violentmonkey
+        sponsorblock
       ];
       id = 1;
       name = "Personal";
