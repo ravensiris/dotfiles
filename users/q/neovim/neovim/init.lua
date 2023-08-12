@@ -61,6 +61,7 @@ require("lazy").setup({
             local lspconfig = require("lspconfig")
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities.textDocument.completion.completionItem.snippetSupport = true
+            lspconfig.rust_analyzer.setup({})
             lspconfig.pyright.setup({})
             lspconfig.tsserver.setup({})
             lspconfig.html.setup({
@@ -156,6 +157,7 @@ require("lazy").setup({
                     null_ls.builtins.formatting.prettier.with({
                         prefer_local = "node_modules/.bin",
                     }),
+                    null_ls.builtins.formatting.rustfmt,
                 },
                 on_attach = on_attach,
             })

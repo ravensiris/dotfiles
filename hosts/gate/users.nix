@@ -22,6 +22,7 @@
       "Pictures"
       "Projects"
       "Documents"
+      "Videos"
       "Sync"
       ".config/syncthing"
       "Music"

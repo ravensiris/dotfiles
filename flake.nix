@@ -26,7 +26,7 @@
   };
 
   outputs = inputs @ {
-    nixpkgs,
+    nixpkgs',
     home-manager,
     impermanence,
     disko,
@@ -36,6 +36,10 @@
     ...
   }: let
     user = "q";
+    myPackages = {
+      anime4k = pkgs.callPackage ./pkgs/anime4k.nix;
+    };
+    nixpkgs = nixpgks' // myPackages;
   in {
     nixosConfigurations = (
       import ./hosts {
