@@ -20,6 +20,7 @@
     ./direnv.nix
     ./ssh.nix
     ./music.nix
+    ./mpv.nix
   ];
   xdg.enable = true;
   home.persistence."/nix/persist/home/q".allowOther = true;

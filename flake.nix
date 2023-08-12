@@ -26,7 +26,7 @@
   };
 
   outputs = inputs @ {
-    nixpkgs',
+    nixpkgs,
     home-manager,
     impermanence,
     disko,
@@ -37,14 +37,14 @@
   }: let
     user = "q";
     myPackages = {
-      anime4k = pkgs.callPackage ./pkgs/anime4k.nix;
+      anime4k = nixpkgs.callPackage ./pkgs/anime4k.nix;
     };
-    nixpkgs = nixpgks' // myPackages;
+    pkgs = nixpkgs // myPackages;
   in {
     nixosConfigurations = (
       import ./hosts {
-        inherit (nixpkgs) lib;
-        inherit inputs nixpkgs home-manager impermanence disko user nur devenv agenix;
+        inherit (pkgs) lib;
+        inherit inputs pkgs home-manager impermanence disko user nur devenv agenix;
       }
     );
   };
