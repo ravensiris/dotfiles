@@ -21,6 +21,9 @@
     ripgrep
     stylua
     lua-language-server
+    nodePackages_latest.prettier
+    nodePackages_latest.vscode-langservers-extracted
+    nur.repos.bandithedoge.nodePackages.emmet-language-server
     gnumake
     gcc
   ];

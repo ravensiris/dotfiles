@@ -4,7 +4,9 @@ set.softtabstop = 4
 set.shiftwidth = 4
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
 vim.keymap.set("n", "<leader>bb", "<cmd>bprevious<cr>")
+vim.keymap.set("n", "<leader>aa", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -21,6 +23,16 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 require("lazy").setup({
+    {
+        "nvim-lualine/lualine.nvim",
+        config = function()
+            local lualine = require("lualine")
+            lualine.setup({ options = { theme = "tokyonight" } })
+        end,
+        dependencies = {
+            "folke/tokyonight.nvim",
+        },
+    },
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
@@ -47,7 +59,32 @@ require("lazy").setup({
         lazy = false,
         config = function()
             local lspconfig = require("lspconfig")
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities.textDocument.completion.completionItem.snippetSupport = true
             lspconfig.pyright.setup({})
+            lspconfig.tsserver.setup({})
+            lspconfig.html.setup({
+                filetypes = { "html", "heex" },
+                capabilities = capabilities,
+            })
+            lspconfig.emmet_language_server.setup({
+                filetypes = {
+                    "astro",
+                    "css",
+                    "eruby",
+                    "html",
+                    "htmldjango",
+                    "javascriptreact",
+                    "less",
+                    "pug",
+                    "sass",
+                    "scss",
+                    "svelte",
+                    "typescriptreact",
+                    "vue",
+                    "heex",
+                },
+            })
             lspconfig.lua_ls.setup({
                 settings = {
                     Lua = {
@@ -116,7 +153,9 @@ require("lazy").setup({
                     null_ls.builtins.formatting.isort,
                     null_ls.builtins.formatting.ruff,
                     null_ls.builtins.diagnostics.mypy,
-                    null_ls.builtins.formatting.prettier,
+                    null_ls.builtins.formatting.prettier.with({
+                        prefer_local = "node_modules/.bin",
+                    }),
                 },
                 on_attach = on_attach,
             })
@@ -167,12 +206,12 @@ require("lazy").setup({
             local elixirls = require("elixir.elixirls")
 
             elixir.setup({
-                credo = { enable = false },
+                nextls = { enable = false },
+                credo = { enable = true },
                 elixirls = {
                     enable = true,
-                    tag = "v0.14.6",
                     settings = elixirls.settings({
-                        dialyzerEnabled = false,
+                        dialyzerEnabled = true,
                         enableTestLenses = false,
                     }),
 
@@ -194,6 +233,8 @@ require("lazy").setup({
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-file-browser.nvim",
+            "xiyaowong/telescope-emoji.nvim",
+            "nvim-telescope/telescope-ui-select.nvim",
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
         config = function()
@@ -204,9 +245,16 @@ require("lazy").setup({
                         theme = "ivy",
                         hijack_netrw = true,
                     },
+                    emoji = {
+                        action = function(emoji)
+                            vim.api.nvim_put({ emoji.value }, "c", false, true)
+                        end,
+                    },
                 },
             })
             telescope.load_extension("file_browser")
+            telescope.load_extension("emoji")
+            telescope.load_extension("ui-select")
             telescope.load_extension("fzf")
         end,
         keys = {
@@ -214,6 +262,7 @@ require("lazy").setup({
             { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep files" },
             { "<leader>fd", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>", desc = "File browser" },
             { "<leader>bb", "<cmd>Telescope buffers sort_lastused=true<cr>", desc = "Buffer search" },
+            { "<leader>ie", "<cmd>Telescope emoji<cr>", desc = "Emoji insert" },
         },
     },
     {

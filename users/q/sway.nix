@@ -7,13 +7,46 @@
        ${pkgs.playerctl}/bin/playerctl metadata mpris:artUrl \
     | ${pkgs.imv}/bin/imv -w "imv_album_art" -c center
   '';
+  lock_command = pkgs.writeShellScriptBin "lock_command" ''
+    ${pkgs.swaylock}/bin/swaylock \
+        -i $(${pkgs.findutils}/bin/find ~/Pictures/Wallpapers -type f | ${pkgs.coreutils}/bin/shuf -n 1) \
+        --daemonize \
+        --ignore-empty-password \
+        --show-failed-attempts
+  '';
 in {
   home.packages = with pkgs;
     [
       cava
       playerctl
     ]
-    ++ [display_album_art];
+    ++ [display_album_art lock_command];
+
+  services.swayidle = {
+    enable = true;
+    events = [
+      {
+        event = "before-sleep";
+        command = "${lock_command}/bin/lock_command";
+      }
+      {
+        event = "lock";
+        command = "${pkgs.sway}/bin/swaymsg \" output * dpms off \"; ${lock_command}/bin/lock_command";
+      }
+      {
+        event = "unlock";
+        command = "${pkgs.sway}/bin/swaymsg \"output * dpms on\"";
+      }
+    ];
+
+    timeouts = [
+      {
+        timeout = 900;
+        command = "${pkgs.systemd}/bin/loginctl lock-session";
+        resumeCommand = "${pkgs.sway}/bin/swaymsg \"output * dpms on\"";
+      }
+    ];
+  };
 
   programs.waybar = {
     enable = true;
@@ -131,6 +164,9 @@ in {
         "${modifier}+w" = "layout default";
 
         "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp -d)\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
+
+        "${modifier}+l" = "exec systemctl suspend";
+        "${modifier}+Shift+l" = "exec systemctl hybrid-sleep";
       };
       modes = {
         resize = {

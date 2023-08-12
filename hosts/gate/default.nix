@@ -20,6 +20,14 @@
     ./audio.nix
     ./sway.nix
     ./qmk.nix
+    ./syncthing.nix
+  ];
+
+  swapDevices = [
+    {
+      device = "/nix/persist/swapfile";
+      size = 64 * 1024;
+    }
   ];
 
   age.identityPaths = ["/nix/persist/etc/ssh/ssh_host_ed25519_key"];

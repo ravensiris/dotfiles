@@ -2,11 +2,15 @@
   programs.gpg.enable = true;
   home.packages = with pkgs; [
     pinentry-gnome
-    pass
   ];
+
+  programs.password-store = {
+    enable = true;
+    package = pkgs.pass.withExtensions (exts: [exts.pass-otp]);
+  };
 
   home.persistence."/nix/persist/home/q".directories = [
     ".gnupg"
-    ".password-store"
+    ".local/share/password-store"
   ];
 }

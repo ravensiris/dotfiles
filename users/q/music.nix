@@ -17,6 +17,11 @@
     ];
   };
 
+  services.easyeffects = {
+    enable = true;
+    preset = "HD800S";
+  };
+
   programs.beets = {
     enable = false;
     package = pkgs.beets.override {};
