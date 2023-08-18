@@ -16,7 +16,6 @@
     ./docker.nix
     ./gpg.nix
     ./network.nix
-    ./libvirt.nix
     ./audio.nix
     ./sway.nix
   ];
