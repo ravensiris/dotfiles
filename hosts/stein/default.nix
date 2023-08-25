@@ -18,6 +18,7 @@
     ./network.nix
     ./audio.nix
     ./sway.nix
+    ./udev.nix
   ];
 
   age.identityPaths = ["/nix/persist/etc/ssh/ssh_host_ed25519_key"];
@@ -26,6 +27,7 @@
   environment.systemPackages = with pkgs; [
     devenv.packages.x86_64-linux.devenv
     agenix.packages.x86_64-linux.default
+    brave
   ];
 
   fonts.fonts = with pkgs; [

@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   boot.loader = {
     efi = {
-      efiSysMountPoint = "/boot";
+      efiSysMountPoint = "/boot/EFI";
       canTouchEfiVariables = true;
     };
     systemd-boot = {

@@ -41,6 +41,17 @@ require("lazy").setup({
             vim.cmd([[colorscheme tokyonight]])
         end,
     },
+    {
+        "ray-x/navigator.lua",
+        config = function()
+            local navigator = require("navigator")
+            navigator.setup({})
+        end,
+        dependencies = {
+            { "ray-x/guihua.lua", build = "cd lua/fzy && make" },
+            { "neovim/nvim-lspconfig" },
+        },
+    },
     { "nvim-tree/nvim-web-devicons", lazy = true },
     {
         "neovim/nvim-lspconfig",
@@ -170,10 +181,11 @@ require("lazy").setup({
                 credo = { enable = false },
                 elixirls = {
                     enable = true,
-                    tag = "v0.14.6",
+                    branch = "master",
+                    -- tag = "v0.16.0",
                     settings = elixirls.settings({
-                        dialyzerEnabled = false,
-                        enableTestLenses = false,
+                        dialyzerEnabled = true,
+                        enableTestLenses = true,
                     }),
 
                     on_attach = function(client, bufnr)
@@ -211,9 +223,21 @@ require("lazy").setup({
         end,
         keys = {
             { "<leader><leader>", "<cmd>Telescope find_files<cr>", desc = "Find file" },
-            { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep files" },
-            { "<leader>fd", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>", desc = "File browser" },
-            { "<leader>bb", "<cmd>Telescope buffers sort_lastused=true<cr>", desc = "Buffer search" },
+            {
+                "<leader>fg",
+                "<cmd>Telescope live_grep<cr>",
+                desc = "Grep files",
+            },
+            {
+                "<leader>fd",
+                "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>",
+                desc = "File browser",
+            },
+            {
+                "<leader>bb",
+                "<cmd>Telescope buffers sort_lastused=true<cr>",
+                desc = "Buffer search",
+            },
         },
     },
     {

@@ -3,6 +3,46 @@
   pkgs,
   ...
 }: {
+  programs.i3status-rust = {
+    enable = true;
+    bars = {
+      default = {
+        blocks = [
+          {
+            alert = 10.0;
+            block = "disk_space";
+            info_type = "available";
+            interval = 60;
+            path = "/";
+            warning = 20.0;
+          }
+          {
+            block = "memory";
+          }
+          {
+            block = "battery";
+          }
+          {
+            block = "cpu";
+            interval = 1;
+          }
+          {
+            block = "load";
+            format = " $icon $1m ";
+            interval = 1;
+          }
+          {
+            block = "sound";
+          }
+          {
+            block = "time";
+            format = " $timestamp.datetime(f:'%a %d/%m %R') ";
+            interval = 60;
+          }
+        ];
+      };
+    };
+  };
   wayland.windowManager.sway = {
     enable = true;
     extraConfig = ''
@@ -82,8 +122,7 @@
       bars = [
         (lib.mkOptionDefault {
           position = "top";
-          # statusCommand =
-          # "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
+          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
           fonts = {
             names = ["VictorMono Nerd Font"];
             size = 12.0;

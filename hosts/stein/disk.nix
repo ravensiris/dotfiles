@@ -19,7 +19,7 @@
             content = {
               type = "filesystem";
               format = "vfat";
-              mountpoint = "/boot";
+              mountpoint = "/boot/EFI";
               mountOptions = ["defaults"];
             };
           }
@@ -41,11 +41,11 @@
         ];
       };
     });
-    vg_root = {
-      pool = {
+    lvm_vg = {
+      vg_root = {
         type = "lvm_vg";
-        lv_nixos = {
-          root = {
+        lvs = {
+          lv_nixos = {
             size = "100%FREE";
             content = {
               type = "filesystem";
@@ -76,4 +76,3 @@
     };
   };
 }
-

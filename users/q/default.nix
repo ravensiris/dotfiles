@@ -5,6 +5,9 @@
 }: {
   home.packages = with pkgs; [
     htop
+    qbittorrent
+    mpv
+    imv
   ];
   imports = [
     impermanence.nixosModules.home-manager.impermanence
