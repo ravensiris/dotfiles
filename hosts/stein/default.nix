@@ -21,13 +21,27 @@
     ./udev.nix
   ];
 
+  swapDevices = [
+    {
+      device = "/nix/persist/swapfile";
+      size = 16 * 1024;
+    }
+  ];
+
   age.identityPaths = ["/nix/persist/etc/ssh/ssh_host_ed25519_key"];
   time.timeZone = "Europe/Warsaw";
+
+  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.qemu.ovmf.packages = [pkgs.OVMFFull];
+  programs.dconf.enable = true;
+
+  users.users.q.extraGroups = ["libvirtd"];
 
   environment.systemPackages = with pkgs; [
     devenv.packages.x86_64-linux.devenv
     agenix.packages.x86_64-linux.default
     brave
+    virt-manager
   ];
 
   fonts.fonts = with pkgs; [

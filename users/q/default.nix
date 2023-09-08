@@ -22,6 +22,14 @@
     ./ssh.nix
     ./music.nix
   ];
+
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  };
+
   xdg.enable = true;
   home.persistence."/nix/persist/home/q".allowOther = true;
 
