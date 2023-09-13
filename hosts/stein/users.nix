@@ -22,6 +22,7 @@
       "Projects"
       "Documents"
       "Music"
+      "Pictures"
       ".config/BraveSoftware"
     ];
   };

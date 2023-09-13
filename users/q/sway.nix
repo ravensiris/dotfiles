@@ -2,7 +2,27 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  swww_set_wallpapers_per_output = pkgs.writeScript "swww_set_wallpapers_per_output" ''
+    #!${pkgs.bash}/bin/bash
+
+    # Iterate over each image file in the directory
+    for image_file in ~/Pictures/Wallpapers/Current/*; do
+    	# Get the filename without the directory path and file extension
+    	filename=$(basename -- "$image_file")
+    	output_name="''${filename%.*}"
+
+    	# Run the swww command with the appropriate output name
+    	${pkgs.swww}/bin/swww img -o "$output_name" "$image_file"
+    done
+  '';
+in {
+  home.pointerCursor = {
+    name = "Numix-Cursor";
+    package = pkgs.numix-cursor-theme;
+    gtk.enable = true;
+    x11.enable = true;
+  };
   programs.i3status-rust = {
     enable = true;
     bars = {
@@ -53,9 +73,21 @@
       # Use kitty as default terminal
       terminal = "${pkgs.kitty}/bin/kitty";
       menu = "${pkgs.fuzzel}/bin/fuzzel --show-actions";
+      gaps = {
+        inner = 12;
+        outer = 5;
+        smartGaps = true;
+        smartBorders = "no_gaps";
+      };
+      window.titlebar = false;
+      workspaceAutoBackAndForth = true;
       startup = [
         {
           command = "XDG_CONFIG_HOME=/home/q/.config ${pkgs.swaynotificationcenter}/bin/swaync";
+          always = true;
+        }
+        {
+          command = "${pkgs.swww}/bin/swww init; ${swww_set_wallpapers_per_output}";
           always = true;
         }
       ];

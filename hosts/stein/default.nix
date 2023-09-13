@@ -21,6 +21,12 @@
     ./udev.nix
   ];
 
+  services.printing.enable = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
+  # for a WiFi printer
+  services.avahi.openFirewall = true;
+
   swapDevices = [
     {
       device = "/nix/persist/swapfile";
@@ -42,6 +48,9 @@
     agenix.packages.x86_64-linux.default
     brave
     virt-manager
+    brightnessctl
+    wdisplays
+    swww
   ];
 
   fonts.fonts = with pkgs; [
