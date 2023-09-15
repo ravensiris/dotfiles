@@ -48,6 +48,7 @@
     swtpm
     win-virtio
     quickemu
+    libguestfs-with-appliance
   ];
 
   virtualisation.libvirtd.enable = true;

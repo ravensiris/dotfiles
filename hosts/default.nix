@@ -6,8 +6,13 @@
   nur,
   devenv,
   agenix,
+  nixpkgs,
   ...
-}: {
+}: let
+  myOverlay = final: prev: {
+    anime4k = prev.callPackage ../pkgs/anime4k.nix {};
+  };
+in {
   gate = lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = {inherit impermanence devenv agenix;};
@@ -19,7 +24,7 @@
       ./gate
       home-manager.nixosModules.home-manager
       {
-        nixpkgs.overlays = [nur.overlay];
+        nixpkgs.overlays = [nur.overlay myOverlay];
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
 

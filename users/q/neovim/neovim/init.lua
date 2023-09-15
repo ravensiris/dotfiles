@@ -27,10 +27,23 @@ require("lazy").setup({
         "nvim-lualine/lualine.nvim",
         config = function()
             local lualine = require("lualine")
-            lualine.setup({ options = { theme = "tokyonight" } })
+            lualine.setup({
+                options = { theme = "tokyonight" },
+            })
         end,
         dependencies = {
             "folke/tokyonight.nvim",
+        },
+    },
+    {
+        "ray-x/navigator.lua",
+        config = function()
+            local navigator = require("navigator")
+            navigator.setup({})
+        end,
+        dependencies = {
+            { "ray-x/guihua.lua", build = "cd lua/fzy && make" },
+            { "neovim/nvim-lspconfig" },
         },
     },
     {
@@ -61,7 +74,7 @@ require("lazy").setup({
             local lspconfig = require("lspconfig")
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities.textDocument.completion.completionItem.snippetSupport = true
-            lspconfig.rust_analyzer.setup({})
+            -- lspconfig.rust_analyzer.setup({})
             lspconfig.pyright.setup({})
             lspconfig.tsserver.setup({})
             lspconfig.html.setup({
@@ -261,10 +274,26 @@ require("lazy").setup({
         end,
         keys = {
             { "<leader><leader>", "<cmd>Telescope find_files<cr>", desc = "Find file" },
-            { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep files" },
-            { "<leader>fd", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>", desc = "File browser" },
-            { "<leader>bb", "<cmd>Telescope buffers sort_lastused=true<cr>", desc = "Buffer search" },
-            { "<leader>ie", "<cmd>Telescope emoji<cr>", desc = "Emoji insert" },
+            {
+                "<leader>fg",
+                "<cmd>Telescope live_grep<cr>",
+                desc = "Grep files",
+            },
+            {
+                "<leader>fd",
+                "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>",
+                desc = "File browser",
+            },
+            {
+                "<leader>bb",
+                "<cmd>Telescope buffers sort_lastused=true<cr>",
+                desc = "Buffer search",
+            },
+            {
+                "<leader>ie",
+                "<cmd>Telescope emoji<cr>",
+                desc = "Emoji insert",
+            },
         },
     },
     {

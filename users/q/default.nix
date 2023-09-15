@@ -7,6 +7,7 @@
     htop
     p7zip
     qbittorrent
+    imv
   ];
   imports = [
     impermanence.nixosModules.home-manager.impermanence
