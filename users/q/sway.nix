@@ -13,7 +13,7 @@
     	output_name="''${filename%.*}"
 
     	# Run the swww command with the appropriate output name
-    	${pkgs.swww}/bin/swww img -o "$output_name" "$image_file"
+    	${pkgs.swww}/bin/swww img -o "$output_name" "$image_file" || continue
     done
   '';
 in {

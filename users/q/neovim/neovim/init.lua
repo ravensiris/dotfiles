@@ -179,8 +179,9 @@ require("lazy").setup({
 
             elixir.setup({
                 credo = { enable = false },
+                nextls = { enable = true },
                 elixirls = {
-                    enable = true,
+                    enable = false,
                     branch = "master",
                     -- tag = "v0.16.0",
                     settings = elixirls.settings({
