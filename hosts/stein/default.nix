@@ -21,6 +21,10 @@
     ./udev.nix
   ];
 
+  powerManagement.powertop.enable = true;
+  powerManagement.cpuFreqGovernor = "powersave";
+  services.tlp.enable = true;
+
   services.printing.enable = true;
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
@@ -55,6 +59,7 @@
     brightnessctl
     wdisplays
     swww
+    powertop
   ];
 
   fonts.fonts = with pkgs; [

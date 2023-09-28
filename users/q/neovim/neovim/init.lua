@@ -45,7 +45,11 @@ require("lazy").setup({
         "ray-x/navigator.lua",
         config = function()
             local navigator = require("navigator")
-            navigator.setup({})
+            navigator.setup({
+                lsp = {
+                    format_on_save = { disable = { "elixir" } },
+                },
+            })
         end,
         dependencies = {
             { "ray-x/guihua.lua", build = "cd lua/fzy && make" },
@@ -72,6 +76,47 @@ require("lazy").setup({
                         },
                     },
                 },
+            })
+        end,
+    },
+    {
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        version = "2.0.0", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        -- install jsregexp (optional!).
+        build = "make install_jsregexp",
+        dependencies = { "rafamadriz/friendly-snippets" },
+        config = function()
+            local ls = require("luasnip")
+            local s = ls.snippet
+            local sn = ls.snippet_node
+            local t = ls.text_node
+            local i = ls.insert_node
+            local f = ls.function_node
+            local c = ls.choice_node
+            local d = ls.dynamic_node
+            local r = ls.restore_node
+            local l = require("luasnip.extras").lambda
+            local rep = require("luasnip.extras").rep
+            local p = require("luasnip.extras").partial
+            local m = require("luasnip.extras").match
+            local n = require("luasnip.extras").nonempty
+            local dl = require("luasnip.extras").dynamic_lambda
+            local fmt = require("luasnip.extras.fmt").fmt
+            local fmta = require("luasnip.extras.fmt").fmta
+            local types = require("luasnip.util.types")
+            local conds = require("luasnip.extras.conditions")
+            local conds_expand = require("luasnip.extras.conditions.expand")
+            ls.setup({})
+            ls.add_snippets("all", {
+                s("ternary", {
+                    -- equivalent to "${1:cond} ? ${2:then} : ${3:else}"
+                    i(1, "cond"),
+                    t(" ? "),
+                    i(2, "then"),
+                    t(" : "),
+                    i(3, "else"),
+                }),
             })
         end,
     },
@@ -121,13 +166,14 @@ require("lazy").setup({
             null_ls.setup({
                 sources = {
                     null_ls.builtins.formatting.stylua.with({ extra_args = { "--indent-type", "Spaces" } }),
-                    null_ls.builtins.formatting.mix,
                     null_ls.builtins.formatting.alejandra,
+                    null_ls.builtins.formatting.mix,
                     null_ls.builtins.formatting.black,
                     null_ls.builtins.formatting.isort,
                     null_ls.builtins.formatting.ruff,
                     null_ls.builtins.diagnostics.mypy,
                     null_ls.builtins.formatting.prettier,
+                    null_ls.builtins.diagnostics.eslint,
                 },
                 on_attach = on_attach,
             })
@@ -147,6 +193,16 @@ require("lazy").setup({
         },
         config = function()
             local cmp = require("cmp")
+
+            local has_words_before = function()
+                unpack = unpack or table.unpack
+                local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+                return col ~= 0
+                    and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+            end
+
+            local luasnip = require("luasnip")
+
             cmp.setup({
                 snippet = {
                     -- REQUIRED - you must specify a snippet engine
@@ -160,46 +216,37 @@ require("lazy").setup({
                     ["<C-Space>"] = cmp.mapping.complete(),
                     ["<C-e>"] = cmp.mapping.abort(),
                     ["<CR>"] = cmp.mapping.confirm({ select = true }),
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+                            -- they way you will only jump inside the snippet region
+                        elseif luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        elseif has_words_before() then
+                            cmp.complete()
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
                 }),
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
+                    { name = "luasnip" },
                 }),
                 experimental = { ghost_text = true },
             })
         end,
-    },
-    {
-        "elixir-tools/elixir-tools.nvim",
-        version = "*",
-        lazy = false,
-        event = { "BufReadPre", "BufNewFile" },
-        config = function()
-            local elixir = require("elixir")
-            local elixirls = require("elixir.elixirls")
-
-            elixir.setup({
-                credo = { enable = false },
-                nextls = { enable = true },
-                elixirls = {
-                    enable = false,
-                    branch = "master",
-                    -- tag = "v0.16.0",
-                    settings = elixirls.settings({
-                        dialyzerEnabled = true,
-                        enableTestLenses = true,
-                    }),
-
-                    on_attach = function(client, bufnr)
-                        vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
-                        vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
-                        vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
-                    end,
-                },
-            })
-        end,
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
     },
     {
         "nvim-telescope/telescope.nvim",

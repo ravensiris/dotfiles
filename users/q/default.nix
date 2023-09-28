@@ -8,6 +8,8 @@
     qbittorrent
     mpv
     imv
+    p7zip
+    gimp
   ];
   imports = [
     impermanence.nixosModules.home-manager.impermanence
