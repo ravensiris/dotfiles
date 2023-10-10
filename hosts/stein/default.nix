@@ -21,6 +21,14 @@
     ./udev.nix
   ];
 
+  services.fprintd = {
+    enable = true;
+  };
+
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
   powerManagement.powertop.enable = true;
   powerManagement.cpuFreqGovernor = "powersave";
   services.tlp.enable = true;
@@ -43,6 +51,7 @@
 
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.ovmf.packages = [pkgs.OVMFFull];
+  virtualisation.libvirtd.qemu.ovmf.enable = true;
   programs.dconf.enable = true;
 
   users.users.q.extraGroups = ["libvirtd"];

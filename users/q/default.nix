@@ -10,6 +10,10 @@
     imv
     p7zip
     gimp
+    inkscape
+    element-desktop
+    nvd
+    libreoffice
   ];
   imports = [
     impermanence.nixosModules.home-manager.impermanence
@@ -25,6 +29,8 @@
     ./music.nix
   ];
 
+  services.udiskie.enable = true;
+
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
       autoconnect = ["qemu:///system"];
@@ -34,6 +40,11 @@
 
   xdg.enable = true;
   home.persistence."/nix/persist/home/q".allowOther = true;
+  home.persistence."/nix/persist/home/q" = {
+    directories = [
+      ".config/Element"
+    ];
+  };
 
   home.stateVersion = "23.05";
 }
