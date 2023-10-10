@@ -48,6 +48,7 @@ require("lazy").setup({
             navigator.setup({
                 lsp = {
                     format_on_save = { disable = { "elixir" } },
+                    disable_lsp = { "elixirls" },
                 },
             })
         end,
