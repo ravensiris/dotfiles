@@ -29,6 +29,11 @@
     ./music.nix
   ];
 
+  services.easyeffects = {
+    enable = true;
+    preset = "HD800S";
+  };
+
   services.udiskie.enable = true;
 
   dconf.settings = {
