@@ -1,50 +1,21 @@
-#cava {
-  font-size: 12px;
-}
-
-#mpris {
-	/* moon -> blue6 */
-	background: #bb9af7;
-	/* moon -> blue7 */
-	color: #394b70;
-	margin-right: 16px;
-}
-
-#cpu {
-	/* moon -> magenta */
-	background: #b4f9f8;
-	/* moon -> blue7 */
-	color: #394b70;
-	margin-right: 16px;
-}
-
 * {
     border: none;
     border-radius: 0;
     font-family: Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    min-height: 46px;
-}
-
-window#waybar {
-	/* moon -> bg */
-    background: #222436;
-	/* moon -> bg_highlight */
-    border-bottom: 3px solid #2f334d;
-	/* moon -> fg */
-    color: #c8d3f5;
+    font-size: 16px;
 }
 
 tooltip {
   background: rgba(43, 48, 59, 0.5);
   border: 1px solid rgba(100, 114, 125, 0.5);
 }
+
 tooltip label {
   color: white;
 }
 
 #workspaces button {
-    padding: 0 16px;
+    padding: 0.25rem 0.5rem;
     background: transparent;
 	/* moon -> fg */
     color: #c8d3f5;
@@ -58,13 +29,41 @@ tooltip label {
     border-bottom: 3px solid #3e68d7;
 }
 
-#mode, #battery, #temperature, #cpu, #mpris {
-    padding: 0 16px;
+window#waybar {
+	/* moon -> bg */
+    background: #222436;
+	/* moon -> bg_highlight */
+    border-bottom: 3px solid #2f334d;
+	/* moon -> fg */
+    color: #c8d3f5;
+}
+
+#tray {
+	background: #7aa2f7;
+	padding: 0.5rem;
+    border-bottom: 3px solid #2f334d;
+}
+
+#mpris, #cpu, #battery, #memory {
+	margin-right: 8px;
+	padding: 0 0.825rem;
+    border-bottom: 3px solid #2f334d;
+}
+
+#mpris {
+	background: #bb9af7;
+	color: #394b70;
+	margin-left: 8px;
+}
+
+#memory {
+	background: #2ac3de;
+	color: #394b70;
 }
 
 #cpu {
-	/* moon -> cyan */
-
+	background: #b4f9f8;
+	color: #394b70;
 }
 
 #mode {
@@ -73,8 +72,8 @@ tooltip label {
 }
 
 #battery {
-    background-color: #ffffff;
-    color: black;
+    background-color: #9ece6a;
+	color: #394b70;
 }
 
 #battery.charging {

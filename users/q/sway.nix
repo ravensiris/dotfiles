@@ -16,53 +16,145 @@
     	${pkgs.swww}/bin/swww img -o "$output_name" "$image_file" || continue
     done
   '';
+  display_album_art = pkgs.writeShellScriptBin "display_album_art" ''
+       ${pkgs.playerctl}/bin/playerctl metadata mpris:artUrl \
+    | ${pkgs.imv}/bin/imv -w "imv_album_art" -c center
+  '';
+  lock_command = pkgs.writeShellScriptBin "lock_command" ''
+    ${pkgs.swaylock}/bin/swaylock \
+        -i $(${pkgs.findutils}/bin/find ~/Pictures/Wallpapers -type f | ${pkgs.coreutils}/bin/shuf -n 1) \
+        --daemonize \
+        --ignore-empty-password \
+        --show-failed-attempts
+  '';
 in {
+  home.packages = with pkgs; [playerctl];
+
   home.pointerCursor = {
     name = "Numix-Cursor";
     package = pkgs.numix-cursor-theme;
     gtk.enable = true;
     x11.enable = true;
   };
-  programs.i3status-rust = {
+
+  services.kanshi = {
     enable = true;
-    bars = {
-      default = {
-        blocks = [
+    profiles = {
+      undocked = {
+        outputs = [
           {
-            alert = 10.0;
-            block = "disk_space";
-            info_type = "available";
-            interval = 60;
-            path = "/";
-            warning = 20.0;
+            criteria = "eDP-1";
+            status = "enable";
           }
           {
-            block = "memory";
+            criteria = "*";
+            status = "enable";
+          }
+        ];
+      };
+
+      docked = {
+        exec = [
+          "for workspace in {1..5}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace, move workspace to 'ASUSTek COMPUTER INC ASUS VG32V 0x0000B75D'\"; done"
+          "for workspace in {1..5}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace output 'ASUSTek COMPUTER INC ASUS VG32V 0x0000B75D'\"; done"
+          "for workspace in {6..10}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace, move workspace to 'LG Electronics LG SDQHD 205NTNH5W679'\"; done"
+          "for workspace in {6..10}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace output 'LG Electronics LG SDQHD 205NTNH5W679'\"; done"
+        ];
+        outputs = [
+          {
+            criteria = "eDP-1";
+            status = "disable";
           }
           {
-            block = "battery";
+            criteria = "ASUSTek COMPUTER INC ASUS VG32V 0x0000B75D";
+            position = "0,1440";
           }
           {
-            block = "cpu";
-            interval = 1;
-          }
-          {
-            block = "load";
-            format = " $icon $1m ";
-            interval = 1;
-          }
-          {
-            block = "sound";
-          }
-          {
-            block = "time";
-            format = " $timestamp.datetime(f:'%a %d/%m %R') ";
-            interval = 60;
+            criteria = "LG Electronics LG SDQHD 205NTNH5W679";
+            position = "2560,0";
           }
         ];
       };
     };
   };
+
+  programs.waybar = {
+    enable = true;
+    systemd.enable = true;
+    style = ./waybar.css;
+    settings = {
+      sideBar = {
+        layer = "top";
+        position = "top";
+        height = 16;
+        output = [
+          "LG Electronics LG SDQHD 205NTNH5W679"
+        ];
+        modules-left = ["sway/workspaces"];
+
+        "sway/workspaces" = {
+          disable-scroll = true;
+          all-outputs = false;
+        };
+      };
+      mainBar = {
+        layer = "top";
+        position = "top";
+        height = 16;
+        output = [
+          "ASUSTek COMPUTER INC ASUS VG32V 0x0000B75D"
+          "eDP-1"
+        ];
+        modules-left = ["sway/workspaces" "mpris"];
+        modules-center = ["clock"];
+        modules-right = ["battery" "memory" "cpu" "tray"];
+
+        battery = {
+          format = "{capacity}% {icon}";
+          format-icons = [" " " " " " " " " "];
+          interval = 60;
+          states = {
+            warning = 30;
+            critical = 15;
+          };
+        };
+
+        memory = {
+          interval = 30;
+          format = "{}%  ";
+          max-length = 10;
+        };
+
+        tray = {
+          icon-size = 24;
+          spacing = 8;
+        };
+
+        "sway/workspaces" = {
+          disable-scroll = true;
+          all-outputs = false;
+        };
+
+        mpris = {
+          interval = 15;
+          format = "<span font_family=\"Victor Mono Nerd Font\"> </span>{album} · {title}";
+          on-click = "${display_album_art}/bin/display_album_art";
+        };
+
+        cpu.format = "{usage}% ";
+
+        clock = {
+          format = "   {:%R}";
+          tooltip-format = "<tt><span>{calendar}</span></tt>";
+          calendar.format = {
+            days = "<span color='#ecc6d9'><b>{}</b></span>";
+            today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+          };
+        };
+      };
+    };
+  };
+
   wayland.windowManager.sway = {
     enable = true;
     extraConfig = ''
@@ -80,6 +172,14 @@ in {
         smartBorders = "no_gaps";
       };
       window.titlebar = false;
+      window.commands = [
+        {
+          command = "floating enable, resize set 512 512";
+          criteria = {
+            title = "imv_album_art";
+          };
+        }
+      ];
       workspaceAutoBackAndForth = true;
       startup = [
         {
@@ -87,7 +187,14 @@ in {
           always = true;
         }
         {
-          command = "${pkgs.swww}/bin/swww init; ${swww_set_wallpapers_per_output}";
+          command = "${pkgs.swww}/bin/swww init";
+        }
+        {
+          command = "${swww_set_wallpapers_per_output}";
+          always = true;
+        }
+        {
+          command = "systemctl --user restart waybar";
           always = true;
         }
       ];
@@ -149,18 +256,9 @@ in {
       fonts = {
         names = ["VictorMono Nerd Font"];
         style = "Regular";
-        size = 18.0;
+        size = 16.0;
       };
-      bars = [
-        (lib.mkOptionDefault {
-          position = "top";
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
-          fonts = {
-            names = ["VictorMono Nerd Font"];
-            size = 12.0;
-          };
-        })
-      ];
+      bars = [];
     };
   };
 }
