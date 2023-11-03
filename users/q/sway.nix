@@ -75,6 +75,25 @@ in {
           }
         ];
       };
+
+      docked_secondary = {
+        exec = [
+          "for workspace in {1..5}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace, move workspace to 'GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190'\"; done"
+          "for workspace in {1..5}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace output 'GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190'\"; done"
+          "for workspace in {6..10}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace, move workspace to 'eDP-1'\"; done"
+          "for workspace in {6..10}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace output 'eDP-1'\"; done"
+        ];
+        outputs = [
+          {
+            criteria = "eDP-1";
+            position = "3840,960";
+          }
+          {
+            criteria = "GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190";
+            position = "0,0";
+          }
+        ];
+      };
     };
   };
 
@@ -89,6 +108,7 @@ in {
         height = 16;
         output = [
           "LG Electronics LG SDQHD 205NTNH5W679"
+          "GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190"
         ];
         modules-left = ["sway/workspaces"];
 
