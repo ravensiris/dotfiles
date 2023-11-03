@@ -337,4 +337,5 @@ require("lazy").setup({
             "nvim-lua/plenary.nvim",
         },
     },
+    { "akinsho/git-conflict.nvim", version = "*", config = true },
 })
