@@ -21,6 +21,10 @@
     ./sway.nix
   ];
 
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
   age.identityPaths = ["/nix/persist/etc/ssh/ssh_host_ed25519_key"];
   time.timeZone = "Europe/Warsaw";
 
