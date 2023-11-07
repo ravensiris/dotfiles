@@ -40,6 +40,19 @@ in {
   services.kanshi = {
     enable = true;
     profiles = {
+      desktop = {
+        outputs = [
+          {
+            criteria = "ASUSTek COMPUTER INC ASUS VG32V 0x0000B75D";
+            position = "0,1440";
+          }
+          {
+            criteria = "LG Electronics LG SDQHD 205NTNH5W679";
+            position = "2560,0";
+          }
+        ];
+      };
+
       undocked = {
         outputs = [
           {
