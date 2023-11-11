@@ -29,6 +29,7 @@ in {
       unstableModule
       ./gate
       home-manager.nixosModules.home-manager
+      (import ../pkgs)
       {
         nixpkgs.overlays = [nur.overlay unstableOverlay];
         home-manager.useGlobalPkgs = true;
