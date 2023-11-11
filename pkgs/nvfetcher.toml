@@ -1,0 +1,7 @@
+[anime4k]
+src.git = "https://github.com/bloc97/Anime4K"
+fetch.github = "bloc97/Anime4K"
+
+[khinsider]
+src.git = "https://github.com/obskyr/khinsider"
+fetch.github = "obskyr/khinsider"
