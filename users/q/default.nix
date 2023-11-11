@@ -14,6 +14,7 @@
     element-desktop
     nvd
     libreoffice
+    khinsider
   ];
   imports = [
     impermanence.nixosModules.home-manager.impermanence
