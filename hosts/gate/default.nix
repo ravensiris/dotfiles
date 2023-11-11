@@ -19,6 +19,7 @@
     ./libvirt.nix
     ./audio.nix
     ./sway.nix
+    ./syncthing.nix
   ];
 
   services.devmon.enable = true;
