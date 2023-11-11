@@ -216,6 +216,10 @@ in {
       workspaceAutoBackAndForth = true;
       startup = [
         {
+          command = "systemctl --user restart kanshi";
+          always = true;
+        }
+        {
           command = "XDG_CONFIG_HOME=/home/q/.config ${pkgs.swaynotificationcenter}/bin/swaync";
           always = true;
         }
