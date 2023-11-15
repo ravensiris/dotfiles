@@ -64,6 +64,11 @@ require("lazy").setup({
         config = function()
             local lspconfig = require("lspconfig")
             lspconfig.pyright.setup({})
+            lspconfig.html.setup({
+                filetypes = { "html", "heex" },
+                cmd = { "html-languageserver", "--stdio" },
+            })
+            lspconfig.tailwindcss.setup({})
             lspconfig.lua_ls.setup({
                 settings = {
                     Lua = {
