@@ -1,5 +1,7 @@
 local set = vim.opt
 set.tabstop = 4
+set.expandtab = true
+set.smartindent = true
 set.softtabstop = 4
 set.shiftwidth = 4
 vim.g.mapleader = " "
