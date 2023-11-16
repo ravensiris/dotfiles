@@ -15,6 +15,7 @@
     nvd
     libreoffice
     khinsider
+    nmap
   ];
   imports = [
     impermanence.nixosModules.home-manager.impermanence
