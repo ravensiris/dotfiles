@@ -3,17 +3,36 @@
   pkgs,
   ...
 }: let
-  swww_set_wallpapers_per_output = pkgs.writeScript "swww_set_wallpapers_per_output" ''
-    #!${pkgs.bash}/bin/bash
-
-    # Iterate over each image file in the directory
-    for image_file in ~/Pictures/Wallpapers/Current/*; do
-    	# Get the filename without the directory path and file extension
-    	filename=$(basename -- "$image_file")
-    	output_name="''${filename%.*}"
-
-    	# Run the swww command with the appropriate output name
-    	${pkgs.swww}/bin/swww img -o "$output_name" "$image_file" || continue
+  swww_set_wallpapers_per_output = pkgs.writeShellScriptBin "swww_set_wallpapers_per_output" ''
+    output_dirs=$(${pkgs.sway}/bin/swaymsg -r -t get_outputs | ${pkgs.jq}/bin/jq -c 'map(.make + " " + .model + " " + .serial + "[" + (.current_mode.width|tostring) + "x" + (.current_mode.height|tostring) + "]")' | ${pkgs.jq}/bin/jq -r '.[] | @base64')
+    for output_dir_b64 in $output_dirs; do
+      output_dir=$(echo $output_dir_b64 | base64 --decode)
+      wallpaper_dir="$HOME/Pictures/Wallpapers/$output_dir"
+      if [ -d "$wallpaper_dir" ]; then
+          wallpaper_path=$(find "$wallpaper_dir" -type f | shuf -n 1)
+          if [ "$wallpaper_path" = "" ]; then
+              echo "No wallpapers found in $wallpaper_dir!"
+              ${pkgs.libnotify}/bin/notify-send \
+                  -u critical \
+                  "Failed to set wallpaper!" \
+                  "No wallpapers found in $wallpaper_dir!"
+          else
+              output_name=$(${pkgs.sway}/bin/swaymsg -r -t get_outputs | ${pkgs.jq}/bin/jq -c -r '.[] | select((.make + " " + .model + " " + .serial + "[" + (.current_mode.width|tostring) + "x" + (.current_mode.height|tostring) + "]") | contains("'"$output_dir"'")).name')
+              echo "Setting wallpaper $wallpaper_path for $output_name"
+              ${pkgs.swww}/bin/swww img -o "$output_name" "$wallpaper_path" \
+              || (echo "Failed setting wallpaper during swww call(OUTPUT=$output_name, WALLPAPER_PATH=$wallpaper_path)" \
+              && ${pkgs.libnotify}/bin/notify-send \
+                  -u critical \
+                  "Failed to set wallpaper!" \
+                  "Failed during swww call!")
+          fi
+      else
+          echo "'$wallpaper_dir' doesn't exist!"
+          ${pkgs.libnotify}/bin/notify-send \
+              -u critical \
+              "Failed to set wallpaper!" \
+              "'$wallpaper_dir' doesn't exist!"
+      fi
     done
   '';
   display_album_art = pkgs.writeShellScriptBin "display_album_art" ''
@@ -28,7 +47,7 @@
         --show-failed-attempts
   '';
 in {
-  home.packages = with pkgs; [playerctl];
+  home.packages = with pkgs; [playerctl swww] ++ [swww_set_wallpapers_per_output];
 
   home.pointerCursor = {
     name = "Numix-Cursor";
@@ -225,9 +244,10 @@ in {
         }
         {
           command = "${pkgs.swww}/bin/swww init";
+          always = true;
         }
         {
-          command = "${swww_set_wallpapers_per_output}";
+          command = "${swww_set_wallpapers_per_output}/bin/swww_set_wallpapers_per_output";
           always = true;
         }
         {
