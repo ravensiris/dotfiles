@@ -24,6 +24,7 @@
       "Sync"
       ".config/syncthing"
       "Music"
+      "Pictures"
     ];
   };
 }
