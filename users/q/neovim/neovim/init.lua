@@ -357,4 +357,44 @@ require("lazy").setup({
         },
     },
     { "akinsho/git-conflict.nvim", version = "*", config = true },
+    {
+        "yorickpeterse/nvim-window",
+        version = "*",
+        config = function()
+            local nvim_window = require("nvim-window")
+            nvim_window.setup({
+                -- The characters available for hinting windows.
+                chars = {
+                    "n",
+                    "e",
+                    "i",
+                    "o",
+                    "l",
+                    "u",
+                    "y",
+                },
+
+                -- A group to use for overwriting the Normal highlight group in the floating
+                -- window. This can be used to change the background color.
+                normal_hl = "Normal",
+
+                -- The highlight group to apply to the line that contains the hint characters.
+                -- This is used to make them stand out more.
+                hint_hl = "Bold",
+
+                -- The border style to use for the floating window.
+                border = "single",
+            })
+        end,
+        keys = {
+            {
+                "<C-w><C-w>",
+                function()
+                    local nvim_window = require("nvim-window")
+                    nvim_window.pick()
+                end,
+                desc = "Switch window",
+            },
+        },
+    },
 })
