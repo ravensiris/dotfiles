@@ -7,9 +7,9 @@
       SUB_OPERATION="$3"
       if [[ "$GUEST_NAME" == "win11"* ]]; then
         if [[ "$OPERATION" == "started" ]]; then
-          systemctl set-property --runtime -- system.slice AllowedCPUs=11,23
-          systemctl set-property --runtime -- user.slice AllowedCPUs=11,23
-          systemctl set-property --runtime -- init.scope AllowedCPUs=11,23
+          systemctl set-property --runtime -- system.slice AllowedCPUs=6-10,18-22
+          systemctl set-property --runtime -- user.slice AllowedCPUs=6-10,18-22
+          systemctl set-property --runtime -- init.scope AllowedCPUs=6-10,18-22
         fi
         if [[ "$OPERATION" == "stopped" ]]; then
           systemctl set-property --runtime -- user.slice AllowedCPUs=0-23
@@ -49,6 +49,11 @@
     win-virtio
     quickemu
   ];
+
+  boot.kernel.sysctl = {
+    "vm.nr_hugepages" = 0;
+    "vm.nr_overcommit_hugepages" = 16384;
+  };
 
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.swtpm.enable = true;
