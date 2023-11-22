@@ -68,7 +68,7 @@ require("lazy").setup({
             lspconfig.pyright.setup({})
             lspconfig.html.setup({
                 filetypes = { "html", "heex" },
-                cmd = { "html-languageserver", "--stdio" },
+                cmd = { "vscode-html-language-server", "--stdio" },
             })
             lspconfig.tailwindcss.setup({})
             lspconfig.lua_ls.setup({
