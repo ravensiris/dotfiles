@@ -399,6 +399,7 @@ require("lazy").setup({
                     component_separators = "",
                     section_separators = "",
                     theme = "palenight",
+                    globalstatus = true,
                 },
                 sections = {
                     -- these are to remove the defaults
