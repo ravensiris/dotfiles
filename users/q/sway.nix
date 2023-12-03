@@ -9,7 +9,7 @@
       output_dir=$(echo $output_dir_b64 | base64 --decode)
       wallpaper_dir="$HOME/Pictures/Wallpapers/$output_dir"
       if [ -d "$wallpaper_dir" ]; then
-          wallpaper_path=$(find "$wallpaper_dir" -type f | shuf -n 1)
+          wallpaper_path=$(find -L "$wallpaper_dir" -type f | shuf -n 1)
           if [ "$wallpaper_path" = "" ]; then
               echo "No wallpapers found in $wallpaper_dir!"
               ${pkgs.libnotify}/bin/notify-send \
