@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.gpg.enable = true;
   home.packages = with pkgs; [
-    pinentry-gnome
+    pinentry-qt
     (pass.withExtensions (ext: with ext; [pass-otp]))
   ];
 
