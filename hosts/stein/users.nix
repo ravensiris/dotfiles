@@ -9,7 +9,7 @@
 
   programs.fish.enable = true;
   users.users.q = {
-    passwordFile = config.age.secrets.q.path;
+    hashedPasswordFile = config.age.secrets.q.path;
     isNormalUser = true;
     extraGroups = ["wheel" "libvirtd" "docker" "adbusers" "input"];
     shell = pkgs.fish;

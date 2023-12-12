@@ -34,7 +34,7 @@
     agenix.packages.x86_64-linux.default
   ];
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     migu
     baekmuk-ttf
     nanum
@@ -49,5 +49,5 @@
   nix.settings.substituters = ["https://nix-community.cachix.org" "https://cache.nixos.org"];
   nix.settings.trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
   networking.hostName = "gate";
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }
