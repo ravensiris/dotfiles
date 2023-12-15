@@ -22,6 +22,11 @@
     ./syncthing.nix
   ];
 
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs29-pgtk;
+  };
+
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;

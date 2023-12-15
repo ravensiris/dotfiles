@@ -1,6 +1,7 @@
 {
   pkgs,
   impermanence,
+  config,
   ...
 }: {
   home.packages = with pkgs; [
@@ -50,7 +51,13 @@
   home.persistence."/nix/persist/home/q" = {
     directories = [
       ".config/Element"
+      ".doom.d"
+      ".config/emacs"
     ];
+  };
+
+  home.file = {
+    ".emacs.d".source = config.lib.file.mkOutOfStoreSymlink "/home/q/.config/emacs";
   };
 
   home.stateVersion = "23.11";

@@ -21,6 +21,11 @@
     ./udev.nix
   ];
 
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs29-pgtk;
+  };
+
   services.fprintd = {
     enable = true;
   };
