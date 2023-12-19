@@ -17,6 +17,7 @@
     libreoffice
     khinsider
     nmap
+    obs-studio
   ];
   imports = [
     impermanence.nixosModules.home-manager.impermanence
