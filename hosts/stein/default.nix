@@ -21,6 +21,11 @@
     ./udev.nix
   ];
 
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
+
   services.emacs = {
     enable = true;
     package = pkgs.emacs29-pgtk;
