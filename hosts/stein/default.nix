@@ -40,7 +40,7 @@
   services.udisks2.enable = true;
 
   powerManagement.powertop.enable = true;
-  powerManagement.cpuFreqGovernor = "powersave";
+  powerManagement.cpuFreqGovernor = "performance";
   services.tlp.enable = true;
 
   services.printing.enable = true;
