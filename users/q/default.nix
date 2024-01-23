@@ -18,6 +18,7 @@
     khinsider
     nmap
     obs-studio
+    kdenlive
   ];
   imports = [
     impermanence.nixosModules.home-manager.impermanence
