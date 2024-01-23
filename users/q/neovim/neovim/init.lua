@@ -66,11 +66,6 @@ require("lazy").setup({
         config = function()
             local lspconfig = require("lspconfig")
             lspconfig.pyright.setup({})
-            lspconfig.html.setup({
-                filetypes = { "html", "heex" },
-                cmd = { "vscode-html-language-server", "--stdio" },
-            })
-            lspconfig.tailwindcss.setup({})
             lspconfig.lua_ls.setup({
                 settings = {
                     Lua = {
@@ -116,16 +111,6 @@ require("lazy").setup({
             local conds = require("luasnip.extras.conditions")
             local conds_expand = require("luasnip.extras.conditions.expand")
             ls.setup({})
-            ls.add_snippets("all", {
-                s("ternary", {
-                    -- equivalent to "${1:cond} ? ${2:then} : ${3:else}"
-                    i(1, "cond"),
-                    t(" ? "),
-                    i(2, "then"),
-                    t(" : "),
-                    i(3, "else"),
-                }),
-            })
         end,
     },
     {
