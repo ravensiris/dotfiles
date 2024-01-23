@@ -19,6 +19,7 @@
     lua-language-server
     gnumake
     gcc
+    elixir-ls
   ];
 
   home.persistence."/nix/persist/home/q" = {
