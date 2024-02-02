@@ -83,6 +83,9 @@
     wdisplays
     swww
     powertop
+    meshlab
+    f3d
+    openscad
   ];
 
   fonts.packages = with pkgs; [
