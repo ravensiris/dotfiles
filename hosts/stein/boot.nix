@@ -23,4 +23,12 @@
   hardware.enableRedistributableFirmware = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
+
+  boot.kernelParams = ["resume=/dev/vg_root/lv_swap"];
+  powerManagement.powerDownCommands = ''
+    rmmod ath11k_pci
+  '';
+  powerManagement.powerUpCommands = ''
+    modprobe ath11k_pci
+  '';
 }
