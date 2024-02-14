@@ -57,8 +57,7 @@
 
   swapDevices = [
     {
-      device = "/nix/persist/swapfile";
-      size = 16 * 1024;
+      device = "/dev/mapper/vg_root-lv_swap";
     }
   ];
 
