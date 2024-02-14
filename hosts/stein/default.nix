@@ -21,6 +21,8 @@
     ./udev.nix
   ];
 
+  hardware.keyboard.qmk.enable = true;
+
   programs.wireshark = {
     enable = true;
     package = pkgs.wireshark;
