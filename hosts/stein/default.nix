@@ -70,6 +70,7 @@
   programs.dconf.enable = true;
 
   users.users.q.extraGroups = ["libvirtd"];
+  programs.adb.enable = true;
 
   environment.systemPackages = with pkgs; [
     devenv.packages.x86_64-linux.devenv
@@ -87,6 +88,8 @@
     meshlab
     f3d
     openscad
+    jmtpfs
+    iotop
   ];
 
   fonts.packages = with pkgs; [
