@@ -19,6 +19,8 @@
     nmap
     obs-studio
     kdenlive
+    flacon
+    sox
   ];
   imports = [
     impermanence.nixosModules.home-manager.impermanence
