@@ -44,6 +44,12 @@ require("lazy").setup({
         end,
     },
     {
+        "direnv/direnv.vim",
+        lazy = false,
+        priority = 1500,
+        config = function() end,
+    },
+    {
         "ray-x/navigator.lua",
         config = function()
             local navigator = require("navigator")
