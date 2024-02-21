@@ -40,20 +40,31 @@
     | ${pkgs.imv}/bin/imv -w "imv_album_art" -c center
   '';
   lock_command = pkgs.writeShellScriptBin "lock_command" ''
-    ${pkgs.swaylock}/bin/swaylock \
-        -i $(${pkgs.findutils}/bin/find ~/Pictures/Wallpapers -type f | ${pkgs.coreutils}/bin/shuf -n 1) \
+    ${pkgs.swaylock-effects}/bin/swaylock \
+        -i "/home/q/Pictures/Wallpapers/BOE 0x0A32 Unknown[1920x1200]/1668207169460117.jpg" \
         --daemonize \
         --ignore-empty-password \
-        --show-failed-attempts
+        --show-failed-attempts \
+        --effect-blur 7x5
   '';
 in {
-  home.packages = with pkgs; [playerctl swww] ++ [swww_set_wallpapers_per_output];
+  home.packages = with pkgs; [playerctl swww] ++ [swww_set_wallpapers_per_output lock_command];
 
   home.pointerCursor = {
     name = "Numix-Cursor";
     package = pkgs.numix-cursor-theme;
     gtk.enable = true;
     x11.enable = true;
+  };
+
+  services.swayidle = {
+    enable = true;
+    events = [
+      {
+        event = "before-sleep";
+        command = "${lock_command}/bin/lock_command";
+      }
+    ];
   };
 
   services.kanshi = {
@@ -283,6 +294,7 @@ in {
         "${modifier}+w" = "layout default";
 
         "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp -d)\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
+        "${modifier}+l" = "exec ${lock_command}/bin/lock_command";
       };
       modes = {
         resize = {
