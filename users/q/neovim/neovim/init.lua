@@ -253,7 +253,7 @@ require("lazy").setup({
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-file-browser.nvim",
-            "xiyaowong/telescope-emoji.nvim",
+            "nvim-telescope/telescope-symbols.nvim",
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
         config = function()
@@ -264,15 +264,9 @@ require("lazy").setup({
                         theme = "ivy",
                         hijack_netrw = true,
                     },
-                    emoji = {
-                        action = function(emoji)
-                            vim.api.nvim_put({ emoji.value }, "c", false, true)
-                        end,
-                    },
                 },
             })
             telescope.load_extension("file_browser")
-            telescope.load_extension("emoji")
             telescope.load_extension("fzf")
         end,
         keys = {
@@ -294,7 +288,10 @@ require("lazy").setup({
             },
             {
                 "<leader>ie",
-                "<cmd>Telescope emoji<cr>",
+                function()
+                    local telescope_builtin = require("telescope.builtin")
+                    telescope_builtin.symbols({ sources = { "emoji" } })
+                end,
                 desc = "Emoji insert",
             },
         },
