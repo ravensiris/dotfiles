@@ -27,6 +27,8 @@
     package = pkgs.emacs29-pgtk;
   };
 
+  programs.adb.enable = true;
+
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
@@ -37,6 +39,14 @@
   environment.systemPackages = with pkgs; [
     devenv.packages.x86_64-linux.devenv
     agenix.packages.x86_64-linux.default
+    libguestfs-with-appliance
+    scrcpy
+    obs-studio
+    obs-studio-plugins.wlrobs
+    obs-studio-plugins.input-overlay
+    obs-studio-plugins.looking-glass-obs
+    obs-studio-plugins.obs-pipewire-audio-capture
+    v4l-utils
   ];
 
   fonts.packages = with pkgs; [
