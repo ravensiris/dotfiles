@@ -40,7 +40,7 @@
   ];
   systemd.tmpfiles.rules = ["f /dev/shm/looking-glass 0660 root libvirtd -"];
   environment.systemPackages = with pkgs; [
-    virtmanager
+    virt-manager
     looking-glass-client
     qemu
     OVMF
