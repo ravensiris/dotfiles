@@ -22,6 +22,7 @@
   ];
 
   hardware.keyboard.qmk.enable = true;
+  hardware.sane.enable = true;
 
   programs.wireshark = {
     enable = true;
@@ -75,6 +76,7 @@
   environment.systemPackages = with pkgs; [
     devenv.packages.x86_64-linux.devenv
     agenix.packages.x86_64-linux.default
+    gutenprint
     (brave.override {
       commandLineArgs = [
         "--ozone-platform-hint=auto"
@@ -90,7 +92,10 @@
     openscad
     jmtpfs
     iotop
+    (xsane.override {gimpSupport = true;})
+    hplip
   ];
+  hardware.sane.extraBackends = [pkgs.sane-airscan];
 
   fonts.packages = with pkgs; [
     migu
