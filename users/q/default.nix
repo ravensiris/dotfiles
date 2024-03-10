@@ -21,6 +21,7 @@
     kdenlive
     flacon
     sox
+    insomnia
   ];
   imports = [
     impermanence.nixosModules.home-manager.impermanence
