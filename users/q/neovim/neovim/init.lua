@@ -21,6 +21,23 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
+vim.g.rustaceanvim = {
+    -- Plugin configuration
+    tools = {},
+    -- LSP configuration
+    server = {
+        default_settings = {
+            -- rust-analyzer language server configuration
+            ["rust-analyzer"] = {
+                cargo = {
+                    features = "all",
+                },
+            },
+        },
+    },
+    -- DAP configuration
+    dap = {},
+}
 
 require("lazy").setup({
     {
@@ -31,6 +48,11 @@ require("lazy").setup({
             vim.o.timeoutlen = 500
         end,
         opts = {},
+    },
+    {
+        "mrcjkb/rustaceanvim",
+        version = "^4", -- Recommended
+        ft = { "rust" },
     },
     { "folke/neoconf.nvim", cmd = "Neoconf" },
     "folke/neodev.nvim",
