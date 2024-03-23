@@ -3,7 +3,7 @@
     enable = true;
     font = {
       name = "VictorMono NerdFont";
-      size = 18;
+      size = 15;
     };
     settings = {
       confirm_os_window_close = 0;
@@ -11,7 +11,7 @@
     extraConfig = builtins.concatStringsSep "\n" [
       "background_opacity 0.9"
       ''
-        	# Tokyo Night color scheme for kitty terminal emulator
+        # Tokyo Night color scheme for kitty terminal emulator
         # https://github.com/davidmathers/tokyo-night-kitty-theme
         #
         # Based on Tokyo Night color theme for Visual Studio Code
