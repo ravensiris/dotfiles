@@ -28,4 +28,6 @@
       ".cache/nvim"
     ];
   };
+
+  home.sessionVariables = { EDITOR = "nvim"; };
 }
