@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  devenv,
   agenix,
   ...
 }: {
@@ -37,8 +36,17 @@
   time.timeZone = "Europe/Warsaw";
 
   environment.systemPackages = with pkgs; [
-    devenv.packages.x86_64-linux.devenv
     agenix.packages.x86_64-linux.default
+    (unstable.devenv.overrideAttrs (prev: {
+      version = "master";
+      # https://github.com/umlaeute/v4l2loopback/issues/575
+      src = pkgs.fetchFromGitHub {
+        owner = "cachix";
+        repo = "devenv";
+        rev = "a30343f36e7c097d9f78d3387753d06986fdaae3";
+        hash = "sha256-EuW08b70ePiWFPmfKnBOTv9kNsAdNSt5aE70n037aZ0=";
+      };
+    }))
     iotop
     libguestfs-with-appliance
     scrcpy
@@ -61,10 +69,11 @@
     nerdfonts
   ];
 
+  nix.settings.trusted-users = ["q"];
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.substituters = ["https://nix-community.cachix.org" "https://cache.nixos.org"];
+  nix.settings.substituters = ["https://nix-community.cachix.org" "https://cache.nixos.org" "https://devenv.cachix.org"];
   nix.settings.trusted-public-keys = ["devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=" "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
-  nix.settings.trusted-substituters = ["https://devenv.cachix.org"];
+  # nix.settings.trusted-substituters = [];
 
   networking.hostName = "gate";
   system.stateVersion = "23.11";

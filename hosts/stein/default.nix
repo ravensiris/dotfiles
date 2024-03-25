@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  devenv,
   agenix,
   ...
 }: {
@@ -74,7 +73,7 @@
   programs.adb.enable = true;
 
   environment.systemPackages = with pkgs; [
-    devenv.packages.x86_64-linux.devenv
+    unstable.devenv
     agenix.packages.x86_64-linux.default
     gutenprint
     (brave.override {

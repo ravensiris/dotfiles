@@ -15,16 +15,7 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    devenv.url = "github:cachix/devenv";
-    devenv.inputs.nixpkgs.follows = "nixpkgs-unstable";
-
     agenix.url = "github:ryantm/agenix";
-  };
-
-  nixConfig = {
-    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
-    extra-substituters = "https://devenv.cachix.org";
-    trusted-substituters = ["https://devenv.cachix.org"];
   };
 
   outputs = inputs @ {
@@ -34,7 +25,6 @@
     impermanence,
     disko,
     nur,
-    devenv,
     agenix,
     ...
   }: let
@@ -43,7 +33,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixpkgs-unstable home-manager impermanence disko user nur devenv agenix;
+        inherit inputs nixpkgs nixpkgs-unstable home-manager impermanence disko user nur agenix;
       }
     );
   };

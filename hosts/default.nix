@@ -4,7 +4,6 @@
   home-manager,
   impermanence,
   nur,
-  devenv,
   agenix,
   nixpkgs-unstable,
   ...
@@ -20,7 +19,7 @@
 in {
   gate = lib.nixosSystem {
     system = "x86_64-linux";
-    specialArgs = {inherit impermanence devenv agenix;};
+    specialArgs = {inherit impermanence agenix;};
     modules = [
       impermanence.nixosModules.impermanence
       disko.nixosModules.disko
@@ -45,7 +44,7 @@ in {
 
   stein = lib.nixosSystem {
     system = "x86_64-linux";
-    specialArgs = {inherit impermanence devenv agenix;};
+    specialArgs = {inherit impermanence agenix;};
     modules = [
       impermanence.nixosModules.impermanence
       disko.nixosModules.disko
