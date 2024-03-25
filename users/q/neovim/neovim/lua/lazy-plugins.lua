@@ -24,6 +24,8 @@ require('lazy').setup({
 
   require 'kickstart/plugins/treesitter',
 
+  require 'kickstart/plugins/debug',
+
   { import = 'custom.plugins' },
 }, {
   ui = {
