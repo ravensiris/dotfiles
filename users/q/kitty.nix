@@ -109,7 +109,7 @@ in {
         ];
       }
       // (lib.optionalAttrs (config.kitty.nixGL == "") {
-        package = nixGL nixpkgs.kitty;
+        package = nixGL pkgs.kitty;
       });
   };
 }
