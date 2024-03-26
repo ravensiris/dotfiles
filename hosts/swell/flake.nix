@@ -15,9 +15,13 @@
     nur,
     ...
   }: let
-    # system = "aarch64-linux"; If you are running on ARM powered computer
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
+
+    # NOTE: already using unstable - this is for compatibility
+    unstableOverlay = final: prev: {
+      unstable = pkgs;
+    };
   in {
     homeConfigurations = {
       q = home-manager.lib.homeManagerConfiguration {
@@ -25,7 +29,7 @@
 
         modules = [
           ./home.nix
-          {nixpkgs.overlays = [nur.overlay];}
+          {nixpkgs.overlays = [nur.overlay unstableOverlay];}
         ];
       };
     };
