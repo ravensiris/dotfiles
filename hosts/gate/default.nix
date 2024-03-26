@@ -37,16 +37,7 @@
 
   environment.systemPackages = with pkgs; [
     agenix.packages.x86_64-linux.default
-    (unstable.devenv.overrideAttrs (prev: {
-      version = "master";
-      # https://github.com/umlaeute/v4l2loopback/issues/575
-      src = pkgs.fetchFromGitHub {
-        owner = "cachix";
-        repo = "devenv";
-        rev = "a30343f36e7c097d9f78d3387753d06986fdaae3";
-        hash = "sha256-EuW08b70ePiWFPmfKnBOTv9kNsAdNSt5aE70n037aZ0=";
-      };
-    }))
+    unstable.devenv
     iotop
     libguestfs-with-appliance
     scrcpy
