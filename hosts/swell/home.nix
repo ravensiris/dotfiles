@@ -19,7 +19,7 @@
   neovim.impermanence = false;
   firefox.impermanence = false;
   fish.impermanence = false;
-  kitty.nixGL = "${pkgs.nixgl.nixGL}/bin/nixGL";
+  kitty.nixGL = "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL";
 
   programs.home-manager.enable = true;
   home.username = "q";

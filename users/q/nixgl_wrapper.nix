@@ -1,10 +1,10 @@
 # Call once on import to load global context
 {pkgs}:
 # Wrap a single package
-pkg:
+glPrefix: pkg:
 # Wrap the package's binaries with nixGL, while preserving the rest of
 # the outputs and derivation attributes.
-(pkg.overrideAttrs (glPrefix: old: {
+(pkg.overrideAttrs (old: {
   name = "nixGL-${pkg.name}";
   buildCommand = ''
     set -eo pipefail
