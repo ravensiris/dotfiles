@@ -1,94 +1,114 @@
-{...}: {
-  programs.kitty = {
-    enable = true;
-    font = {
-      name = "VictorMono NerdFont";
-      size = 15;
-    };
-    settings = {
-      confirm_os_window_close = 0;
-    };
-    extraConfig = builtins.concatStringsSep "\n" [
-      "background_opacity 0.9"
-      ''
-        # Tokyo Night color scheme for kitty terminal emulator
-        # https://github.com/davidmathers/tokyo-night-kitty-theme
-        #
-        # Based on Tokyo Night color theme for Visual Studio Code
-        # https://github.com/enkia/tokyo-night-vscode-theme
+{
+  lib,
+  config,
+  ...
+}: let
+  nixGL = import ./nixgl_wrapper.nix {inherit pkgs;};
+in {
+  options.kitty.nixGL = lib.mkOption {
+    type = lib.types.str;
+    default = "";
+    description = ''
+      Use `$${pkgs.nixgl.nixGL}/bin/nixGL` for example
+    '';
+  };
 
-        foreground #a9b1d6
-        background #1a1b26
+  config = {
+    programs.kitty =
+      {
+        enable = true;
+        font = {
+          name = "VictorMono NerdFont";
+          size = 15;
+        };
+        settings = {
+          confirm_os_window_close = 0;
+        };
+        extraConfig = builtins.concatStringsSep "\n" [
+          "background_opacity 0.9"
+          ''
+            # Tokyo Night color scheme for kitty terminal emulator
+            # https://github.com/davidmathers/tokyo-night-kitty-theme
+            #
+            # Based on Tokyo Night color theme for Visual Studio Code
+            # https://github.com/enkia/tokyo-night-vscode-theme
 
-        # Black
-        color0 #414868
-        color8 #414868
+            foreground #a9b1d6
+            background #1a1b26
 
-        # Red
-        color1 #f7768e
-        color9 #f7768e
+            # Black
+            color0 #414868
+            color8 #414868
 
-        # Green
-        color2  #73daca
-        color10 #73daca
+            # Red
+            color1 #f7768e
+            color9 #f7768e
 
-        # Yellow
-        color3  #e0af68
-        color11 #e0af68
+            # Green
+            color2  #73daca
+            color10 #73daca
 
-        # Blue
-        color4  #7aa2f7
-        color12 #7aa2f7
+            # Yellow
+            color3  #e0af68
+            color11 #e0af68
 
-        # Magenta
-        color5  #bb9af7
-        color13 #bb9af7
+            # Blue
+            color4  #7aa2f7
+            color12 #7aa2f7
 
-        # Cyan
-        color6  #7dcfff
-        color14 #7dcfff
+            # Magenta
+            color5  #bb9af7
+            color13 #bb9af7
 
-        # White
-        color7  #c0caf5
-        color15 #c0caf5
+            # Cyan
+            color6  #7dcfff
+            color14 #7dcfff
 
-        # Cursor
-        cursor #c0caf5
-        cursor_text_color #1a1b26
+            # White
+            color7  #c0caf5
+            color15 #c0caf5
 
-        # Selection highlight
-        selection_foreground none
-        selection_background #28344a
+            # Cursor
+            cursor #c0caf5
+            cursor_text_color #1a1b26
 
-        # The color for highlighting URLs on mouse-over
-        url_color #9ece6a
+            # Selection highlight
+            selection_foreground none
+            selection_background #28344a
 
-        # Window borders
-        active_border_color #3d59a1
-        inactive_border_color #101014
-        bell_border_color #e0af68
+            # The color for highlighting URLs on mouse-over
+            url_color #9ece6a
 
-        # Tab bar
-        tab_bar_style fade
-        tab_fade 1
-        active_tab_foreground   #3d59a1
-        active_tab_background   #16161e
-        active_tab_font_style   bold
-        inactive_tab_foreground #787c99
-        inactive_tab_background #16161e
-        inactive_tab_font_style bold
-        tab_bar_background #101014
+            # Window borders
+            active_border_color #3d59a1
+            inactive_border_color #101014
+            bell_border_color #e0af68
 
-        # Title bar
-        macos_titlebar_color #16161e
+            # Tab bar
+            tab_bar_style fade
+            tab_fade 1
+            active_tab_foreground   #3d59a1
+            active_tab_background   #16161e
+            active_tab_font_style   bold
+            inactive_tab_foreground #787c99
+            inactive_tab_background #16161e
+            inactive_tab_font_style bold
+            tab_bar_background #101014
 
-        # Storm
-        # background #24283b
-        # cursor_text_color #24283b
-        # active_tab_background   #1f2335
-        # inactive_tab_background #1f2335
-        # macos_titlebar_color #1f2335
-      ''
-    ];
+            # Title bar
+            macos_titlebar_color #16161e
+
+            # Storm
+            # background #24283b
+            # cursor_text_color #24283b
+            # active_tab_background   #1f2335
+            # inactive_tab_background #1f2335
+            # macos_titlebar_color #1f2335
+          ''
+        ];
+      }
+      // (lib.optionalAttrs (config.kitty.nixGL == "") {
+        package = nixGL nixpkgs.kitty;
+      });
   };
 }
