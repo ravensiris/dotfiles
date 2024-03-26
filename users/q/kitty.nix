@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   nixGL = import ./nixgl_wrapper.nix {inherit pkgs;};
