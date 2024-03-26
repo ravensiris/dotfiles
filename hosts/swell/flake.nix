@@ -8,11 +8,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR";
+    nixgl.url = "github:nix-community/nixGL";
   };
   outputs = {
     nixpkgs,
     home-manager,
     nur,
+    nixgl,
     ...
   }: let
     system = "x86_64-linux";
@@ -29,7 +31,7 @@
 
         modules = [
           ./home.nix
-          {nixpkgs.overlays = [nur.overlay unstableOverlay];}
+          {nixpkgs.overlays = [nur.overlay unstableOverlay nixgl.overlay];}
         ];
       };
     };
