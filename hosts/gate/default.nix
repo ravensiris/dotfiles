@@ -47,6 +47,7 @@
     obs-studio-plugins.looking-glass-obs
     obs-studio-plugins.obs-pipewire-audio-capture
     v4l-utils
+    android-file-transfer
   ];
 
   fonts.packages = with pkgs; [
