@@ -6,6 +6,7 @@
   nur,
   agenix,
   nixpkgs-unstable,
+  wfetch,
   ...
 }: let
   unstableOverlay = final: prev: {
@@ -16,6 +17,9 @@
     pkgs,
     ...
   }: {nixpkgs.overlays = [unstableOverlay];};
+  wfetchOverlay = final: prev: {
+    wfetch = wfetch.packages.${prev.system}.default;
+  };
 in {
   gate = lib.nixosSystem {
     system = "x86_64-linux";
@@ -26,6 +30,7 @@ in {
       nur.nixosModules.nur
       agenix.nixosModules.default
       unstableModule
+      {nixpkgs.overlays = [wfetchOverlay];}
       ./gate
       home-manager.nixosModules.home-manager
       (import ../pkgs)

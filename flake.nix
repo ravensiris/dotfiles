@@ -15,6 +15,11 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    wfetch = {
+      url = "github:iynaix/wfetch";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     agenix.url = "github:ryantm/agenix";
   };
 
@@ -26,6 +31,7 @@
     disko,
     nur,
     agenix,
+    wfetch,
     ...
   }: let
     user = "q";
@@ -33,7 +39,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixpkgs-unstable home-manager impermanence disko user nur agenix;
+        inherit inputs nixpkgs nixpkgs-unstable home-manager impermanence disko user nur agenix wfetch;
       }
     );
   };
