@@ -8,39 +8,42 @@
       type = "disk";
       device = dev;
       content = {
-        type = "table";
-        format = "gpt";
-        partitions = [
-          {
-            name = "ESP";
-            start = "1MiB";
-            end = "500MiB";
-            bootable = true;
+        type = "gpt";
+        partitions = {
+          ESP = {
+            type = "EF00";
+            label = "ESP";
+            size = "500M";
             content = {
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
-              mountOptions = ["defaults"];
+              mountOptions = [
+                "defaults"
+              ];
             };
-          }
-          {
-            name = "luks";
-            start = "500MiB";
-            end = "100%";
+          };
+          luks = {
+            label = "luks";
+            size = "100%";
             content = {
               type = "luks";
               name = "cryptroot";
-              extraOpenArgs = ["--allow-discards"];
+              extraOpenArgs = [];
+              settings = {
+                allowDiscards = true;
+              };
               keyFile = "/tmp/secret.key";
               content = {
                 type = "lvm_pv";
                 vg = "pool";
               };
             };
-          }
-        ];
+          };
+        };
       };
     });
+
     lvm_vg = {
       pool = {
         type = "lvm_vg";

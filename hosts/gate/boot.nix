@@ -28,6 +28,11 @@
   ];
   boot.initrd.checkJournalingFS = false;
   boot.initrd.luks.devices."cryptroot".preLVM = true;
+  boot.initrd.luks.devices."steiner".device = "/dev/disk/by-uuid/88001461-3665-4bdd-bf20-c0ca0a24abf9";
+  fileSystems."/run/media/Steiner" = {
+    device = "/dev/hdd-vg/data";
+    options = ["nofail"];
+  };
   boot.initrd.luks.devices."windows" = {
     device = "/dev/disk/by-uuid/3299548d-f3f7-45f9-8e22-1ebeec3348d9";
   };
