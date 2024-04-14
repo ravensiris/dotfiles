@@ -3,26 +3,26 @@
 {
   anime4k = {
     pname = "anime4k";
-    version = "8e39551ce96ed172605c89b7dd8be855b5502cc9";
+    version = "3d2ef972f0ada41ec689ae4c05dd0902197927bf";
     src = fetchFromGitHub {
       owner = "bloc97";
       repo = "Anime4K";
-      rev = "8e39551ce96ed172605c89b7dd8be855b5502cc9";
+      rev = "3d2ef972f0ada41ec689ae4c05dd0902197927bf";
       fetchSubmodules = false;
-      sha256 = "sha256-01js/vr+kpFAm2Hfj64ad+odZKYiC9TZiTTj6mwAFd8=";
+      sha256 = "sha256-YQuggxNVTQNLafsmqqLFxTQ9/aYay+Y03hFQON9RnoY=";
     };
-    date = "2023-05-26";
+    date = "2024-02-20";
   };
   khinsider = {
     pname = "khinsider";
-    version = "b1683fbf2897f04242bd8e67eade940d1b6f2f16";
+    version = "bd7ef673ec7af5ce8f580df8f7a3f0746ff1a1ad";
     src = fetchFromGitHub {
       owner = "obskyr";
       repo = "khinsider";
-      rev = "b1683fbf2897f04242bd8e67eade940d1b6f2f16";
+      rev = "bd7ef673ec7af5ce8f580df8f7a3f0746ff1a1ad";
       fetchSubmodules = false;
-      sha256 = "sha256-sSxLicoqS41Ofw5M0K3ERbYZAYe4lgQPKpzWdHNl0vA=";
+      sha256 = "sha256-T3mRTWNjaH0dVxQ2SNr4Xw4PdjLfd3Bp0IsqEGjuS3g=";
     };
-    date = "2022-05-09";
+    date = "2024-02-06";
   };
 }
