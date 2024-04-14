@@ -20,6 +20,7 @@ in {
   nixpkgs.overlays = [
     (final: prev: {
       khinsider = callPackage ./khinsider {};
+      anime4k = callPackage ./anime4k {};
     })
   ];
 }
