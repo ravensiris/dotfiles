@@ -19,7 +19,6 @@
 
   programs.beets = {
     enable = true;
-    package = pkgs.beets.override {};
     settings = {
       directory = "~/Music";
       library = "~/.local/share/beets/musiclibrary.db";
@@ -27,18 +26,9 @@
         move = false;
         copy = true;
       };
+      scrub = {auto = true;};
       fetchart = {
         high_resolution = true;
-        sources = [
-          "filesystem"
-          "albumart"
-          "coverart"
-          "itunes"
-          "amazon"
-        ];
-
-        minwidth = 800;
-        enforce_ratio = "0.5%";
       };
       badfiles = {
         check_on_import = true;
@@ -47,7 +37,13 @@
           mp3 = "${pkgs.mp3val}/bin/mp3val -si";
         };
       };
-      plugins = lib.concatStringsSep " " ["embedart" "fetchart" "badfiles" "fish" "duplicates"];
+      paths = {
+        default = "$albumartist/$album%aunique{}/%if{$multidisc,Disc $disc/}$track $title";
+      };
+      item_fields = {
+        multidisc = "1 if disctotal > 1 else 0";
+      };
+      plugins = lib.concatStringsSep " " ["inline" "embedart" "fetchart" "badfiles" "fish" "duplicates" "scrub"];
     };
   };
 }
