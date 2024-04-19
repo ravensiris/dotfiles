@@ -14,7 +14,7 @@
       enable = true;
       interactiveShellInit = ''
         function fish_greeting
-           if [ (tput cols) -ge 40 ]; and [ (tput lines) -ge 18 ]; ${pkgs.wfetch}/bin/wfetch --waifu2; end
+           if [ (tput cols) -ge 40 ]; and [ (tput lines) -ge 18 ]; ${pkgs.yafetch}/bin/yafetch; end
         end
       '';
       plugins = with pkgs.fishPlugins; [
