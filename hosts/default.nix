@@ -46,29 +46,4 @@ in {
       }
     ];
   };
-
-  stein = lib.nixosSystem {
-    system = "x86_64-linux";
-    specialArgs = {inherit impermanence agenix;};
-    modules = [
-      impermanence.nixosModules.impermanence
-      disko.nixosModules.disko
-      nur.nixosModules.nur
-      agenix.nixosModules.default
-      unstableModule
-      ./stein
-      home-manager.nixosModules.home-manager
-      (import ../pkgs)
-      {
-        nixpkgs.overlays = [nur.overlay unstableOverlay];
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-
-        home-manager.users.q = import ../users/q;
-        home-manager.extraSpecialArgs = {
-          inherit impermanence;
-        };
-      }
-    ];
-  };
 }
