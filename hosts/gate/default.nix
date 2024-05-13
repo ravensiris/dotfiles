@@ -19,6 +19,7 @@
     ./audio.nix
     ./sway.nix
     ./syncthing.nix
+    ./printing.nix
   ];
 
   services.emacs = {
