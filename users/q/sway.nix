@@ -69,11 +69,12 @@ in {
 
   services.kanshi = {
     enable = true;
-    profiles = {
-      desktop = {
-        outputs = [
+    settings = [
+      {
+        profile.name = "desktop";
+        profile.outputs = [
           {
-            criteria = "ASUSTek COMPUTER INC ASUS VG32V 0x0000B75D";
+            criteria = "ASUSTek COMPUTER INC ASUS VG32V 0x0003B55D";
             position = "0,1440";
           }
           {
@@ -81,63 +82,8 @@ in {
             position = "2560,0";
           }
         ];
-      };
-
-      undocked = {
-        outputs = [
-          {
-            criteria = "eDP-1";
-            status = "enable";
-          }
-          {
-            criteria = "*";
-            status = "enable";
-          }
-        ];
-      };
-
-      docked = {
-        exec = [
-          "for workspace in {1..5}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace, move workspace to 'ASUSTek COMPUTER INC ASUS VG32V 0x0000B75D'\"; done"
-          "for workspace in {1..5}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace output 'ASUSTek COMPUTER INC ASUS VG32V 0x0000B75D'\"; done"
-          "for workspace in {6..10}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace, move workspace to 'LG Electronics LG SDQHD 205NTNH5W679'\"; done"
-          "for workspace in {6..10}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace output 'LG Electronics LG SDQHD 205NTNH5W679'\"; done"
-        ];
-        outputs = [
-          {
-            criteria = "eDP-1";
-            status = "disable";
-          }
-          {
-            criteria = "ASUSTek COMPUTER INC ASUS VG32V 0x0000B75D";
-            position = "0,1440";
-          }
-          {
-            criteria = "LG Electronics LG SDQHD 205NTNH5W679";
-            position = "2560,0";
-          }
-        ];
-      };
-
-      docked_secondary = {
-        exec = [
-          "for workspace in {1..5}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace, move workspace to 'GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190'\"; done"
-          "for workspace in {1..5}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace output 'GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190'\"; done"
-          "for workspace in {6..10}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace, move workspace to 'eDP-1'\"; done"
-          "for workspace in {6..10}; do ${pkgs.sway}/bin/swaymsg \"workspace $workspace output 'eDP-1'\"; done"
-        ];
-        outputs = [
-          {
-            criteria = "eDP-1";
-            position = "3840,960";
-          }
-          {
-            criteria = "GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190";
-            position = "0,0";
-          }
-        ];
-      };
-    };
+      }
+    ];
   };
 
   programs.waybar = {
@@ -165,7 +111,7 @@ in {
         position = "top";
         height = 16;
         output = [
-          "ASUSTek COMPUTER INC ASUS VG32V 0x0000B75D"
+          "ASUSTek COMPUTER INC ASUS VG32V 0x0003B55D"
           "eDP-1"
         ];
         modules-left = ["sway/workspaces" "mpris"];
