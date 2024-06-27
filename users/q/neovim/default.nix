@@ -20,7 +20,7 @@
     home =
       {
         packages = with pkgs; [
-          neovim
+          unstable.neovim
           alejandra
           black
           ruff
