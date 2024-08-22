@@ -3,6 +3,10 @@ vim.g.maplocalleader = ' '
 
 vim.g.have_nerd_font = true
 
+-- GhostWrite
+vim.g.nvim_ghost_autostart = 0
+vim.g.nvim_ghost_server_port = 4919
+
 require 'options'
 require 'keymaps'
 require 'lazy-bootstrap'

@@ -9,16 +9,21 @@
     };
     nur.url = "github:nix-community/NUR";
     nixgl.url = "github:nix-community/nixGL";
+    kotkowo.url = "git+file:///home/q/Projects/kotkowo/";
   };
   outputs = {
     nixpkgs,
     home-manager,
     nur,
     nixgl,
+    kotkowo,
     ...
   }: let
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = import nixpkgs {
+      system = system;
+      config.allowUnfree = true;
+    };
 
     # NOTE: already using unstable - this is for compatibility
     unstableOverlay = final: prev: {
@@ -32,6 +37,7 @@
         modules = [
           ./home.nix
           {nixpkgs.overlays = [nur.overlay unstableOverlay nixgl.overlay];}
+          kotkowo.nixosModule
         ];
       };
     };

@@ -31,7 +31,6 @@
           lua-language-server
           gnumake
           gcc
-          elixir-ls
         ];
         sessionVariables = {EDITOR = "nvim";};
       }

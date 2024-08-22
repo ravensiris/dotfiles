@@ -40,7 +40,7 @@
 
     home =
       {}
-      // (lib.optionalAttrs config.firefox.impermanence {
+      // (lib.optionalAttrs config.fish.impermanence {
         persistence."/nix/persist/home/q".directories = [
           ".local/share/fish/fish_history"
         ];

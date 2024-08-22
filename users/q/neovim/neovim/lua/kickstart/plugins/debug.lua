@@ -59,5 +59,28 @@ return {
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
+
+    dap.adapters.mix_task = {
+      type = 'executable',
+      -- NOTE: this is what nix exposes as an executable for DAP.
+      -- other distros may vary
+      command = 'elixir-debug-adapter',
+      args = {},
+    }
+    dap.configurations.elixir = {
+      {
+        type = 'mix_task',
+        name = 'mix test',
+        task = 'test',
+        taskArgs = { '--trace' },
+        request = 'launch',
+        startApps = true, -- for Phoenix projects
+        projectDir = '${workspaceFolder}',
+        requireFiles = {
+          'test/**/test_helper.exs',
+          'test/**/*_test.exs',
+        },
+      },
+    }
   end,
 }
