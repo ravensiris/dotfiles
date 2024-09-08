@@ -77,6 +77,7 @@
       ".config/emacs"
       ".floorp"
     ];
+    files = [".config/mimeapps.list"];
   };
 
   home.file = {
