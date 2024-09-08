@@ -22,6 +22,7 @@
     sox
     insomnia
     brave
+    floorp
   ];
   imports = [
     impermanence.nixosModules.home-manager.impermanence
@@ -74,6 +75,7 @@
       ".config/Element"
       ".doom.d"
       ".config/emacs"
+      ".floorp"
     ];
   };
 

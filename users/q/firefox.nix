@@ -11,7 +11,7 @@
 
   config = {
     programs.firefox = {
-      enable = true;
+      enable = false;
       profiles.default = {
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
