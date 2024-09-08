@@ -21,6 +21,7 @@
     flacon
     sox
     insomnia
+    brave
   ];
   imports = [
     impermanence.nixosModules.home-manager.impermanence
