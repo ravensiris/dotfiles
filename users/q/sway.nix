@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: let
+  asus_1440p_monitor = "ASUSTek COMPUTER INC ASUS VG32V 0x0003B55D";
+  lg_dualup_monitor = "LG Electronics LG SDQHD 205NTNH5W679";
   swww_set_wallpapers_per_output = pkgs.writeShellScriptBin "swww_set_wallpapers_per_output" ''
     output_dirs=$(${pkgs.sway}/bin/swaymsg -r -t get_outputs | ${pkgs.jq}/bin/jq -c 'map(.make + " " + .model + " " + .serial + "[" + (.current_mode.width|tostring) + "x" + (.current_mode.height|tostring) + "]")' | ${pkgs.jq}/bin/jq -r '.[] | @base64')
     for output_dir_b64 in $output_dirs; do
@@ -74,11 +76,11 @@ in {
         profile.name = "desktop";
         profile.outputs = [
           {
-            criteria = "ASUSTek COMPUTER INC ASUS VG32V 0x0003B55D";
+            criteria = asus_1440p_monitor;
             position = "0,1440";
           }
           {
-            criteria = "LG Electronics LG SDQHD 205NTNH5W679";
+            criteria = lg_dualup_monitor;
             position = "2560,0";
           }
         ];
@@ -96,7 +98,7 @@ in {
         position = "top";
         height = 16;
         output = [
-          "LG Electronics LG SDQHD 205NTNH5W679"
+          lg_dualup_monitor
           "GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190"
         ];
         modules-left = ["sway/workspaces"];
@@ -111,7 +113,7 @@ in {
         position = "top";
         height = 16;
         output = [
-          "ASUSTek COMPUTER INC ASUS VG32V 0x0003B55D"
+          asus_1440p_monitor
           "eDP-1"
         ];
         modules-left = ["sway/workspaces" "mpris"];
