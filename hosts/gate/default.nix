@@ -62,6 +62,12 @@
     nerdfonts
   ];
 
+  fonts.fontconfig = {
+    defaultFonts = {
+      emoji = ["OpenMoji Color"];
+    };
+  };
+
   nix.settings.trusted-users = ["q"];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.substituters = ["https://nix-community.cachix.org" "https://cache.nixos.org" "https://devenv.cachix.org"];
