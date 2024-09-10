@@ -181,6 +181,11 @@ return {
         },
         nil_ls = {},
       }
+
+      local lspconfig = require 'lspconfig'
+      for server_name, config in pairs(servers) do
+        lspconfig[server_name].setup(config)
+      end
     end,
   },
 }
