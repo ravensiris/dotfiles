@@ -179,7 +179,7 @@ return {
             },
           },
         },
-        elixirls,
+        nil_ls = {},
       }
     end,
   },
