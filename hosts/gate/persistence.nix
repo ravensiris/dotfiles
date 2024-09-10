@@ -5,6 +5,7 @@
       "/var/lib/docker"
       "/var/lib/cups"
       "/var/lib/private/navidrome"
+      "/var/lib/nixos"
     ];
   };
   environment.etc."ssh/ssh_host_rsa_key".source = "/nix/persist/etc/ssh/ssh_host_rsa_key";
