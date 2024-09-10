@@ -12,19 +12,9 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "amdgpu"];
-  # boot.initrd.kernelModules = ["nvme" "dm-snapshot" "i2c-dev" "i2c-piix4" "amdgpu" "vfio" "vfio_iommu_type1" "vfio_pci" "kvm-amd"];
   boot.initrd.kernelModules = ["nvme" "dm-snapshot" "i2c-dev" "i2c-piix4" "amdgpu" "vfio" "vfio_iommu_type1" "vfio_pci" "kvm-amd" "v4l2loopback"];
   boot.extraModulePackages = [
-    (pkgs.linuxPackages_latest.v4l2loopback.overrideAttrs (prev: {
-      version = "unstable-2024-03-21";
-      # https://github.com/umlaeute/v4l2loopback/issues/575
-      src = pkgs.fetchFromGitHub {
-        owner = "umlaeute";
-        repo = "v4l2loopback";
-        rev = "cb9e676b46623bfb37f08944a60b1ecb7f20db76";
-        hash = "sha256-8a6XL2Hrea+OP85YRsqGTUKrQc5KB8cclpzDJXIm+M0=";
-      };
-    }))
+    pkgs.linuxPackages_latest.v4l2loopback
   ];
   boot.initrd.checkJournalingFS = false;
   boot.initrd.luks.devices."cryptroot".preLVM = true;
