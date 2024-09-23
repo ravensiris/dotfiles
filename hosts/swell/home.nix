@@ -6,6 +6,8 @@
 }: let
   nixGLPath = "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL";
   nixGL = (import ../../users/q/nixgl_wrapper.nix {inherit pkgs;}) nixGLPath;
+  monitorGigabyte4k = "GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190";
+  monitorLGDualUp = "LG Electronics LG SDQHD 205NTNH5W679";
 in {
   home.packages = with pkgs; [
     devenv
@@ -268,8 +270,7 @@ in {
         position = "top";
         height = 16;
         output = [
-          "LG Electronics LG SDQHD 205NTNH5W679"
-          "GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190"
+          monitorLGDualUp
         ];
         modules-center = ["clock"];
         modules-left = ["sway/workspaces"];
@@ -293,8 +294,7 @@ in {
         position = "top";
         height = 16;
         output = [
-          "ASUSTek COMPUTER INC ASUS VG32V 0x0000B75D"
-          "ASUSTek COMPUTER INC ASUS VG32V 0x0003B55D"
+          monitorGigabyte4k
           "eDP-1"
         ];
         modules-left = ["sway/workspaces" "mpris"];
@@ -349,19 +349,6 @@ in {
   services.kanshi = {
     enable = true;
     profiles = {
-      desktop = {
-        outputs = [
-          {
-            criteria = "ASUSTek COMPUTER INC ASUS VG32V 0x0000B75D";
-            position = "0,1440";
-          }
-          {
-            criteria = "LG Electronics LG SDQHD 205NTNH5W679";
-            position = "2560,0";
-          }
-        ];
-      };
-
       undocked = {
         outputs = [
           {
@@ -377,8 +364,8 @@ in {
 
       docked = {
         exec = [
-          "for workspace in $(seq 1 5); do ${pkgs.sway}/bin/swaymsg \"workspace $workspace output 'ASUSTek COMPUTER INC ASUS VG32V 0x0003B55D'\"; done"
-          "for workspace in $(seq 6 10); do ${pkgs.sway}/bin/swaymsg \"workspace $workspace output 'LG Electronics LG SDQHD 205NTNH5W679'\"; done"
+          "for workspace in $(seq 1 5); do ${pkgs.sway}/bin/swaymsg \"workspace $workspace output '${monitorGigabyte4k}'\"; done"
+          "for workspace in $(seq 6 10); do ${pkgs.sway}/bin/swaymsg \"workspace $workspace output '${monitorLGDualUp}'\"; done"
         ];
         outputs = [
           {
@@ -386,29 +373,12 @@ in {
             status = "disable";
           }
           {
-            criteria = "ASUSTek COMPUTER INC ASUS VG32V 0x0003B55D";
-            position = "0,1440";
+            criteria = monitorGigabyte4k;
+            position = "1920,480";
           }
           {
-            criteria = "LG Electronics LG SDQHD 205NTNH5W679";
-            position = "2560,0";
-          }
-        ];
-      };
-
-      docked_secondary = {
-        exec = [
-          "for workspace in $(seq 1 5); do ${pkgs.sway}/bin/swaymsg \"workspace $workspace output 'GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190'\"; done"
-          "for workspace in $(seq 6 10); do ${pkgs.sway}/bin/swaymsg \"workspace $workspace output 'eDP-1'\"; done"
-        ];
-        outputs = [
-          {
-            criteria = "eDP-1";
-            position = "3840,960";
-          }
-          {
-            criteria = "GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190";
-            position = "0,0";
+            criteria = monitorLGDualUp;
+            position = "5760,0";
           }
         ];
       };

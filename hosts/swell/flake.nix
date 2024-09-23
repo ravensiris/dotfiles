@@ -9,14 +9,12 @@
     };
     nur.url = "github:nix-community/NUR";
     nixgl.url = "github:nix-community/nixGL";
-    kotkowo.url = "git+file:///home/q/Projects/kotkowo/";
   };
   outputs = {
     nixpkgs,
     home-manager,
     nur,
     nixgl,
-    kotkowo,
     ...
   }: let
     system = "x86_64-linux";
@@ -37,7 +35,6 @@
         modules = [
           ./home.nix
           {nixpkgs.overlays = [nur.overlay unstableOverlay nixgl.overlay];}
-          kotkowo.nixosModule
         ];
       };
     };
