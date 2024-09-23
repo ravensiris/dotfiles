@@ -58,5 +58,25 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.swtpm.enable = true;
   virtualisation.libvirtd.qemu.ovmf.enable = true;
+  virtualisation.kvmfr = {
+    enable = true;
+    shm = {
+      enable = true;
+      size = 128;
+      user = "q";
+      group = "libvirtd";
+      mode = "0600";
+    };
+  };
   environment.sessionVariables.LIBVIRT_DEFAULT_URI = ["qemu:///system"];
+
+  virtualisation.libvirtd.qemu.verbatimConfig = ''
+    namespaces = []
+    cgroup_device_acl = [
+        "/dev/null", "/dev/full", "/dev/zero",
+        "/dev/random", "/dev/urandom",
+        "/dev/ptmx", "/dev/kvm", "/dev/kqemu",
+        "/dev/rtc","/dev/hpet", "/dev/vfio/vfio", "/dev/kvmfr0"
+    ]
+  '';
 }
