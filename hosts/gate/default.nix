@@ -49,6 +49,7 @@
     obs-studio-plugins.obs-pipewire-audio-capture
     v4l-utils
     android-file-transfer
+    ddcutil
   ];
 
   fonts.packages = with pkgs; [
