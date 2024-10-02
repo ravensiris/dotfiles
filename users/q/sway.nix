@@ -12,11 +12,20 @@
 
   lock_command = pkgs.writeShellScriptBin "lock_command" ''
     ${pkgs.swaylock-effects}/bin/swaylock \
-        -i "/home/q/Pictures/Wallpapers/BOE 0x0A32 Unknown[1920x1200]/1668207169460117.jpg" \
-        --daemonize \
-        --ignore-empty-password \
-        --show-failed-attempts \
-        --effect-blur 7x5
+        --screenshots \
+        --clock \
+        --indicator \
+        --indicator-radius 100 \
+        --indicator-thickness 7 \
+        --effect-blur 7x5 \
+        --effect-pixelate 8 \
+        --effect-vignette 0.5:0.5 \
+        --ring-color bb00cc \
+        --key-hl-color 880033 \
+        --line-color 00000000 \
+        --inside-color 00000088 \
+        --separator-color 00000000 \
+        --effect-compose "/home/q/Pictures/Wallpapers/Lockscreen/suwako.png"
   '';
   mpvpaper_set_for_output = pkgs.writeShellScriptBin "mpvpaper_set_for_output" ''
     shopt -s globstar failglob
@@ -73,6 +82,13 @@ in
           {
             event = "before-sleep";
             command = "${lock_command}/bin/lock_command";
+          }
+        ];
+        timeouts = [
+          {
+            timeout = 5;
+            command = "if ${pkgs.toybox}/bin/pgrep -x lock_command; then ${pkgs.sway}/bin/swaymsg \"output * dpms off\"; fi";
+            resumeCommand = "${pkgs.sway}/bin/swaymsg \"output * dpms on\"";
           }
         ];
       };
