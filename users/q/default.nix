@@ -2,6 +2,7 @@
   pkgs,
   impermanence,
   config,
+  nix-index-database,
   ...
 }: {
   home.packages = with pkgs; [
@@ -25,6 +26,7 @@
     floorp
   ];
   imports = [
+    nix-index-database.hmModules.nix-index
     impermanence.nixosModules.home-manager.impermanence
     ./neovim
     ./sway.nix
@@ -37,6 +39,8 @@
     ./ssh.nix
     ./music.nix
   ];
+
+  programs.nix-index.enable = true;
 
   programs.mpv = {
     enable = true;

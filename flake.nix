@@ -21,6 +21,9 @@
     };
 
     agenix.url = "github:ryantm/agenix";
+
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
@@ -32,6 +35,7 @@
     nur,
     agenix,
     wfetch,
+    nix-index-database,
     ...
   }: let
     user = "q";
@@ -39,7 +43,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixpkgs-unstable home-manager impermanence disko user nur agenix wfetch;
+        inherit inputs nixpkgs nixpkgs-unstable home-manager impermanence disko user nur agenix wfetch nix-index-database;
       }
     );
   };
