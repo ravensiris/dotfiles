@@ -40,7 +40,7 @@
     mpv_vf=$(echo "$filtered_monitors" | ${pkgs.jq}/bin/jq -rc '.[0].current_mode | "scale=" + (.width|tostring) + ":" + (.height|tostring) + ":force_original_aspect_ratio=increase,crop="  + (.width|tostring) + ":" + (.height|tostring)')
     wallpaper_files=("/home/q/Pictures/Wallpapers/""$monitor_dir_name"/**/*)
     random_wallpaper_file="''${wallpaper_files[RANDOM % ''${#wallpaper_files[@]}]}"
-    ${pkgs.mpvpaper}/bin/mpvpaper -o "mute=yes loop-file=inf vf=\"$mpv_vf\"" -p "$output_name" "$random_wallpaper_file"
+    ${pkgs.mpvpaper}/bin/mpvpaper -o "mute=yes loop-file=inf vf=\"$mpv_vf\"" -p "$output_name" "$random_wallpaper_file" &> /dev/null
   '';
 
   mkMpvPaperService = monitorName: {
