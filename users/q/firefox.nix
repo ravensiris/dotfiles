@@ -3,7 +3,9 @@
   lib,
   config,
   ...
-}: {
+}: let
+  cfg = config.programs.firefox;
+in {
   programs.firefox = {
     enable = false;
     profiles.default = {
@@ -30,7 +32,7 @@
     };
   };
 
-  xdg = {
+  xdg = lib.mkIf cfg.enable {
     desktopEntries = {
       firefox = {
         name = "Firefox";
@@ -48,5 +50,6 @@
       };
     };
   };
-  home.persistence."/nix/persist/home/q".directories = [".mozilla"];
+
+  home.persistence."/nix/persist/home/q".directories = lib.lists.optional cfg.enable [".mozilla"];
 }
