@@ -79,13 +79,10 @@
       ".config/Element"
       ".doom.d"
       ".config/emacs"
+      ".emacs.d"
       ".floorp"
     ];
     files = [".config/mimeapps.list"];
-  };
-
-  home.file = {
-    ".emacs.d".source = config.lib.file.mkOutOfStoreSymlink "/home/q/.config/emacs";
   };
 
   home.stateVersion = "24.05";
