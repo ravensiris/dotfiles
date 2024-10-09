@@ -22,11 +22,6 @@
     ./printing.nix
   ];
 
-  services.emacs = {
-    enable = true;
-    package = pkgs.unstable.emacs30-pgtk;
-  };
-
   programs.adb.enable = true;
   services.devmon.enable = true;
   services.gvfs.enable = true;

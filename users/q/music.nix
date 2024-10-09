@@ -46,4 +46,9 @@
       plugins = lib.concatStringsSep " " ["inline" "embedart" "fetchart" "badfiles" "fish" "duplicates" "scrub"];
     };
   };
+
+  services.easyeffects = {
+    enable = true;
+    preset = "HD800S";
+  };
 }
