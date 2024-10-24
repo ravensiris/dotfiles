@@ -24,6 +24,8 @@
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
   };
 
   outputs = inputs @ {
@@ -36,6 +38,7 @@
     agenix,
     wfetch,
     nix-index-database,
+    hyprland,
     ...
   }: let
     user = "q";
@@ -43,7 +46,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixpkgs-unstable home-manager impermanence disko user nur agenix wfetch nix-index-database;
+        inherit inputs nixpkgs nixpkgs-unstable home-manager impermanence disko user nur agenix wfetch nix-index-database hyprland;
       }
     );
   };

@@ -11,6 +11,25 @@ return {
     event = 'VimEnter',
     branch = '0.1.x',
     dependencies = {
+      {
+        'allaman/emoji.nvim',
+        version = '1.0.0', -- optionally pin to a tag
+        ft = 'markdown', -- adjust to your needs
+        dependencies = {
+          -- optional for nvim-cmp integration
+          -- 'hrsh7th/nvim-cmp',
+          -- optional for telescope integration
+          'nvim-telescope/telescope.nvim',
+        },
+        opts = {
+          -- default is false
+          -- enable_cmp_integration = true,
+          -- optional if your plugin installation directory
+          -- is not vim.fn.stdpath("data") .. "/lazy/
+          -- plugin_path = vim.fn.expand '$HOME/plugins/',
+        },
+        config = function(_, opts) end,
+      },
       'nvim-telescope/telescope-symbols.nvim',
       'nvim-telescope/telescope-file-browser.nvim',
       'nvim-lua/plenary.nvim',
@@ -77,9 +96,12 @@ return {
       }
 
       -- Enable Telescope extensions if they are installed
+      require('emoji').setup {}
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'file_browser')
+      pcall(require('telescope').load_extension, 'emoji')
+      -- vim.keymap.set('n', '<leader>se', ts.emoji, { desc = '[S]earch [E]moji' })
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -93,9 +115,7 @@ return {
       vim.keymap.set('n', '<leader>fF', function()
         extensions.file_browser.file_browser { path = '%:p:h', select_buffer = true }
       end, { desc = '[F]ind [F]ile browser' })
-      vim.keymap.set('n', '<leader>ie', function()
-        builtin.symbols { sources = { 'emoji' } }
-      end, { desc = '[I]nsert [E]moji' })
+      vim.keymap.set('n', '<leader>ie', extensions.emoji.emoji, { desc = '[I]nsert [E]moji' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()

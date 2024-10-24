@@ -17,9 +17,10 @@
     ./network.nix
     ./libvirt.nix
     ./audio.nix
-    ./sway.nix
+    ./hyprland.nix
     ./syncthing.nix
     ./printing.nix
+    ./fonts.nix
   ];
 
   programs.adb.enable = true;
@@ -46,23 +47,6 @@
     android-file-transfer
     ddcutil
   ];
-
-  fonts.packages = with pkgs; [
-    migu
-    baekmuk-ttf
-    nanum
-    noto-fonts-emoji
-    twemoji-color-font
-    openmoji-color
-    twitter-color-emoji
-    nerdfonts
-  ];
-
-  fonts.fontconfig = {
-    defaultFonts = {
-      emoji = ["OpenMoji Color"];
-    };
-  };
 
   nix.settings.trusted-users = ["q"];
   nix.settings.experimental-features = ["nix-command" "flakes"];

@@ -28,7 +28,7 @@
     nix-index-database.hmModules.nix-index
     impermanence.nixosModules.home-manager.impermanence
     ./neovim
-    ./sway.nix
+    ./hyprland.nix
     ./firefox.nix
     ./fish.nix
     ./kitty.nix

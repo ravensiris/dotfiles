@@ -23,6 +23,7 @@
       "Documents"
       "Sync"
       ".config/syncthing"
+      ".config/jellyfin-mpv-shim"
       "Music"
       "Pictures"
     ];

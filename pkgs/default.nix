@@ -1,13 +1,4 @@
-{
-  lib,
-  pkgs,
-  stdenv,
-  fetchFromGitHub,
-  fetchurl,
-  dockerTools,
-  fetchgit,
-  ...
-}: let
+{pkgs, ...}: let
   callPackage' = path: overrides: let
     f = import path;
   in

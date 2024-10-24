@@ -8,6 +8,7 @@
   nixpkgs-unstable,
   wfetch,
   nix-index-database,
+  hyprland,
   ...
 }: let
   unstableOverlay = final: prev: {
@@ -57,7 +58,7 @@
 in {
   gate = lib.nixosSystem {
     system = "x86_64-linux";
-    specialArgs = {inherit impermanence agenix nix-index-database;};
+    specialArgs = {inherit impermanence agenix nix-index-database hyprland;};
     modules = [
       impermanence.nixosModules.impermanence
       disko.nixosModules.disko
@@ -76,7 +77,7 @@ in {
 
         home-manager.users.q = import ../users/q;
         home-manager.extraSpecialArgs = {
-          inherit impermanence nix-index-database;
+          inherit impermanence nix-index-database hyprland;
         };
       }
     ];
