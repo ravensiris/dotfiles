@@ -3,22 +3,66 @@
   hyprland,
   lib,
   ...
-}: {
-  imports = [./themes/tokyo-night.nix];
+}: let
+  hyprlandPkg = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+in {
+  imports = [
+    ./themes/tokyo-night.nix
+    ./hyprland/waybar.nix
+  ];
 
   programs.fuzzel.enable = true;
 
-  programs.eww = {
+  home.packages = with pkgs; [
+    hyprpaper
+  ];
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    # x11.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 32;
+  };
+
+  gtk = {
     enable = true;
-    configDir = ./hyprland/eww;
+    theme = {
+      package = pkgs.flat-remix-gtk;
+      name = "Flat-Remix-GTK-Grey-Darkest";
+    };
+    iconTheme = {
+      package = pkgs.gnome.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+  };
+
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      preload = [
+        "/home/q/Pictures/Wallpapers/GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190[3840x2160]/__sin_mal_honkai_and_1_more_drawn_by_sin_mal0909__e4844fb47fccc09db25da93fe60dac7a.png"
+        "/home/q/Pictures/Wallpapers/LG Electronics LG SDQHD 205NTNH5W679[2560x2880]/__ninomae_ina_nis_takodachi_and_ninomae_ina_nis_hololive_and_1_more_drawn_by_happyongdal__748043200955892f31bf77c2abc008c8.png"
+      ];
+      wallpaper = [
+        "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M28U 22110B009190,/home/q/Pictures/Wallpapers/GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190[3840x2160]/__sin_mal_honkai_and_1_more_drawn_by_sin_mal0909__e4844fb47fccc09db25da93fe60dac7a.png"
+        "desc:LG Electronics LG SDQHD 205NTNH5W679,/home/q/Pictures/Wallpapers/LG Electronics LG SDQHD 205NTNH5W679[2560x2880]/__ninomae_ina_nis_takodachi_and_ninomae_ina_nis_hololive_and_1_more_drawn_by_happyongdal__748043200955892f31bf77c2abc008c8.png"
+      ];
+    };
   };
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = hyprlandPkg;
     settings = {
       "$mod" = "SUPER";
       "$terminal" = "${pkgs.unstable.kitty}/bin/kitty";
+      general = {
+        gaps_out = "4,2,2,2";
+      };
+      input = {
+        kb_layout = "pl";
+      };
       monitor = [
         "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M28U 22110B009190,preferred,0x504,1"
         "desc:LG Electronics LG SDQHD 205NTNH5W679,preferred,3840x0,1"
@@ -38,6 +82,7 @@
         "9, monitor:desc:LG Electronics LG SDQHD 205NTNH5W679, default:true, persistent:true"
       ];
       exec-once = [
+        "${hyprlandPkg}/bin/hyprctl setcursor Bibata-Modern-Classic 32"
       ];
       bindm = [
         # move / resize with mouse

@@ -7,7 +7,7 @@
   home.packages = with pkgs; [
     htop
     qbittorrent
-    imv
+    unstable.imv
     p7zip
     gimp
     inkscape
