@@ -4,53 +4,23 @@
   lib,
   ...
 }: let
-  colors = {
-    foreground = "D8DEE9";
-
-    background = "2E3440";
-    background_focus = "373E4C";
-    background_dark = "242933";
-
-    cursor = "81A1C1";
-    cursor_text = "2E3440";
-
-    accent = "89C1D1";
-
-    normal = {
-      black = "3B4252";
-      red = "BF616A";
-      green = "A3BE8C";
-      yellow = "EBCB8B";
-      blue = "81A1C1";
-      magenta = "B48EAD";
-      cyan = "88C0D0";
-      white = "E5E9F0";
-    };
-
-    bright = {
-      black = "4C566A";
-      red = "BF616A";
-      green = "A3BE8C";
-      yellow = "D08770";
-      blue = "5E81AC";
-      magenta = "B48EAD";
-      cyan = "8FBCBB";
-      white = "ECEFF4";
-    };
-
-    dim = {
-      black = "373E4D";
-      red = "94545D";
-      green = "809575";
-      yellow = "B29E75";
-      blue = "68809A";
-      magenta = "8C738C";
-      cyan = "6D96A5";
-      white = "AEB3BB";
-    };
+  basePalette = {
+    base = "rgba(25, 23, 36, 1)";
+    surface = "rgba(31, 29, 46, 1)";
+    overlay = "rgba(38, 35, 58, 1)";
+    muted = "rgba(110, 106, 134, 1)";
+    subtle = "rgba(144, 140, 170, 1)";
+    text = "rgba(224, 222, 244, 1)";
+    love = "rgba(235, 111, 146, 1)";
+    gold = "rgba(246, 193, 119, 1)";
+    rose = "rgba(235, 188, 186, 1)";
+    pine = "rgba(49, 116, 143, 1)";
+    foam = "rgba(156, 207, 216, 1)";
+    iris = "rgba(196, 167, 231, 1)";
+    highlightLow = "rgba(33, 32, 46, 1)";
+    highlightMed = "rgba(64, 61, 82, 1)";
+    highlightHigh = "rgba(82, 79, 103, 1)";
   };
-
-  xcolors = lib.mapAttrsRecursive (_: color: "#${color}") colors;
 
   snowflake = builtins.fetchurl rec {
     name = "Logo-${sha256}.svg";
@@ -121,10 +91,10 @@ in {
           tooltip-format = "<span size='32pt'><tt><small>{calendar}</small></tt></span>";
           calendar = {
             format = {
-              days = "<span color='${xcolors.bright.black}'><b>{}</b></span>";
-              months = "<span color='${xcolors.foreground}'><b>{}</b></span>";
-              today = "<span color='${xcolors.foreground}'><b><u>{}</u></b></span>";
-              weekdays = "<span color='${xcolors.accent}'><b>{}</b></span>";
+              # days = "<span color='${basePalette.muted}'><b>{}</b></span>";
+              # months = "<span color='${basePalette.text}'><b>{}</b></span>";
+              # today = "<span color='${basePalette.text}'><b><u>{}</u></b></span>";
+              # weekdays = "<span color='${basePalette.pine}'><b>{}</b></span>";
             };
             mode = "month";
             on-scroll = 1;
@@ -262,7 +232,7 @@ in {
       /* Global */
       * {
         all: unset;
-        color: ${xcolors.foreground};
+        color: ${basePalette.text};
         font:
           11pt "Material Design Icons",
           Inter,
@@ -283,12 +253,12 @@ in {
 
       /* Menu */
       menu {
-        background: ${xcolors.background_dark};
+        background: ${basePalette.surface};
         border-radius: 8px;
       }
 
       menu separator {
-        background: ${xcolors.background};
+        background: ${basePalette.overlay};
       }
 
       menu menuitem {
@@ -298,7 +268,7 @@ in {
       }
 
       menu menuitem:hover {
-        background: ${xcolors.background_focus};
+        background: ${basePalette.highlightMed};
       }
 
       menu menuitem:first-child {
@@ -316,7 +286,7 @@ in {
       /* Scale and Progress Bars */
       scale trough,
       progressbar trough {
-        background: ${xcolors.background_dark};
+        background: ${basePalette.surface};
         border-radius: 16px;
         min-width: 5rem;
       }
@@ -325,14 +295,14 @@ in {
       scale progress,
       progressbar highlight,
       progressbar progress {
-        background: ${xcolors.background};
+        background: ${basePalette.overlay};
         border-radius: 16px;
         min-height: 0.5rem;
       }
 
       /* Tooltip */
       tooltip {
-        background: ${xcolors.background_dark};
+        background: ${basePalette.surface};
         border-radius: 16px;
       }
 
@@ -370,7 +340,7 @@ in {
       #custom-suspend,
       #custom-reboot,
       #custom-power {
-        background: ${xcolors.background};
+        background: ${basePalette.overlay};
         border-radius: 8px;
         margin: 0.5rem 0.25rem;
       }
@@ -403,8 +373,8 @@ in {
       #custom-suspend,
       #custom-reboot,
       #custom-power {
-        background: ${xcolors.accent};
-        color: ${xcolors.background};
+        background: ${basePalette.pine};
+        color: ${basePalette.overlay};
         padding: 0.5rem;
       }
 
@@ -414,7 +384,7 @@ in {
       }
 
       #workspaces button {
-        background: ${xcolors.foreground};
+        background: ${basePalette.text};
         border-radius: 100%;
         margin-right: 0.75rem;
         min-width: 1.525rem;
@@ -426,39 +396,39 @@ in {
       }
 
       #workspaces button:hover {
-        background: lighter(${xcolors.foreground});
+        background: lighter(${basePalette.text});
       }
 
       #workspaces button.empty {
-        background: ${xcolors.bright.black};
+        background: ${basePalette.muted};
       }
 
       #workspaces button.empty:hover {
-        background: lighter(${xcolors.bright.black});
+        background: lighter(${basePalette.muted});
       }
 
       #workspaces button.urgent {
-        background: ${xcolors.normal.red};
+        background: ${basePalette.love};
       }
 
       #workspaces button.urgent:hover {
-        background: lighter(${xcolors.normal.red});
+        background: lighter(${basePalette.love});
       }
 
       #workspaces button.special {
-        background: ${xcolors.normal.blue};
+        background: ${basePalette.rose};
       }
 
       #workspaces button.special:hover {
-        background: lighter(${xcolors.normal.blue});
+        background: lighter(${basePalette.rose});
       }
 
       #workspaces button.active {
-        background: ${xcolors.accent};
+        background: ${basePalette.pine};
       }
 
       #workspaces button.active:hover {
-        background: lighter(${xcolors.accent});
+        background: lighter(${basePalette.pine});
       }
 
       /* Hyprland Window */
@@ -473,39 +443,39 @@ in {
 
       #tray > .needs-attention {
         -gtk-icon-effect: highlight;
-        background: ${xcolors.normal.red};
+        background: ${basePalette.love};
       }
 
       /* Network */
       #network.disconnected {
-        color: ${xcolors.normal.red};
+        color: ${basePalette.love};
       }
 
       /* Pulseaudio */
       #pulseaudio.muted {
-        color: ${xcolors.normal.red};
+        color: ${basePalette.love};
       }
 
       #pulseaudio-slider highlight,
       #backlight-slider highlight {
-        background: ${xcolors.foreground};
+        background: ${basePalette.text};
       }
 
       /* Battery */
       #battery.charging,
       #battery.plugged {
-        color: ${xcolors.normal.green};
+        color: ${basePalette.foam};
       }
 
       #battery.critical:not(.charging) {
-        color: ${xcolors.normal.red};
+        color: ${basePalette.love};
         animation: blink 0.5s steps(12) infinite alternate;
       }
 
       /* Keyframes */
       @keyframes blink {
         to {
-          color: ${xcolors.foreground};
+          color: ${basePalette.text};
         }
       }
     '';

@@ -7,7 +7,7 @@
   hyprlandPkg = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
 in {
   imports = [
-    ./themes/tokyo-night.nix
+    ./themes/rose-pine.nix
     ./hyprland/waybar.nix
   ];
 
@@ -16,26 +16,6 @@ in {
   home.packages = with pkgs; [
     hyprpaper
   ];
-
-  home.pointerCursor = {
-    gtk.enable = true;
-    # x11.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 32;
-  };
-
-  gtk = {
-    enable = true;
-    theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Grey-Darkest";
-    };
-    iconTheme = {
-      package = pkgs.gnome.adwaita-icon-theme;
-      name = "Adwaita";
-    };
-  };
 
   services.hyprpaper = {
     enable = true;
