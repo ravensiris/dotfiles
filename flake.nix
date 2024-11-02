@@ -16,7 +16,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
     wfetch = {
-      url = "github:iynaix/wfetch";
+      url = "github:iynaix/wfetch?ref=bdc30ca5b89309019116b3946640bc8d40c73240";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -24,8 +24,6 @@
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
   };
 
   outputs = inputs @ {
@@ -38,7 +36,6 @@
     agenix,
     wfetch,
     nix-index-database,
-    hyprland,
     ...
   }: let
     user = "q";
@@ -46,7 +43,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixpkgs-unstable home-manager impermanence disko user nur agenix wfetch nix-index-database hyprland;
+        inherit inputs nixpkgs nixpkgs-unstable home-manager impermanence disko user nur agenix wfetch nix-index-database;
       }
     );
   };

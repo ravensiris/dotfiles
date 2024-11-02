@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   programs.mpv = {
     enable = true;
-    package = pkgs.unstable.mpv.override {
-      scripts = [pkgs.unstable.mpvScripts.autoload];
+    package = pkgs.mpv.override {
+      scripts = [pkgs.mpvScripts.autoload];
     };
     #scripts = with pkgs.mpvScripts; [
     #  autoload
@@ -31,7 +31,7 @@
     Service = {
       Type = "simple";
       ExecStartPre = "${pkgs.coreutils}/bin/sleep 30";
-      ExecStart = "${pkgs.unstable.jellyfin-mpv-shim}/bin/jellyfin-mpv-shim";
+      ExecStart = "${pkgs.jellyfin-mpv-shim}/bin/jellyfin-mpv-shim";
       ExecStop = "${pkgs.coreutils}/bin/kill -s SIGINT $MAINPID";
       Restart = "on-failure";
     };

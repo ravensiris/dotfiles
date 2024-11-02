@@ -3,9 +3,7 @@
   hyprland,
   lib,
   ...
-}: let
-  hyprlandPkg = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-in {
+}: {
   imports = [
     ./themes/rose-pine.nix
     ./hyprland/waybar.nix
@@ -33,10 +31,9 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = hyprlandPkg;
     settings = {
       "$mod" = "SUPER";
-      "$terminal" = "${pkgs.unstable.kitty}/bin/kitty";
+      "$terminal" = "${pkgs.kitty}/bin/kitty";
       general = {
         gaps_out = "4,2,2,2";
       };
@@ -62,7 +59,7 @@ in {
         "9, monitor:desc:LG Electronics LG SDQHD 205NTNH5W679, default:true, persistent:true"
       ];
       exec-once = [
-        "${hyprlandPkg}/bin/hyprctl setcursor Bibata-Modern-Classic 32"
+        "${pkgs.hyprland}/bin/hyprctl setcursor Bibata-Modern-Classic 32"
       ];
       bindm = [
         # move / resize with mouse

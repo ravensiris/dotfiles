@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.kitty = {
     enable = true;
-    package = pkgs.unstable.kitty;
+    package = pkgs.kitty;
     font = {
       name = "VictorMono NerdFont";
       size = 15;

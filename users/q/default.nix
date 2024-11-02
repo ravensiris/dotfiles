@@ -7,7 +7,7 @@
   home.packages = with pkgs; [
     htop
     qbittorrent
-    unstable.imv
+    imv
     p7zip
     gimp
     inkscape
@@ -23,6 +23,8 @@
     insomnia
     brave
     floorp
+    sweethome3d.application
+    psmisc
   ];
   imports = [
     nix-index-database.hmModules.nix-index

@@ -58,9 +58,8 @@ in {
     settings = {
       colors = let
         noHash = str: builtins.substring 1 (builtins.stringLength str) str;
-        dbg = x: builtins.trace x.text x;
       in
-        dbg (builtins.builtins.mapAttrs (_: v: (noHash v) + "ff") {
+        builtins.builtins.mapAttrs (_: v: (noHash v) + "ff") {
           background = basePalette.base;
           text = basePalette.text;
           match = basePalette.foam;
@@ -68,7 +67,7 @@ in {
           selection-match = basePalette.foam;
           selection-text = basePalette.text;
           border = basePalette.pine;
-        });
+        };
     };
   };
 
