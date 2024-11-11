@@ -6,7 +6,6 @@
 }: {
   home.packages = with pkgs; [
     htop
-    qbittorrent
     imv
     p7zip
     gimp
@@ -25,6 +24,10 @@
     floorp
     sweethome3d.application
     psmisc
+    vesktop
+    unstable.feishin
+    waifu2x-converter-cpp
+    krita
   ];
   imports = [
     nix-index-database.hmModules.nix-index
@@ -59,6 +62,9 @@
     directories = [
       ".config/Element"
       ".floorp"
+      ".config/vesktop"
+      ".config/feishin"
+      ".local/share/krita"
     ];
     files = [".config/mimeapps.list"];
   };

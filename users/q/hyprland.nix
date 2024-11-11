@@ -60,6 +60,7 @@
       ];
       exec-once = [
         "${pkgs.hyprland}/bin/hyprctl setcursor Bibata-Modern-Classic 32"
+        "${pkgs.vesktop}/bin/vesktop --start-minimized"
       ];
       bindm = [
         # move / resize with mouse
