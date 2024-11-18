@@ -8,11 +8,13 @@
   nixpkgs-unstable,
   wfetch,
   nix-index-database,
+  inputs,
   ...
 }: let
   unstableOverlay = final: prev: {
     unstable = nixpkgs-unstable.legacyPackages.${prev.system};
   };
+
   unstableModule = {
     config,
     pkgs,
@@ -64,7 +66,7 @@ in {
       nur.nixosModules.nur
       agenix.nixosModules.default
       unstableModule
-      {nixpkgs.overlays = [wfetchOverlay lookingGlassOverlay];}
+      {nixpkgs.overlays = [wfetchOverlay lookingGlassOverlay inputs.nix-comfyui.overlays.default];}
       {imports = [../modules/kvmfr.nix];}
       ./gate
       home-manager.nixosModules.home-manager

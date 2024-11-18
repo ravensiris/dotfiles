@@ -3,7 +3,21 @@
   impermanence,
   nix-index-database,
   ...
-}: {
+}: let
+  my-comfyui = pkgs.comfyuiPackages.comfyui.override {
+    extensions = [
+      pkgs.comfyuiPackages.extensions.acly-inpaint
+      pkgs.comfyuiPackages.extensions.acly-tooling
+      pkgs.comfyuiPackages.extensions.cubiq-ipadapter-plus
+      pkgs.comfyuiPackages.extensions.fannovel16-controlnet-aux
+    ];
+
+    commandLineArgs = [
+      "--preview-method"
+      "auto"
+    ];
+  };
+in {
   home.packages = with pkgs; [
     htop
     imv
@@ -27,8 +41,12 @@
     vesktop
     unstable.feishin
     waifu2x-converter-cpp
-    krita
+    backgroundremover
+    my-comfyui
+    comfyuiPackages.krita-with-extensions
+    bambu-studio
   ];
+
   imports = [
     nix-index-database.hmModules.nix-index
     impermanence.nixosModules.home-manager.impermanence
@@ -65,6 +83,7 @@
       ".config/vesktop"
       ".config/feishin"
       ".local/share/krita"
+      ".config/BambuStudio"
     ];
     files = [".config/mimeapps.list"];
   };
