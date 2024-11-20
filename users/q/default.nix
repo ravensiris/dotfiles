@@ -45,6 +45,7 @@ in {
     my-comfyui
     comfyuiPackages.krita-with-extensions
     bambu-studio
+    freecad
   ];
 
   imports = [
@@ -84,6 +85,7 @@ in {
       ".config/feishin"
       ".local/share/krita"
       ".config/BambuStudio"
+      ".config/FreeCAD"
     ];
     files = [".config/mimeapps.list"];
   };
