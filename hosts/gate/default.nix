@@ -23,7 +23,7 @@
     ./fonts.nix
   ];
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   programs.adb.enable = true;
   services.devmon.enable = true;
   services.gvfs.enable = true;

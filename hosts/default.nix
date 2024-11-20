@@ -66,7 +66,7 @@ in {
       nur.nixosModules.nur
       agenix.nixosModules.default
       unstableModule
-      {nixpkgs.overlays = [wfetchOverlay lookingGlassOverlay inputs.nix-comfyui.overlays.default];}
+      {nixpkgs.overlays = [wfetchOverlay lookingGlassOverlay];}
       {imports = [../modules/kvmfr.nix];}
       ./gate
       home-manager.nixosModules.home-manager

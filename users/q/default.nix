@@ -3,21 +3,7 @@
   impermanence,
   nix-index-database,
   ...
-}: let
-  my-comfyui = pkgs.comfyuiPackages.comfyui.override {
-    extensions = [
-      pkgs.comfyuiPackages.extensions.acly-inpaint
-      pkgs.comfyuiPackages.extensions.acly-tooling
-      pkgs.comfyuiPackages.extensions.cubiq-ipadapter-plus
-      pkgs.comfyuiPackages.extensions.fannovel16-controlnet-aux
-    ];
-
-    commandLineArgs = [
-      "--preview-method"
-      "auto"
-    ];
-  };
-in {
+}: {
   home.packages = with pkgs; [
     htop
     imv
@@ -42,8 +28,6 @@ in {
     unstable.feishin
     waifu2x-converter-cpp
     backgroundremover
-    my-comfyui
-    comfyuiPackages.krita-with-extensions
     bambu-studio
     freecad
   ];
