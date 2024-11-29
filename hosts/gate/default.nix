@@ -23,6 +23,9 @@
     ./fonts.nix
   ];
 
+  # for Bambu LAN only mode discovery
+  networking.firewall.allowedUDPPorts = [2021];
+
   hardware.graphics.enable = true;
   programs.adb.enable = true;
   services.devmon.enable = true;

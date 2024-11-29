@@ -28,9 +28,33 @@
     unstable.feishin
     waifu2x-converter-cpp
     backgroundremover
-    bambu-studio
+    orca-slicer
     freecad
+    usbutils
+    openscad
   ];
+
+  xdg.mimeApps = let
+    assocs = {
+      "application/vnd.ms-3mfdocument" = ["OrcaSlicer.desktop"];
+      "model/3mf" = ["OrcaSlicer.desktop"];
+      "model/stl" = ["OrcaSlicer.desktop"];
+      "x-scheme-handler/http" = ["floorp.desktop"];
+      "x-scheme-handler/https" = ["floorp.desktop"];
+      "x-scheme-handler/chrome" = ["floorp.desktop"];
+      "text/html" = ["floorp.desktop"];
+      "application/x-extension-htm" = ["floorp.desktop"];
+      "application/x-extension-html" = ["floorp.desktop"];
+      "application/x-extension-shtml" = ["floorp.desktop"];
+      "application/xhtml+xml" = ["floorp.desktop"];
+      "application/x-extension-xhtml" = ["floorp.desktop"];
+      "application/x-extension-xht" = ["floorp.desktop"];
+    };
+  in {
+    enable = true;
+    associations.added = assocs;
+    defaultApplications = assocs;
+  };
 
   imports = [
     nix-index-database.hmModules.nix-index
@@ -68,10 +92,10 @@
       ".config/vesktop"
       ".config/feishin"
       ".local/share/krita"
-      ".config/BambuStudio"
+      ".config/OrcaSlicer"
       ".config/FreeCAD"
+      ".config/OpenSCAD"
     ];
-    files = [".config/mimeapps.list"];
   };
 
   home.stateVersion = "24.05";
