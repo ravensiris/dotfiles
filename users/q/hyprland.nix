@@ -101,6 +101,9 @@
           # applications
           "$mod, Return, exec, $terminal"
           "$mod, D, exec, ${pkgs.fuzzel}/bin/fuzzel --show-actions"
+
+          # utility
+          "$mod, P, exec, ${pkgs.grimblast}/bin/grimblast copy area"
         ]
         ++ workspaceBinds;
     };
