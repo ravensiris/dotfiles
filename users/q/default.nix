@@ -93,6 +93,8 @@
       ".config/feishin"
       ".local/share/krita"
       ".config/OrcaSlicer"
+      ".local/share/orca-slicer"
+      ".cache/orca-slicer"
       ".config/FreeCAD"
       ".config/OpenSCAD"
     ];
