@@ -9,6 +9,7 @@
     openmoji-color
     twitter-color-emoji
     nerdfonts
+    mno16
   ];
 
   fonts.fontconfig = {
