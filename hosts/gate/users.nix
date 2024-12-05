@@ -11,7 +11,7 @@
   users.users.q = {
     hashedPasswordFile = config.age.secrets.q.path;
     isNormalUser = true;
-    extraGroups = ["wheel" "libvirtd" "docker" "adbusers" "input"];
+    extraGroups = ["wheel" "libvirtd" "docker" "adbusers" "input" "dialout"];
     shell = pkgs.fish;
   };
 
