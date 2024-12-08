@@ -31,7 +31,7 @@
 
         modules = [
           ./home.nix
-          {nixpkgs.overlays = [nur.overlay unstableOverlay nixgl.overlay];}
+          {nixpkgs.overlays = [nur.overlays.default unstableOverlay nixgl.overlay];}
         ];
       };
     };

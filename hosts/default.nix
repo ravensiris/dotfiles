@@ -72,7 +72,7 @@ in {
       home-manager.nixosModules.home-manager
       (import ../pkgs)
       {
-        nixpkgs.overlays = [nur.overlay unstableOverlay];
+        nixpkgs.overlays = [nur.overlays.default unstableOverlay];
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
 
