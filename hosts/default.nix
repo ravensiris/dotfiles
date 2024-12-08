@@ -63,7 +63,7 @@ in {
     modules = [
       impermanence.nixosModules.impermanence
       disko.nixosModules.disko
-      nur.nixosModules.nur
+      nur.modules.nixos.default
       agenix.nixosModules.default
       unstableModule
       {nixpkgs.overlays = [wfetchOverlay lookingGlassOverlay];}
