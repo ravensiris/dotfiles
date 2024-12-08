@@ -23,6 +23,8 @@
     ./fonts.nix
   ];
 
+  nix.settings.auto-optimise-store = true;
+
   # for Bambu LAN only mode discovery
   networking.firewall.allowedUDPPorts = [2021];
 
