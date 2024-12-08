@@ -25,6 +25,12 @@
 
   nix.settings.auto-optimise-store = true;
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
   # for Bambu LAN only mode discovery
   networking.firewall.allowedUDPPorts = [2021];
 
