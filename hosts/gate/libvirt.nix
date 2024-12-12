@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   systemd.services.libvirtd.preStart = let
     qemuHook = pkgs.writeScript "qemu-hook" ''
       #!${pkgs.stdenv.shell}
@@ -43,7 +47,6 @@
     virt-manager
     looking-glass-client
     qemu
-    OVMF
     pciutils
     swtpm
     win-virtio
@@ -57,7 +60,21 @@
 
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.swtpm.enable = true;
-  virtualisation.libvirtd.qemu.ovmf.enable = true;
+  virtualisation.libvirtd.qemu.ovmf = {
+    enable = true;
+    packages = [pkgs.OVMFFull.fd];
+  };
+
+  environment.etc = {
+    "ovmf/edk2-x86_64-secure-code.fd" = {
+      source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-x86_64-secure-code.fd";
+    };
+
+    "ovmf/edk2-i386-vars.fd" = {
+      source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-i386-vars.fd";
+    };
+  };
+
   virtualisation.kvmfr = {
     enable = true;
     shm = {
