@@ -56,6 +56,10 @@
     defaultApplications = assocs;
   };
 
+  home.sessionVariables = {
+    QT_SCALE_FACTOR = "1.7";
+  };
+
   imports = [
     nix-index-database.hmModules.nix-index
     impermanence.nixosModules.home-manager.impermanence
