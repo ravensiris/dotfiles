@@ -50,7 +50,6 @@ in {
   home.persistence."/nix/persist/home/q" = {
     directories = [
       ".local/share/nvim"
-      ".cache/nvim"
     ];
   };
 }

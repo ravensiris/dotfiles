@@ -91,6 +91,7 @@
   home.persistence."/nix/persist/home/q".allowOther = true;
   home.persistence."/nix/persist/home/q" = {
     directories = [
+      ".cache"
       ".config/Element"
       ".floorp"
       ".config/vesktop"
@@ -98,7 +99,6 @@
       ".local/share/krita"
       ".config/OrcaSlicer"
       ".local/share/orca-slicer"
-      ".cache/orca-slicer"
       ".config/FreeCAD"
       ".config/OpenSCAD"
     ];
