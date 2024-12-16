@@ -67,7 +67,7 @@ in {
       agenix.nixosModules.default
       unstableModule
       {nixpkgs.overlays = [wfetchOverlay lookingGlassOverlay];}
-      {imports = [../modules/kvmfr.nix];}
+      {imports = [../modules/kvmfr.nix ../modules/s3fs.nix];}
       ./gate
       home-manager.nixosModules.home-manager
       (import ../pkgs)

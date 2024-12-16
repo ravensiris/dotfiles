@@ -44,6 +44,11 @@
   age.identityPaths = ["/nix/persist/etc/ssh/ssh_host_ed25519_key"];
   time.timeZone = "Europe/Warsaw";
 
+  age.secrets.share-bucket.file = ../../secrets/share-bucket.age;
+  s3fs.share = {
+    mountPath = "/media/share";
+  };
+
   environment.systemPackages = with pkgs; [
     agenix.packages.x86_64-linux.default
     unstable.devenv
@@ -58,6 +63,7 @@
     v4l-utils
     android-file-transfer
     ddcutil
+    s3fs
   ];
 
   nix.settings.trusted-users = ["q"];

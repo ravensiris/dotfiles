@@ -5,4 +5,5 @@ let
   gate = [gateUserQ gateHostRSA gateHostED];
 in {
   "q.age".publicKeys = gate;
+  "share-bucket.age".publicKeys = gate;
 }
