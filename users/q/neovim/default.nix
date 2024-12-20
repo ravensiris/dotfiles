@@ -40,10 +40,12 @@ in {
       gcc
       nil
       nodePackages_latest.typescript-language-server
-      unstable.tailwindcss-language-server
+      # unstable.tailwindcss-language-server
+      tailwindcss-language-server
       vscode-langservers-extracted
       minijinja
       protols
+      lldb
     ];
     sessionVariables = {EDITOR = "nvim";};
   };

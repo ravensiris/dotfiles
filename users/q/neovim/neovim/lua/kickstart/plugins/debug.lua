@@ -66,6 +66,7 @@ return {
       command = 'elixir-debug-adapter',
       args = {},
     }
+    dap.configurations.rust = {}
     dap.configurations.elixir = {
       {
         type = 'mix_task',
