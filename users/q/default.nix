@@ -32,7 +32,7 @@
     freecad
     usbutils
     openscad
-    persepolis
+    aria2
   ];
 
   xdg.mimeApps = let
