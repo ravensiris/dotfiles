@@ -25,10 +25,10 @@
     sweethome3d.application
     psmisc
     vesktop
-    unstable.feishin
+    feishin
     waifu2x-converter-cpp
     backgroundremover
-    unstable.orca-slicer
+    orca-slicer
     freecad
     usbutils
     openscad
