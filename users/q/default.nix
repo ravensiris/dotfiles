@@ -32,7 +32,6 @@
     freecad
     usbutils
     openscad
-    aria2
   ];
 
   xdg.mimeApps = let
