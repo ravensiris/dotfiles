@@ -99,6 +99,7 @@
       ".local/share/krita"
       ".config/OrcaSlicer"
       ".local/share/orca-slicer"
+      ".local/share/FreeCAD"
       ".config/FreeCAD"
       ".config/OpenSCAD"
     ];
