@@ -16,7 +16,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
     wfetch = {
-      url = "github:iynaix/wfetch?ref=bdc30ca5b89309019116b3946640bc8d40c73240";
+      url = "github:iynaix/wfetch";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
