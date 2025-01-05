@@ -7,6 +7,8 @@
   imports = [
     ./themes/rose-pine.nix
     ./hyprland/waybar.nix
+    ./hyprland/hypridle.nix
+    ./hyprland/hyprlock.nix
   ];
 
   programs.fuzzel.enable = true;
@@ -105,6 +107,7 @@
 
           # utility
           "$mod, P, exec, ${pkgs.grimblast}/bin/grimblast copy area"
+          "$mod, L, exec, ${pkgs.hyprlock}/bin/hyprlock"
         ]
         ++ workspaceBinds;
     };

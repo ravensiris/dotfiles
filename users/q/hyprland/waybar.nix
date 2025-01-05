@@ -1,9 +1,5 @@
 # stolen from https://github.com/raexera/yuki
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   basePalette = {
     base = "rgba(25, 23, 36, 1)";
     surface = "rgba(31, 29, 46, 1)";
