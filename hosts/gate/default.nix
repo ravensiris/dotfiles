@@ -42,7 +42,10 @@
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
-
+  # prevent mouse wakeup
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="d030", ATTR{power/wakeup}="disabled"
+  '';
   # for Bambu LAN only mode discovery
   networking.firewall.allowedUDPPorts = [2021];
 
