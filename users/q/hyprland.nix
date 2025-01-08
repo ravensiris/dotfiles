@@ -3,7 +3,19 @@
   hyprland,
   lib,
   ...
-}: {
+}: let
+  gigabyteWallpaper = builtins.fetchurl rec {
+    name = "${sha256}.jpg";
+    url = "https://cdn.donmai.us/original/f6/c3/__eishin_flash_and_smart_falcon_umamusume_drawn_by_yu_hydra__f6c3d3c0e1e8ce04deba0ff9b568a9c5.jpg";
+    sha256 = "01kcjwfhykj00sj1sbl2gbbs8nw01b2fzlxcbnwq152hdhf8yw7n";
+  };
+
+  lgWallpaper = builtins.fetchurl rec {
+    name = "${sha256}.jpg";
+    url = "https://cdn.donmai.us/original/12/ed/__aston_machan_umamusume_drawn_by_yu_hydra__12ed1215de3805f8b407b3c80b930104.jpg";
+    sha256 = "0ji7g9d314r7ns146by35zzfk969106r3i74qqxszdswrvhd4vjc";
+  };
+in {
   imports = [
     ./themes/rose-pine.nix
     ./hyprland/waybar.nix
@@ -21,12 +33,12 @@
     enable = true;
     settings = {
       preload = [
-        "/home/q/Pictures/Wallpapers/GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190[3840x2160]/__sin_mal_honkai_and_1_more_drawn_by_sin_mal0909__e4844fb47fccc09db25da93fe60dac7a.png"
-        "/home/q/Pictures/Wallpapers/LG Electronics LG SDQHD 205NTNH5W679[2560x2880]/__ninomae_ina_nis_takodachi_and_ninomae_ina_nis_hololive_and_1_more_drawn_by_happyongdal__748043200955892f31bf77c2abc008c8.png"
+        "${gigabyteWallpaper}"
+        "${lgWallpaper}"
       ];
       wallpaper = [
-        "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M28U 22110B009190,/home/q/Pictures/Wallpapers/GIGA-BYTE TECHNOLOGY CO., LTD. M28U 22110B009190[3840x2160]/__sin_mal_honkai_and_1_more_drawn_by_sin_mal0909__e4844fb47fccc09db25da93fe60dac7a.png"
-        "desc:LG Electronics LG SDQHD 205NTNH5W679,/home/q/Pictures/Wallpapers/LG Electronics LG SDQHD 205NTNH5W679[2560x2880]/__ninomae_ina_nis_takodachi_and_ninomae_ina_nis_hololive_and_1_more_drawn_by_happyongdal__748043200955892f31bf77c2abc008c8.png"
+        "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M28U 22110B009190,${gigabyteWallpaper}"
+        "desc:LG Electronics LG SDQHD 205NTNH5W679,${lgWallpaper}"
       ];
     };
   };
