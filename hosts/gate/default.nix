@@ -21,6 +21,7 @@
     ./syncthing.nix
     ./printing.nix
     ./fonts.nix
+    ./lact.nix
   ];
 
   environment.etc."sysconfig/lm_sensors".text = ''
