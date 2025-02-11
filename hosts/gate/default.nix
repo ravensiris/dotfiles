@@ -60,11 +60,6 @@
   age.identityPaths = ["/nix/persist/etc/ssh/ssh_host_ed25519_key"];
   time.timeZone = "Europe/Warsaw";
 
-  age.secrets.share-bucket.file = ../../secrets/share-bucket.age;
-  s3fs.share = {
-    mountPath = "/media/share";
-  };
-
   environment.systemPackages = with pkgs; [
     agenix.packages.x86_64-linux.default
     unstable.devenv
@@ -81,6 +76,20 @@
     ddcutil
     s3fs
     lm_sensors
+    vial
+    qmk
+    sshfs
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-31.7.7"
+  ];
+
+  swapDevices = [
+    {
+      device = "/nix/persist/swapfile";
+      size = 96 * 1024;
+    }
   ];
 
   nix.settings.trusted-users = ["q"];
