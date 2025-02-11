@@ -27,7 +27,7 @@ in {
   };
   home = {
     packages = with pkgs; [
-      unstable.neovim
+      neovim
       alejandra
       black
       ruff
