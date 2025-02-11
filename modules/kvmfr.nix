@@ -38,7 +38,7 @@ in {
 
   config = mkIf cfg.enable {
     boot.extraModulePackages = with pkgs; [
-      linuxPackages_latest.kvmfr
+      linuxPackages_6_12.kvmfr
     ];
     boot.initrd.kernelModules = ["kvmfr"];
 

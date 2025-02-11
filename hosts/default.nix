@@ -1,4 +1,5 @@
 {
+  self,
   lib,
   disko,
   home-manager,
@@ -8,7 +9,6 @@
   nixpkgs-unstable,
   wfetch,
   nix-index-database,
-  inputs,
   ...
 }: let
   unstableOverlay = final: prev: {
@@ -25,8 +25,8 @@
   };
 
   lookingGlassOverlay = final: prev: {
-    linuxPackages_latest = prev.linuxPackages_latest.extend (kfinal: kprev: {
-      kvmfr = prev.linuxPackages_latest.kvmfr.overrideAttrs (old: {
+    linuxPackages_6_12 = prev.linuxPackages_6_12.extend (kfinal: kprev: {
+      kvmfr = prev.linuxPackages_6_12.kvmfr.overrideAttrs (old: {
         patches = [
           # fix build for linux-6_10
           (prev.fetchpatch {
