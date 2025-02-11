@@ -36,6 +36,7 @@
     agenix,
     wfetch,
     nix-index-database,
+    self,
     ...
   }: let
     user = "q";
@@ -43,7 +44,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixpkgs-unstable home-manager impermanence disko user nur agenix wfetch nix-index-database;
+        inherit inputs nixpkgs nixpkgs-unstable home-manager impermanence disko user nur agenix wfetch nix-index-database self;
       }
     );
   };
