@@ -5,3 +5,4 @@ devenv.local.nix
 .direnv
 
 result
+.nixos-test-history
