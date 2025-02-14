@@ -74,6 +74,7 @@
     ./ssh.nix
     ./music.nix
     ./media.nix
+    ./android-studio.nix
   ];
 
   programs.nix-index.enable = true;
