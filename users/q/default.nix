@@ -60,6 +60,10 @@
     QT_SCALE_FACTOR = "1.7";
   };
 
+  xdg.configFile."distrobox/distrobox.conf" = {
+    source = ./distrobox.conf;
+  };
+
   imports = [
     nix-index-database.hmModules.nix-index
     impermanence.nixosModules.home-manager.impermanence

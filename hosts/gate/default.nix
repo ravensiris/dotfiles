@@ -22,6 +22,7 @@
     ./printing.nix
     ./fonts.nix
     ./lact.nix
+    ./distrobox.nix
   ];
 
   environment.etc."sysconfig/lm_sensors".text = ''
