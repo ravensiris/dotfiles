@@ -80,6 +80,7 @@
     vial
     qmk
     sshfs
+    bruno
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
