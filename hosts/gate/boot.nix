@@ -10,12 +10,12 @@
     };
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = ["nvme" "dm-snapshot" "i2c-dev" "i2c-piix4" "vfio" "vfio_iommu_type1" "vfio_pci" "kvm-amd" "v4l2loopback"];
   boot.extraModulePackages = with pkgs; [
-    linuxPackages_6_12.v4l2loopback
-    linuxPackages_6_12.kvmfr
+    linuxPackages_latest.v4l2loopback
+    linuxPackages_latest.kvmfr
   ];
   boot.initrd.checkJournalingFS = false;
   boot.initrd.luks.devices."cryptroot".preLVM = true;

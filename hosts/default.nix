@@ -25,8 +25,8 @@
   };
 
   lookingGlassOverlay = final: prev: {
-    linuxPackages_6_12 = prev.linuxPackages_6_12.extend (kfinal: kprev: {
-      kvmfr = prev.linuxPackages_6_12.kvmfr.overrideAttrs (old: {
+    linuxPackages_latest = prev.linuxPackages_latest.extend (kfinal: kprev: {
+      kvmfr = prev.linuxPackages_latest.kvmfr.overrideAttrs (old: {
         patches = [
           # fix build for linux-6_10
           (prev.fetchpatch {
@@ -40,6 +40,13 @@
           (prev.fetchpatch {
             url = "https://github.com/gnif/LookingGlass/commit/3ea37b86e38a87ee35eefb5d8fcc38b8dc8e2903.patch";
             hash = "sha256-Kk1gN1uB86ZJA374zmzM9dwwfMZExJcix3hee7ifpp0=";
+            stripLen = 1;
+          })
+
+          (prev.fetchpatch {
+            # name = "kvmfr-6.13.patch"
+            url = "file://${./kvmfr-6.13.patch}";
+            hash = "sha256-ux3d9dO16IosLSDGxoqeRRPmEqKxXEBJKrKwRrq6TXI=";
             stripLen = 1;
           })
         ];
