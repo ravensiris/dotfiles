@@ -21,7 +21,6 @@
     ./syncthing.nix
     ./printing.nix
     ./fonts.nix
-    ./lact.nix
     ./distrobox.nix
   ];
 
