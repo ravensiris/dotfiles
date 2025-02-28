@@ -55,7 +55,7 @@ in {
         kb_layout = "pl";
       };
       monitor = [
-        "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M28U 22110B009190,preferred,0x504,1"
+        "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M28U 22110B009190,highrr,0x504,1"
         "desc:LG Electronics LG SDQHD 205NTNH5W679,preferred,3840x0,1"
         ",preferred,auto,1"
       ];
