@@ -6,14 +6,14 @@
 }: let
   gigabyteWallpaper = builtins.fetchurl rec {
     name = "${sha256}.jpg";
-    url = "https://cdn.donmai.us/original/f6/c3/__eishin_flash_and_smart_falcon_umamusume_drawn_by_yu_hydra__f6c3d3c0e1e8ce04deba0ff9b568a9c5.jpg";
-    sha256 = "01kcjwfhykj00sj1sbl2gbbs8nw01b2fzlxcbnwq152hdhf8yw7n";
+    url = "https://cdn.donmai.us/original/bd/98/__mejiro_ardan_umamusume_drawn_by_yu_hydra__bd98ddc0c53dc72b6923d5d36a9fccab.jpg";
+    sha256 = "1kkmdia8wgxlq3ypa4zp3k5ymn2qv7zq0g5xljviy4drawgp72pi";
   };
 
   lgWallpaper = builtins.fetchurl rec {
     name = "${sha256}.jpg";
-    url = "https://cdn.donmai.us/original/12/ed/__aston_machan_umamusume_drawn_by_yu_hydra__12ed1215de3805f8b407b3c80b930104.jpg";
-    sha256 = "0ji7g9d314r7ns146by35zzfk969106r3i74qqxszdswrvhd4vjc";
+    url = "https://cdn.donmai.us/sample/44/b9/__mayano_top_gun_and_sweep_tosho_umamusume_drawn_by_yu_hydra__sample-44b9ed2fb739f925d271f6fc64200c44.jpg";
+    sha256 = "0sgjva1nlksly2w1xsvka6fgyqkg2v1492nqpa86vhv0z51ih23r";
   };
 in {
   imports = [
