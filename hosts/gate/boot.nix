@@ -19,9 +19,6 @@
   ];
   boot.initrd.checkJournalingFS = false;
   boot.initrd.luks.devices."cryptroot".preLVM = true;
-  boot.initrd.luks.devices."windows" = {
-    device = "/dev/disk/by-uuid/3299548d-f3f7-45f9-8e22-1ebeec3348d9";
-  };
 
   boot.extraModprobeConfig = ''
     options v4l2loopback video_nr=1,10 card_label="OBS","Phone" exclusive_caps=1 max_buffers=2
