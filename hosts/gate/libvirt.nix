@@ -2,7 +2,42 @@
   pkgs,
   config,
   ...
-}: {
+}: let
+  alloc_hugepages = pkgs.writeScriptBin "alloc_hugepages" ''
+    #!/usr/bin/env bash
+
+    ## Calculate number of hugepages to allocate from memory (in MB)
+    HUGEPAGES="$(($MEMORY/$(($(grep Hugepagesize /proc/meminfo | awk '{print $2}')/1024))))"
+
+    echo "Allocating hugepages..." > /dev/kmsg
+    echo $HUGEPAGES > /proc/sys/vm/nr_hugepages
+    ALLOC_PAGES=$(cat /proc/sys/vm/nr_hugepages)
+
+    TRIES=0
+    while (( $ALLOC_PAGES != $HUGEPAGES && $TRIES < 1000 ))
+    do
+        echo 1 > /proc/sys/vm/compact_memory            ## defrag ram
+        echo $HUGEPAGES > /proc/sys/vm/nr_hugepages
+        ALLOC_PAGES=$(cat /proc/sys/vm/nr_hugepages)
+        echo "Succesfully allocated $ALLOC_PAGES / $HUGEPAGES"  > /dev/kmsg
+        let TRIES+=1
+    done
+
+    if [ "$ALLOC_PAGES" -ne "$HUGEPAGES" ]
+    then
+        echo "Not able to allocate all hugepages. Reverting..."  > /dev/kmsg
+        echo 0 > /proc/sys/vm/nr_hugepages
+        exit 1
+    fi
+  '';
+
+  dealloc_hugepages = pkgs.writeScriptBin "dealloc_hugepages" ''
+    #!/usr/bin/env bash
+
+    echo "Deallocating hugepages"  > /dev/kmsg
+    echo 0 > /proc/sys/vm/nr_hugepages
+  '';
+in {
   systemd.services.libvirtd.preStart = let
     qemuHook = pkgs.writeScript "qemu-hook" ''
       #!${pkgs.stdenv.shell}
@@ -11,14 +46,16 @@
       SUB_OPERATION="$3"
       if [[ "$GUEST_NAME" == "win11"* ]]; then
         if [[ "$OPERATION" == "started" ]]; then
-          systemctl set-property --runtime -- system.slice AllowedCPUs=6-10,18-22
-          systemctl set-property --runtime -- user.slice AllowedCPUs=6-10,18-22
-          systemctl set-property --runtime -- init.scope AllowedCPUs=6-10,18-22
+          systemctl set-property --runtime -- system.slice AllowedCPUs=8,20,9,21
+          systemctl set-property --runtime -- user.slice AllowedCPUs=8,20,9,21
+          systemctl set-property --runtime -- init.scope AllowedCPUs=8,20,9,21
+          ${alloc_hugepages}/bin/alloc_hugepages
         fi
         if [[ "$OPERATION" == "stopped" ]]; then
           systemctl set-property --runtime -- user.slice AllowedCPUs=0-23
           systemctl set-property --runtime -- system.slice AllowedCPUs=0-23
           systemctl set-property --runtime -- init.scope AllowedCPUs=0-23
+          ${dealloc_hugepages}/bin/dealloc_hugepages
         fi
       fi
     '';
@@ -51,12 +88,9 @@
     swtpm
     win-virtio
     quickemu
+    alloc_hugepages
+    dealloc_hugepages
   ];
-
-  boot.kernel.sysctl = {
-    "vm.nr_hugepages" = 0;
-    "vm.nr_overcommit_hugepages" = 16384;
-  };
 
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.swtpm.enable = true;
