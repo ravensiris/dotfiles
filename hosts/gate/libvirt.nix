@@ -4,10 +4,10 @@
   ...
 }: let
   alloc_hugepages = pkgs.writeScriptBin "alloc_hugepages" ''
-    #!/usr/bin/env bash
+    #!${pkgs.bash}/bin/bash
 
     ## Calculate number of hugepages to allocate from memory (in MB)
-    HUGEPAGES="$(($MEMORY/$(($(grep Hugepagesize /proc/meminfo | awk '{print $2}')/1024))))"
+    HUGEPAGES="$(($MEMORY/$(($(grep Hugepagesize /proc/meminfo | ${pkgs.gawk}/bin/awk '{print $2}')/1024))))"
 
     echo "Allocating hugepages..." > /dev/kmsg
     echo $HUGEPAGES > /proc/sys/vm/nr_hugepages
@@ -32,7 +32,7 @@
   '';
 
   dealloc_hugepages = pkgs.writeScriptBin "dealloc_hugepages" ''
-    #!/usr/bin/env bash
+    #!${pkgs.bash}/bin/bash
 
     echo "Deallocating hugepages"  > /dev/kmsg
     echo 0 > /proc/sys/vm/nr_hugepages
@@ -40,16 +40,22 @@
 in {
   systemd.services.libvirtd.preStart = let
     qemuHook = pkgs.writeScript "qemu-hook" ''
-      #!${pkgs.stdenv.shell}
+      #!${pkgs.bash}/bin/bash
+
       GUEST_NAME="$1"
       OPERATION="$2"
       SUB_OPERATION="$3"
+
       if [[ "$GUEST_NAME" == "win11"* ]]; then
+        if [[ "$OPERATION" == "prepare" ]]; then
+          export MEMORY=32768
+
+          ${alloc_hugepages}/bin/alloc_hugepages
+        fi
         if [[ "$OPERATION" == "started" ]]; then
           systemctl set-property --runtime -- system.slice AllowedCPUs=8,20,9,21
           systemctl set-property --runtime -- user.slice AllowedCPUs=8,20,9,21
           systemctl set-property --runtime -- init.scope AllowedCPUs=8,20,9,21
-          ${alloc_hugepages}/bin/alloc_hugepages
         fi
         if [[ "$OPERATION" == "stopped" ]]; then
           systemctl set-property --runtime -- user.slice AllowedCPUs=0-23
