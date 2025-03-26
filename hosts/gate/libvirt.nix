@@ -130,6 +130,7 @@ in {
   virtualisation.libvirtd.qemu.verbatimConfig = ''
     namespaces = []
     cgroup_device_acl = [
+        "/dev/input/by-id/usb-liliums_Lily58-event-kbd",
         "/dev/null", "/dev/full", "/dev/zero",
         "/dev/random", "/dev/urandom",
         "/dev/ptmx", "/dev/kvm", "/dev/kqemu",
