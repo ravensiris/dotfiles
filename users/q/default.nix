@@ -32,6 +32,7 @@
     freecad
     usbutils
     openscad
+    foliate
   ];
 
   xdg.mimeApps = let
