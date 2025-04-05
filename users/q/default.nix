@@ -97,10 +97,6 @@
   home.persistence."/nix/persist/home/q".allowOther = true;
   home.persistence."/nix/persist/home/q" = {
     directories = [
-      {
-        directory = ".cache";
-        mode = "u=rwx,g=,o=";
-      }
       ".config/Element"
       ".floorp"
       ".config/vesktop"

@@ -26,6 +26,10 @@
       ".config/jellyfin-mpv-shim"
       "Music"
       "Pictures"
+      {
+        directory = ".cache";
+        mode = "u=rwx,g=,o=";
+      }
     ];
   };
 }
