@@ -76,6 +76,7 @@ in {
         "${pkgs.hyprland}/bin/hyprctl setcursor Bibata-Modern-Classic 32"
         "${pkgs.vesktop}/bin/vesktop --start-minimized"
         "${pkgs.element-desktop}/bin/element-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland --hidden"
+        "${pkgs.birdtray}/bin/birdtray"
       ];
       bindm = [
         # move / resize with mouse

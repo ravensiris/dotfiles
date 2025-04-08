@@ -33,6 +33,8 @@
     usbutils
     openscad
     foliate
+    thunderbird-latest
+    birdtray
   ];
 
   xdg.mimeApps = let
@@ -107,6 +109,8 @@
       ".local/share/FreeCAD"
       ".config/FreeCAD"
       ".config/OpenSCAD"
+      ".thunderbird"
+      ".config/birdtray"
     ];
   };
 
