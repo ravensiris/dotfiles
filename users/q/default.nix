@@ -96,6 +96,16 @@
   };
 
   xdg.enable = true;
+
+  xdg.desktopEntries.floorp-work = {
+    name = "Floorp Work";
+    genericName = "Web Browser";
+    exec = "floorp -P Work %U";
+    terminal = false;
+    categories = ["Application" "Network" "WebBrowser"];
+    mimeType = ["text/html" "text/xml"];
+  };
+
   home.persistence."/nix/persist/home/q".allowOther = true;
   home.persistence."/nix/persist/home/q" = {
     directories = [
