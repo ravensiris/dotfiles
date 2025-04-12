@@ -46,6 +46,7 @@ in {
       minijinja
       protols
       lldb
+      unstable.eslint_d
     ];
     sessionVariables = {EDITOR = "nvim";};
   };
