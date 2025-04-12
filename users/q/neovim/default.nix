@@ -47,6 +47,7 @@ in {
       protols
       lldb
       unstable.eslint_d
+      unstable.prettierd
     ];
     sessionVariables = {EDITOR = "nvim";};
   };
