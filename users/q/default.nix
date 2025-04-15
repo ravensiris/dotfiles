@@ -35,6 +35,7 @@
     foliate
     thunderbird-latest
     birdtray
+    remmina
   ];
 
   xdg.mimeApps = let
