@@ -48,6 +48,7 @@ in {
       lldb
       unstable.eslint_d
       unstable.prettierd
+      unstable.markdownlint-cli
     ];
     sessionVariables = {EDITOR = "nvim";};
   };
