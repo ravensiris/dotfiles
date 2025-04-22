@@ -122,6 +122,7 @@
       ".config/OpenSCAD"
       ".thunderbird"
       ".config/birdtray"
+      ".config/BraveSoftware/Brave-Browser"
     ];
   };
 
