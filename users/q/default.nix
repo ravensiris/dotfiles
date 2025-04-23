@@ -138,6 +138,8 @@
       ".thunderbird"
       ".config/birdtray"
       ".config/BraveSoftware/Brave-Browser"
+      ".config/remmina"
+      ".local/share/remmina"
     ];
   };
 
