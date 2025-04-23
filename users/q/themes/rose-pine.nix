@@ -46,11 +46,11 @@ in {
     enable = true;
     theme = {
       package = pkgs.rose-pine-gtk-theme;
-      name = "rose-pine-gtk";
+      name = "rose-pine";
     };
     iconTheme = {
       package = pkgs.rose-pine-icon-theme;
-      name = "rose-pine-icons";
+      name = "rose-pine";
     };
   };
 

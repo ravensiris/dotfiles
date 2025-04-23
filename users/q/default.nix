@@ -2,6 +2,7 @@
   pkgs,
   impermanence,
   nix-index-database,
+  lib,
   ...
 }: {
   home.packages = with pkgs; [
@@ -68,6 +69,15 @@
     source = ./distrobox.conf;
   };
 
+  xdg.desktopEntries.brave-browser = {
+    name = "Brave Web Browser";
+    icon = "brave-browser";
+    exec = "${pkgs.brave}/bin/brave --force-device-scale-factor=2.0";
+    terminal = false;
+    type = "Application";
+    categories = ["Network" "WebBrowser"];
+  };
+
   imports = [
     nix-index-database.hmModules.nix-index
     impermanence.nixosModules.home-manager.impermanence
@@ -93,6 +103,11 @@
     "org/virt-manager/virt-manager/connections" = {
       autoconnect = ["qemu:///system"];
       uris = ["qemu:///system"];
+    };
+    "org/gnome/desktop/interface" = {
+      # NOTE: no idea if this ever worked/works
+      scaling-factor = lib.hm.gvariant.mkUint32 2;
+      color-scheme = "prefer-dark";
     };
   };
 
