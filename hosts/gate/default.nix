@@ -86,6 +86,7 @@
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-31.7.7"
+    "electron-33.4.11"
   ];
 
   swapDevices = [
