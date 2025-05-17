@@ -81,6 +81,7 @@
     sshfs
     bruno
     sshfs
+    upscayl
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
