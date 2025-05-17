@@ -2,6 +2,7 @@
   services.ollama = {
     enable = true;
     loadModels = ["qwen3:14b" "deepseek-r1:14b" "gemma3:12b" "gemma3:27b"];
+    acceleration = "rocm";
   };
 
   services.open-webui = {
