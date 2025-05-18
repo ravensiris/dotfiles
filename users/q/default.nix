@@ -25,7 +25,7 @@
     floorp
     sweethome3d.application
     psmisc
-    vesktop
+    unstable.vesktop
     feishin
     waifu2x-converter-cpp
     backgroundremover
