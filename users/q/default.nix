@@ -37,6 +37,7 @@
     thunderbird-latest
     birdtray
     remmina
+    ungoogled-chromium
   ];
 
   xdg.mimeApps = let
@@ -141,6 +142,7 @@
       ".config/BraveSoftware/Brave-Browser"
       ".config/remmina"
       ".local/share/remmina"
+      ".config/chromium"
     ];
   };
 
