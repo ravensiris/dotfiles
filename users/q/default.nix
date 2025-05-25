@@ -17,7 +17,6 @@
     khinsider
     nmap
     obs-studio
-    kdenlive
     flacon
     sox
     insomnia
