@@ -74,7 +74,7 @@ in {
       ];
       exec-once = [
         "${pkgs.hyprland}/bin/hyprctl setcursor Bibata-Modern-Classic 32"
-        "${pkgs.unstable.goofcord}/bin/goofcord"
+        "${pkgs.unstable.vesktop}/bin/vesktop"
         "${pkgs.element-desktop}/bin/element-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland --hidden"
       ];
       bindm = [

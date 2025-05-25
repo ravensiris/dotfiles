@@ -24,7 +24,7 @@
     floorp
     sweethome3d.application
     psmisc
-    goofcord
+    vesktop
     feishin
     waifu2x-converter-cpp
     backgroundremover
@@ -128,7 +128,6 @@
       ".config/Element"
       ".floorp"
       ".config/vesktop"
-      ".config/goofcord"
       ".config/feishin"
       ".local/share/krita"
       ".config/OrcaSlicer"
