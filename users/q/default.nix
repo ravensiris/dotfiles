@@ -24,7 +24,7 @@
     floorp
     sweethome3d.application
     psmisc
-    unstable.goofcord
+    goofcord
     feishin
     waifu2x-converter-cpp
     backgroundremover
