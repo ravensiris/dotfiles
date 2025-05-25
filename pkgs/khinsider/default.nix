@@ -5,7 +5,7 @@
   fetchFromGitHub,
   pkgs,
 }:
-with pkgs.python310Packages;
+with pkgs.python3Packages;
   buildPythonPackage rec {
     inherit (sources.khinsider) src pname version;
     format = "setuptools";
