@@ -71,12 +71,17 @@ in {
     };
   };
 
-  xdg.configFile."fish/themes/tokyonight.theme" = {
+  xdg.configFile."fish/themes/Rosé Pine.theme" = {
     source = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/rose-pine/fish/refs/heads/main/themes/Ros%C3%A9%20Pine.theme";
       sha256 = "sha256-aRk1M8a3za36l6MNiOlD3PwVZqtXiv6I+s3WacqPDhw=";
     };
   };
+
+  programs.fish.shellInit = ''
+    fish_config theme choose "Rosé Pine"
+  '';
+
   programs.kitty.extraConfig = builtins.concatStringsSep "\n" [
     "background_opacity 0.9"
 
