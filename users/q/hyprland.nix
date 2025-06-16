@@ -25,6 +25,8 @@ in {
 
   programs.fuzzel.enable = true;
 
+  services.hyprpolkitagent.enable = true;
+
   home.packages = with pkgs; [
     hyprpaper
   ];
