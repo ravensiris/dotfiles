@@ -26,6 +26,7 @@ in {
   programs.fuzzel.enable = true;
 
   services.hyprpolkitagent.enable = true;
+  services.gnome-keyring.enable = true;
 
   home.packages = with pkgs; [
     hyprpaper
