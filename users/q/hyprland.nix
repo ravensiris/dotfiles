@@ -57,6 +57,11 @@ in {
       input = {
         kb_layout = "pl";
       };
+
+      ecosystem = {
+        no_update_news = true;
+      };
+
       monitor = [
         "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M28U 22110B009190,highrr,0x504,1"
         "desc:LG Electronics LG SDQHD 205NTNH5W679,preferred,3840x0,1"
