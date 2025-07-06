@@ -18,25 +18,5 @@
             "type": "github"
         },
         "version": "3d2ef972f0ada41ec689ae4c05dd0902197927bf"
-    },
-    "khinsider": {
-        "cargoLocks": null,
-        "date": "2024-02-06",
-        "extract": null,
-        "name": "khinsider",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "obskyr",
-            "repo": "khinsider",
-            "rev": "bd7ef673ec7af5ce8f580df8f7a3f0746ff1a1ad",
-            "sha256": "sha256-T3mRTWNjaH0dVxQ2SNr4Xw4PdjLfd3Bp0IsqEGjuS3g=",
-            "type": "github"
-        },
-        "version": "bd7ef673ec7af5ce8f580df8f7a3f0746ff1a1ad"
     }
 }
