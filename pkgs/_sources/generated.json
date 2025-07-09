@@ -1,7 +1,7 @@
 {
     "anime4k": {
         "cargoLocks": null,
-        "date": "2024-02-20",
+        "date": "2024-04-25",
         "extract": null,
         "name": "anime4k",
         "passthru": null,
@@ -13,10 +13,32 @@
             "name": null,
             "owner": "bloc97",
             "repo": "Anime4K",
-            "rev": "3d2ef972f0ada41ec689ae4c05dd0902197927bf",
-            "sha256": "sha256-YQuggxNVTQNLafsmqqLFxTQ9/aYay+Y03hFQON9RnoY=",
+            "rev": "7684e9586f8dcc738af08a1cdceb024cc184f426",
+            "sha256": "sha256-F5/n/KmJ7iOiI0qcpwX6q8zvF4ACv6zcJTOxcAv6HSE=",
+            "sparseCheckout": [],
             "type": "github"
         },
-        "version": "3d2ef972f0ada41ec689ae4c05dd0902197927bf"
+        "version": "7684e9586f8dcc738af08a1cdceb024cc184f426"
+    },
+    "khinsider": {
+        "cargoLocks": null,
+        "date": "2025-06-28",
+        "extract": null,
+        "name": "khinsider",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "kerunaru",
+            "repo": "khinsider",
+            "rev": "cc1bdc1807fba5d282fe8c6e3cfc10141c26865d",
+            "sha256": "sha256-3BliQzSEkPw4bjXvTq/xkGr6we6BCKV75ZCC11oS5MY=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "cc1bdc1807fba5d282fe8c6e3cfc10141c26865d"
     }
 }
