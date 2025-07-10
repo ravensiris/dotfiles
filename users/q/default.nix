@@ -93,6 +93,7 @@
     ./music.nix
     ./media.nix
     ./android-studio.nix
+    ./cursor.nix
   ];
 
   programs.nix-index.enable = true;
