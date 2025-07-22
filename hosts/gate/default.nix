@@ -21,8 +21,6 @@
     ./syncthing.nix
     ./printing.nix
     ./fonts.nix
-    ./distrobox.nix
-    ./ollama.nix
   ];
 
   programs.seahorse.enable = true;
