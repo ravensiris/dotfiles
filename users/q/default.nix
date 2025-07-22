@@ -142,6 +142,7 @@
       ".config/remmina"
       ".local/share/remmina"
       ".config/chromium"
+      ".config/bruno"
     ];
   };
 
