@@ -81,7 +81,7 @@
     vial
     qmk
     sshfs
-    bruno
+    unstable.bruno
     sshfs
     upscayl
   ];
