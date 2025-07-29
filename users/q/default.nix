@@ -36,6 +36,7 @@
     thunderbird-latest
     birdtray
     remmina
+    moonlight-qt
     ungoogled-chromium
   ];
 
@@ -143,6 +144,7 @@
       ".local/share/remmina"
       ".config/chromium"
       ".config/bruno"
+      ".config/moonlight"
     ];
   };
 
