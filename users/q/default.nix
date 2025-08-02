@@ -95,6 +95,7 @@
     ./media.nix
     ./android-studio.nix
     ./cursor.nix
+    ./minecraft.nix
   ];
 
   programs.nix-index.enable = true;
