@@ -28,7 +28,7 @@
     feishin
     waifu2x-converter-cpp
     backgroundremover
-    unstable.orca-slicer
+    orca-slicer
     freecad
     usbutils
     openscad
