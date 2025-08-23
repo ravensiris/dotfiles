@@ -58,6 +58,7 @@
   services.gvfs.enable = true;
   services.udisks2.enable = true;
   programs.kdeconnect.enable = true;
+  services.fwupd.enable = true;
 
   age.identityPaths = ["/nix/persist/etc/ssh/ssh_host_ed25519_key"];
   time.timeZone = "Europe/Warsaw";
