@@ -80,7 +80,7 @@
   };
 
   imports = [
-    nix-index-database.hmModules.nix-index
+    nix-index-database.homeModules.nix-index
     impermanence.nixosModules.home-manager.impermanence
     ./neovim
     ./hyprland.nix
