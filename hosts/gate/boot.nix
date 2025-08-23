@@ -20,6 +20,12 @@
   boot.initrd.checkJournalingFS = false;
   boot.initrd.luks.devices."cryptroot".preLVM = true;
 
+  # sudo filefrag -v /nix/persist/swapfile | awk '$1=="0:" {print substr($4, 1, length($4)-2)}'
+  boot.kernelParams = ["resume_offset=31205376"];
+  # sudo findmnt -no UUID -T /nix/persist/swapfile
+  boot.resumeDevice = "/dev/disk/by-uuid/5560c4e3-4f9d-40d3-b7fc-a4fc3f13f74b";
+  powerManagement.enable = true;
+
   boot.extraModprobeConfig = ''
     options v4l2loopback video_nr=1,10 card_label="OBS","Phone" exclusive_caps=1 max_buffers=2
   '';
