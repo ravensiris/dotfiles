@@ -38,6 +38,7 @@
     remmina
     moonlight-qt
     ungoogled-chromium
+    appimage-run
   ];
 
   xdg.mimeApps = let
