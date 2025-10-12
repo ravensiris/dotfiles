@@ -93,7 +93,6 @@
       <cpu mode='custom' match='exact' check='none'>
         <model fallback='allow'>EPYC-Rome</model>
         <topology sockets='1' dies='1' clusters='1' cores='8' threads='2'/>
-        <feature policy='disable' name='hypervisor'/>
         <feature policy='require' name='topoext'/>
       </cpu>
       <clock offset='localtime'>
