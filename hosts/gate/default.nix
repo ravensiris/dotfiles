@@ -86,6 +86,7 @@
     unstable.bruno
     sshfs
     upscayl
+    unstable.yt-dlp
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
