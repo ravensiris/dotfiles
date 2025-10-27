@@ -6,7 +6,11 @@
   programs.mpv = {
     enable = true;
     package = pkgs.mpv.override {
-      scripts = [pkgs.mpvScripts.autoload];
+      scripts = [
+        pkgs.mpvScripts.autoload
+        pkgs.mpvScripts.thumbfast
+        pkgs.mpvScripts.sponsorblock
+      ];
     };
     config = {
       glsl-shaders = builtins.replaceStrings ["~~"] ["${pkgs.anime4k}/usr/share"] "~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl";
