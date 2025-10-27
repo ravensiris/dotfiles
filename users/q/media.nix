@@ -31,6 +31,10 @@
     };
   };
 
+  home.packages = with pkgs; [
+    unstable.open-in-mpv
+  ];
+
   systemd.user.services.jellyfin-mpv-shim = {
     Unit = {
       Description = "Jellyfin Client";
