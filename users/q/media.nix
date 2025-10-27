@@ -10,6 +10,7 @@
         pkgs.mpvScripts.autoload
         pkgs.mpvScripts.thumbfast
         pkgs.mpvScripts.sponsorblock
+        pkgs.mpvScripts.modernz
       ];
     };
     config = {
