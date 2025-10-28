@@ -678,11 +678,13 @@ require("lazy").setup({
 					dartls = {
 						init_options = { formatting = true },
 					},
-					expert = {
+					elixirls = { cmd = { "elixir-ls" } },
+					--[[	expert = {
 						cmd = { "expert" },
 						root_markers = { "mix.exs", ".git" },
 						filetypes = { "elixir", "eelixir", "heex" },
 					},
+          ]]
 				},
 			}
 
