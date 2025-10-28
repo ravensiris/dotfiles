@@ -37,6 +37,7 @@
       unstable.markdownlint-cli
       tree-sitter
       tree-sitter-grammars.tree-sitter-latex
+      expert
     ];
     sessionVariables = {EDITOR = "nvim";};
   };

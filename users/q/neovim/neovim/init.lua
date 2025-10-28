@@ -675,7 +675,14 @@ require("lazy").setup({
 				-- This table contains config for all language servers that are *not* installed via Mason.
 				-- Structure is identical to the mason table from above.
 				others = {
-					dartls = {},
+					dartls = {
+						init_options = { formatting = true },
+					},
+					expert = {
+						cmd = { "expert" },
+						root_markers = { "mix.exs", ".git" },
+						filetypes = { "elixir", "eelixir", "heex" },
+					},
 				},
 			}
 
@@ -830,7 +837,7 @@ require("lazy").setup({
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 				-- Adjusts spacing to ensure icons are aligned
-				nerd_font_variant = "mono",
+				nerd_font_variant = "normal",
 			},
 
 			completion = {

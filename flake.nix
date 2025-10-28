@@ -24,6 +24,10 @@
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    expert = {
+      url = "github:elixir-lang/expert";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = inputs @ {
@@ -36,6 +40,7 @@
     agenix,
     wfetch,
     nix-index-database,
+    expert,
     self,
     ...
   }: let
@@ -44,7 +49,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixpkgs-unstable home-manager impermanence disko user nur agenix wfetch nix-index-database self;
+        inherit inputs nixpkgs nixpkgs-unstable home-manager impermanence disko user nur agenix wfetch nix-index-database self expert;
       }
     );
   };

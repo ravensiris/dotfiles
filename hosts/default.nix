@@ -9,8 +9,13 @@
   nixpkgs-unstable,
   wfetch,
   nix-index-database,
+  expert,
   ...
 }: let
+  expertOverlay = final: prev: {
+    expert = expert.packages.${prev.system}.default;
+  };
+
   unstableOverlay = final: prev: {
     unstable = nixpkgs-unstable.legacyPackages.${prev.system};
   };
@@ -33,7 +38,7 @@ in {
       nur.modules.nixos.default
       agenix.nixosModules.default
       unstableModule
-      {nixpkgs.overlays = [wfetchOverlay];}
+      {nixpkgs.overlays = [wfetchOverlay expertOverlay];}
       {imports = [../modules/kvmfr.nix ../modules/s3fs.nix];}
       ./gate
       home-manager.nixosModules.home-manager
