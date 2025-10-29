@@ -460,19 +460,6 @@ require("lazy").setup({
 		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			-- Automatically install LSPs and related tools to stdpath for Neovim
-			-- Mason must be loaded before its dependents so we need to set it up here.
-			-- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-			{
-				"mason-org/mason.nvim",
-				---@module 'mason.settings'
-				---@type MasonSettings
-				---@diagnostic disable-next-line: missing-fields
-				opts = {},
-			},
-			"mason-org/mason-lspconfig.nvim",
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
-
 			-- Useful status updates for LSP.
 			{ "j-hui/fidget.nvim", opts = {} },
 
@@ -631,52 +618,7 @@ require("lazy").setup({
 				-- Display multiline diagnostics as virtual lines
 				-- virtual_lines = true,
 			})
-
-			-- LSP servers and clients are able to communicate to each other what features they support.
-			--  By default, Neovim doesn't support everything that is in the LSP specification.
-			--  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
-			--  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
-			-- NOTE: The following line is now commented as blink.cmp extends capabilites by default from its internal code:
-			-- https://github.com/Saghen/blink.cmp/blob/102db2f5996a46818661845cf283484870b60450/plugin/blink-cmp.lua
-			-- It has been left here as a comment for educational purposes (as the predecessor completion plugin required this explicit step).
-			--
-			-- local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-			-- Language servers can broadly be installed in the following ways:
-			--  1) via the mason package manager; or
-			--  2) via your system's package manager; or
-			--  3) via a release binary from a language server's repo that's accessible somewhere on your system.
-
-			-- The servers table comprises of the following sub-tables:
-			-- 1. mason
-			-- 2. others
-			-- Both these tables have an identical structure of language server names as keys and
-			-- a table of language server configuration as values.
-			---@class LspServersConfig
-			---@field mason table<string, vim.lsp.Config>
-			---@field others table<string, vim.lsp.Config>
 			local servers = {
-				--  Add any additional override configuration in any of the following tables. Available keys are:
-				--  - cmd (table): Override the default command used to start the server
-				--  - filetypes (table): Override the default list of associated filetypes for the server
-				--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-				--  - settings (table): Override the default settings passed when initializing the server.
-				--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-				--
-				--  Feel free to add/remove any LSPs here that you want to install via Mason. They will automatically be installed and setup.
-				mason = {
-					-- clangd = {},
-					-- gopls = {},
-					-- pyright = {},
-					-- rust_analyzer = {},
-					-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-					--
-					-- Some languages (like typescript) have entire language plugins that can be useful:
-					--    https://github.com/pmizio/typescript-tools.nvim
-					--
-					-- But for many setups, the LSP (`ts_ls`) will work just fine
-					-- ts_ls = {},
-					--
 					lua_ls = {
 						-- cmd = { ... },
 						-- filetypes = { ... },
@@ -691,10 +633,6 @@ require("lazy").setup({
 							},
 						},
 					},
-				},
-				-- This table contains config for all language servers that are *not* installed via Mason.
-				-- Structure is identical to the mason table from above.
-				others = {
 					dartls = {
 						init_options = { formatting = true },
 					},
@@ -705,46 +643,17 @@ require("lazy").setup({
 						filetypes = { "elixir", "eelixir", "heex" },
 					},
           ]]
-				},
 			}
 
-			-- Ensure the servers and tools above are installed
-			--
-			-- To check the current status of installed tools and/or manually install
-			-- other tools, you can run
-			--    :Mason
-			--
-			-- You can press `g?` for help in this menu.
-			--
-			-- `mason` had to be setup earlier: to configure its options see the
-			-- `dependencies` table for `nvim-lspconfig` above.
-			--
-			-- You can add other tools here that you want Mason to install
-			-- for you, so that they are available from within Neovim.
-			local ensure_installed = vim.tbl_keys(servers.mason or {})
-			vim.list_extend(ensure_installed, {
-				"stylua", -- Used to format Lua code
-			})
-			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-
-			-- Either merge all additional server configs from the `servers.mason` and `servers.others` tables
-			-- to the default language server configs as provided by nvim-lspconfig or
-			-- define a custom server config that's unavailable on nvim-lspconfig.
-			for server, config in pairs(vim.tbl_extend("keep", servers.mason, servers.others)) do
+			for server, config in pairs(servers) do
 				if not vim.tbl_isempty(config) then
 					vim.lsp.config(server, config)
 				end
 			end
 
-			-- After configuring our language servers, we now enable them
-			require("mason-lspconfig").setup({
-				ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-				automatic_enable = true, -- automatically run vim.lsp.enable() for all servers that are installed via Mason
-			})
-
 			-- Manually run vim.lsp.enable for all language servers that are *not* installed via Mason
-			if not vim.tbl_isempty(servers.others) then
-				vim.lsp.enable(vim.tbl_keys(servers.others))
+			if not vim.tbl_isempty(servers) then
+				vim.lsp.enable(vim.tbl_keys(servers))
 			end
 		end,
 	},
@@ -1024,11 +933,11 @@ require("lazy").setup({
 	--  Uncomment any of the lines below to enable them (you will need to restart nvim).
 	--
 	-- require 'kickstart.plugins.debug',
-	-- require 'kickstart.plugins.indent_line',
+	require 'kickstart.plugins.indent_line',
 	-- require 'kickstart.plugins.lint',
 	-- require 'kickstart.plugins.autopairs',
 	-- require 'kickstart.plugins.neo-tree',
-	-- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+	require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
 	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
 	--    This is the easiest way to modularize your config.
