@@ -619,25 +619,25 @@ require("lazy").setup({
 				-- virtual_lines = true,
 			})
 			local servers = {
-					lua_ls = {
-						-- cmd = { ... },
-						-- filetypes = { ... },
-						-- capabilities = {},
-						settings = {
-							Lua = {
-								completion = {
-									callSnippet = "Replace",
-								},
-								-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-								-- diagnostics = { disable = { 'missing-fields' } },
+				lua_ls = {
+					-- cmd = { ... },
+					-- filetypes = { ... },
+					-- capabilities = {},
+					settings = {
+						Lua = {
+							completion = {
+								callSnippet = "Replace",
 							},
+							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+							-- diagnostics = { disable = { 'missing-fields' } },
 						},
 					},
-					dartls = {
-						init_options = { formatting = true },
-					},
-					elixirls = { cmd = { "elixir-ls" } },
-					--[[	expert = {
+				},
+				dartls = {
+					init_options = { formatting = true },
+				},
+				elixirls = { cmd = { "elixir-ls" } },
+				--[[	expert = {
 						cmd = { "expert" },
 						root_markers = { "mix.exs", ".git" },
 						filetypes = { "elixir", "eelixir", "heex" },
@@ -933,11 +933,11 @@ require("lazy").setup({
 	--  Uncomment any of the lines below to enable them (you will need to restart nvim).
 	--
 	-- require 'kickstart.plugins.debug',
-	require 'kickstart.plugins.indent_line',
+	require("kickstart.plugins.indent_line"),
 	-- require 'kickstart.plugins.lint',
 	-- require 'kickstart.plugins.autopairs',
 	-- require 'kickstart.plugins.neo-tree',
-	require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+	require("kickstart.plugins.gitsigns"), -- adds gitsigns recommend keymaps
 
 	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
 	--    This is the easiest way to modularize your config.
