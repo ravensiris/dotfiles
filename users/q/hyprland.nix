@@ -5,9 +5,9 @@
   ...
 }: let
   gigabyteWallpaper = builtins.fetchurl rec {
-    name = "${sha256}.jpg";
-    url = "https://cdn.donmai.us/original/bd/98/__mejiro_ardan_umamusume_drawn_by_yu_hydra__bd98ddc0c53dc72b6923d5d36a9fccab.jpg";
-    sha256 = "1kkmdia8wgxlq3ypa4zp3k5ymn2qv7zq0g5xljviy4drawgp72pi";
+    name = "${sha256}.png";
+    url = "https://cdn.donmai.us/original/64/cf/__ryoshu_and_yujin_project_moon_and_1_more_drawn_by_kcaf128__64cf3dab1bf8814417b2e5ecd91f63b7.png";
+    sha256 = "1pq6wnmrl62c4kxn5fka44g2kb7bgnn2pxd8w0m6xj4svppvfkk9";
   };
 
   lgWallpaper = builtins.fetchurl rec {
