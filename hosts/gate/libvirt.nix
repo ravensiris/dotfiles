@@ -380,10 +380,6 @@ in {
 
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.swtpm.enable = true;
-  virtualisation.libvirtd.qemu.ovmf = {
-    enable = true;
-    packages = [pkgs.OVMFFull.fd];
-  };
 
   environment.etc = {
     "ovmf/edk2-x86_64-secure-code.fd" = {
