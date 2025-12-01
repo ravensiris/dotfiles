@@ -21,7 +21,7 @@
     sox
     insomnia
     brave
-    floorp
+    floorp-bin
     sweethome3d.application
     psmisc
     vesktop
