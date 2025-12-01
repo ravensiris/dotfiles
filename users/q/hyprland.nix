@@ -5,15 +5,15 @@
   ...
 }: let
   gigabyteWallpaper = builtins.fetchurl rec {
-    name = "${sha256}.png";
-    url = "https://cdn.donmai.us/original/64/cf/__ryoshu_and_yujin_project_moon_and_1_more_drawn_by_kcaf128__64cf3dab1bf8814417b2e5ecd91f63b7.png";
-    sha256 = "1pq6wnmrl62c4kxn5fka44g2kb7bgnn2pxd8w0m6xj4svppvfkk9";
+    name = "${sha256}.jpg";
+    url = "https://cdn.donmai.us/original/53/5f/__portia_original_drawn_by_gogalking__535f5c82b75ca89e51638502eab271a3.jpg";
+    sha256 = "0qq6bflwdpysg3rrn3rh6yp81fkhlisjkgay9fiz2gcm6wv58y1b";
   };
 
   lgWallpaper = builtins.fetchurl rec {
     name = "${sha256}.jpg";
-    url = "https://cdn.donmai.us/sample/44/b9/__mayano_top_gun_and_sweep_tosho_umamusume_drawn_by_yu_hydra__sample-44b9ed2fb739f925d271f6fc64200c44.jpg";
-    sha256 = "0sgjva1nlksly2w1xsvka6fgyqkg2v1492nqpa86vhv0z51ih23r";
+    url = "https://cdn.donmai.us/original/cd/59/__ofelia_original_drawn_by_gogalking__cd5972890522ff309cbf8bff23e68e54.jpg";
+    sha256 = "0i6rv1rx5gaqnvzaa0z4riwiqc47fxf93qymqh5gzy8w5ykxa8vg";
   };
 in {
   imports = [
